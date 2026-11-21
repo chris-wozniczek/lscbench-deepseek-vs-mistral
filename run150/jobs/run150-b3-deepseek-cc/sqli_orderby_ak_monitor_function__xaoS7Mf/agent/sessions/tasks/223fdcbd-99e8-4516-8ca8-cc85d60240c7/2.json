@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Restore BanRuleService and BanEventService",
+  "description": "Replace both masked regions in each service: java.time/java.util imports and the full @Service class implementing the contracted methods.",
+  "activeForm": "Restoring service classes",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

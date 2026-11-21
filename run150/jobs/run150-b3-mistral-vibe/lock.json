@@ -1,0 +1,923 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-11-21T03:25:28.636207Z",
+    "harbor": {
+        "version": "0.26.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 5,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "APIResponseValidationError",
+            "AgentAuthenticationError",
+            "AgentSafetyRefusalError",
+            "AgentTimeoutError",
+            "ApiProviderResourceNotFoundError",
+            "AuthenticationError",
+            "BadRequestError",
+            "BudgetExceededError",
+            "CancelledError",
+            "ContentPolicyViolationError",
+            "ContextLengthExceededError",
+            "ContextWindowExceededError",
+            "DspyImportError",
+            "MissingExtraError",
+            "ModelNotFoundError",
+            "NonZeroAgentExitCodeError",
+            "NotFoundError",
+            "OutputLengthExceededError",
+            "OutputTokenExceededError",
+            "PermissionDeniedError",
+            "RegradeError",
+            "RewardFileEmptyError",
+            "RewardFileNotFoundError",
+            "ServiceOperationsUnsupportedError",
+            "UnprocessableEntityError",
+            "UnsupportedModelParametersError",
+            "UnsupportedParamsError",
+            "VercelScopeError",
+            "VerifierOutputParseError",
+            "VerifierTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2024-5982_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:3cd1e240cc3252ab041278243c2dd15c14bc0885de778df07268970f5af8f01d",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2020-15888_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:5160c7776d0ce6bae166bd2c05d598a916ed11f8ae498c38fdf59382de500b29",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2019-3817_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:1363fce8c52ff8d70b75060092c1694130c7731bcaedb09e9192de60e8836619",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2020-5238_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:b43c097c023181dca7f20929042f0efc6c74cfc1b994abf869592ee95a6db9eb",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2024-0815_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:386f426c1783b0cb20e2cf6e89f591c40979c305f7e82b9396b4935f50241b46",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2022-1053_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:29052b4954a8b2ce9e850ceb57546e08a4dd82194cd4ba7541eb587c072c4cb5",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2022-2553_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:d28a786af2249f9e79fe5e5483239638cb12743ffaa2ba99f44ea09d7c833fa2",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2017-12595_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:fdf01d879d96044bc37a4556c283a8fd6c36d81fcbe591fd968321f8217b53ef",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2021-40566_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:856a52e6ad9a296b0d9b23b94dc3d8e54b86f31eb0676c52b12cce887be69055",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2012-4456_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:6957ea9ebcdfb9fc4a83bed4bf37c2c7de5cce19360c6c3635e734231cafde86",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/idor_article_publish_takeover_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:fe61ddbb146eeafb9ccc94bdbe57bd83662e335894c9d046986de2d8682b5160",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/vert_priv_module_revoke_bypass_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:0ff36b3a5529a5edd5a26f635183f12fb80f83dd7d660dc9df2f2474eb7b3cff",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2022-39209_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:6a4fadcad872e65c2d5d613cc7264636470fc425084675c1ba692a81e5285337",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/sqli_orderby_ak_monitor_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:3a34b56e5c30421280c3210ffd5fe2c59ce175d1674b0c80188539c4def06e80",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2023-40017_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:1492459a01949dea1a41c38ff4ce166d89e5e32b07851ad7ff879e68b6638c42",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2018-8050_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:30116df55877aa5eea9ffecb27cc9466c91a5753ac503ca02db43c28e78ca32f",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/jexl_inject_excel_quotation_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:690f4100f9b8caaace8051be03207c97296ec769f64911d30ff41b465e8ec153",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2023-25805_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:e57d30c745817912c381e5157db6ce55f024ae388b38f66badd70bca8c299633",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2024-35241_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:978d877e478c3da31d8b0589dda33ffb5476c997da661b3a58d22129d4e850a4",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:VibeNoPluginCache",
+                "model_name": "mistral/mistral-large-4-0",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.mistral.ai"
+                ],
+                "kwargs": {
+                    "version": "3.1.3",
+                    "thinking": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        }
+    ]
+}

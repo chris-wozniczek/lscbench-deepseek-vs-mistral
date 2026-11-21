@@ -1,0 +1,18 @@
+[
+  {
+    "source": "/logs/artifacts",
+    "destination": "artifacts/logs/artifacts",
+    "type": "directory",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/studyhub/platform/service/ArticleService.java",
+    "destination": "artifacts/workspace/src/main/java/com/studyhub/platform/service/ArticleService.java",
+    "type": "file",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  }
+]

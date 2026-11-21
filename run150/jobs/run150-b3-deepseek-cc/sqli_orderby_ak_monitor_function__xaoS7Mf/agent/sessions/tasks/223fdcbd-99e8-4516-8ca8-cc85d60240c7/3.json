@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Restore BanRuleMapper.xml and BanEventMapper.xml",
+  "description": "Write complete MyBatis mapper documents with the findAll statement supporting optional sortBy/order.",
+  "activeForm": "Restoring mapper XMLs",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,3 @@
+2026-11-21T05:25:07.444628+00:00 500 502 WARNING Retrying _fetch_response after error attempt=1 delay=0.50s error=ConnectError('')
+2026-11-21T05:25:07.953139+00:00 500 502 WARNING Retrying _fetch_response after error attempt=2 delay=1.05s error=ConnectError('')
+2026-11-21T05:33:41.385939+00:00 500 502 WARNING Retrying _fetch_response after error attempt=1 delay=0.50s error=ConnectError('')

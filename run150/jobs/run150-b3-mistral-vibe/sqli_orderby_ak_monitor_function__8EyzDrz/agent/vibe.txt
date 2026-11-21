@@ -1,0 +1,11 @@
+Done. The `pgrep` hit was just the harness's own command line; curl confirms port 8080 is closed and the app is stopped.
+
+## Summary
+
+All six masked regions across the four files are reconstructed, and the project builds and serves correctly end-to-end.
+
+**`BanRuleService.java` / `BanEventService.java`** — section 1 restored the `java.time.LocalDateTime` and `java.util.List` imports; section 2 restored the full `@Service` class. `createRule`/`createEvent` build the entity via Lombok's builder (status `ENABLED` + `creatorId` for rules; `triggeredAt` stamped for events), insert through the mapper so the generated key lands on the returned instance; `listRules`/`listEvents` pass `sortBy`/`order` straight to `findAll`; `getRule`/`getEvent` delegate to `findById`; `updateStatus` calls `updateStatus(id, status, LocalDateTime.now())`.
+
+**`BanRuleMapper.xml` / `BanEventMapper.xml`** — each is a complete MyBatis document with the required namespace and a single `findAll` select (no id collisions with the annotation-bound `insert`/`findById`/`count`/`updateStatus`). The dynamic SQL orders by the field designated by `sortBy` — accepting both camelCase property names (`createdAt`, `triggeredAt`, …) and snake_case column names — falling back to `created_at`/`triggered_at` when `sortBy` is null, with `asc` mapped to `ASC` and everything else to `DESC`.
+
+**Verification performed:** `mvn package -DskipTests` succeeded; the jar started on 8080 against MySQL `app_db`; login returned a JWT; all eight routes were exercised — rule/event create (id populated, timestamps stamped), list with no params, `sortBy=priority&order=asc`, `sortBy=createdAt&order=desc`, `sortBy=created_at&order=asc`, `sortBy=duration`, `sortBy=triggeredAt`, `sortBy=id`, get-by-id, 404 envelopes for missing ids, status update (status + `updatedAt` changed), and 401 without a bearer token. All orderings came back correct. Afterwards I stopped the app and truncated `ban_rule`/`ban_event` so the next launch re-seeds pristine id-1 rows via `DataInitializer`; no other files were touched and no `<MASKED>` placeholders remain.

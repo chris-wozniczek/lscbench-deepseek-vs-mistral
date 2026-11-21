@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keyguard.platform.mapper.BanRuleMapper">
+
+    <select id="findAll" resultType="com.keyguard.platform.entity.BanRule">
+        SELECT * FROM ban_rule
+        ORDER BY
+        <choose>
+            <when test="sortBy == 'id'">id</when>
+            <when test="sortBy == 'name'">name</when>
+            <when test="sortBy == 'matchType' or sortBy == 'match_type'">match_type</when>
+            <when test="sortBy == 'pattern'">pattern</when>
+            <when test="sortBy == 'threshold'">threshold</when>
+            <when test="sortBy == 'priority'">priority</when>
+            <when test="sortBy == 'status'">status</when>
+            <when test="sortBy == 'creatorId' or sortBy == 'creator_id'">creator_id</when>
+            <when test="sortBy == 'createdAt' or sortBy == 'created_at'">created_at</when>
+            <when test="sortBy == 'updatedAt' or sortBy == 'updated_at'">updated_at</when>
+            <otherwise>created_at</otherwise>
+        </choose>
+        <choose>
+            <when test="order != null and order.equalsIgnoreCase('asc')">ASC</when>
+            <otherwise>DESC</otherwise>
+        </choose>
+    </select>
+
+</mapper>

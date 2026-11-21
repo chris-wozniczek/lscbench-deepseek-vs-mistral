@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keyguard.platform.mapper.BanRuleMapper">
+
+    <select id="findAll" resultType="com.keyguard.platform.entity.BanRule">
+        SELECT * FROM ban_rule
+        <choose>
+            <when test="sortBy != null and sortBy == 'id'">ORDER BY id</when>
+            <when test="sortBy != null and sortBy == 'name'">ORDER BY name</when>
+            <when test="sortBy != null and (sortBy == 'matchType' or sortBy == 'match_type')">ORDER BY match_type</when>
+            <when test="sortBy != null and sortBy == 'pattern'">ORDER BY pattern</when>
+            <when test="sortBy != null and sortBy == 'threshold'">ORDER BY threshold</when>
+            <when test="sortBy != null and sortBy == 'priority'">ORDER BY priority</when>
+            <when test="sortBy != null and sortBy == 'status'">ORDER BY status</when>
+            <when test="sortBy != null and (sortBy == 'creatorId' or sortBy == 'creator_id')">ORDER BY creator_id</when>
+            <when test="sortBy != null and (sortBy == 'createdAt' or sortBy == 'created_at')">ORDER BY created_at</when>
+            <when test="sortBy != null and (sortBy == 'updatedAt' or sortBy == 'updated_at')">ORDER BY updated_at</when>
+            <otherwise>ORDER BY created_at</otherwise>
+        </choose>
+        <choose>
+            <when test="order != null and (order == 'asc' or order == 'ASC')">ASC</when>
+            <otherwise>DESC</otherwise>
+        </choose>
+    </select>
+
+</mapper>

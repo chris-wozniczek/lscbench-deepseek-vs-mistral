@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Build and verify the application",
+  "description": "Run the project build, start the service, and exercise login plus the ban-rule/ban-event endpoints including sorted list calls.",
+  "activeForm": "Building and verifying",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

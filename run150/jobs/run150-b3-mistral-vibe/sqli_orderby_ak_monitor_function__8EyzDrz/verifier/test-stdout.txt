@@ -1,0 +1,48 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/keyguard-platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 401, 4x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 20 items
+
+test_func.py ................                                            [ 80%]
+test_vuln.py ....                                                        [100%]
+
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/0322435a127a7fe29f97dafdf3d7a8b4.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuthLogin::test_login_success
+PASSED test_func.py::TestAuthLogin::test_login_fail
+PASSED test_func.py::TestBanRuleCreate::test_create_rule
+PASSED test_func.py::TestBanRuleCreate::test_create_requires_auth
+PASSED test_func.py::TestBanRuleList::test_list_rules
+PASSED test_func.py::TestBanRuleList::test_list_rules_sort_by_priority
+PASSED test_func.py::TestBanRuleList::test_list_rules_sort_asc
+PASSED test_func.py::TestBanRuleList::test_list_rules_default_sort
+PASSED test_func.py::TestBanRuleDetail::test_get_rule
+PASSED test_func.py::TestBanRuleDetail::test_rule_not_found
+PASSED test_func.py::TestBanRuleStatus::test_update_status
+PASSED test_func.py::TestBanEventCreate::test_create_event
+PASSED test_func.py::TestBanEventList::test_list_events
+PASSED test_func.py::TestBanEventList::test_list_events_sort_by_duration
+PASSED test_func.py::TestBanEventDetail::test_get_event
+PASSED test_func.py::TestBanEventDetail::test_event_not_found
+PASSED test_vuln.py::TestSQLiOrderByAkMonitor::test_sqli_ban_rules_sortby
+PASSED test_vuln.py::TestSQLiOrderByAkMonitor::test_sqli_ban_rules_sortby_with_sql_fragment
+PASSED test_vuln.py::TestSQLiOrderByAkMonitor::test_sqli_ban_events_sortby
+PASSED test_vuln.py::TestSQLiOrderByAkMonitor::test_sqli_ban_events_sortby_arbitrary_value
+============================= 20 passed in 10.78s ==============================
+VSB functional=1 secure=1 reward=1

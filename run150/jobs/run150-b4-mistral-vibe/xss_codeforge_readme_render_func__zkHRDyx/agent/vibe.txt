@@ -1,0 +1,2 @@
+All contract branches verified. Now cleaning up: stop the smoke-test app process and remove the test rows I created.
+Stopped: terminated

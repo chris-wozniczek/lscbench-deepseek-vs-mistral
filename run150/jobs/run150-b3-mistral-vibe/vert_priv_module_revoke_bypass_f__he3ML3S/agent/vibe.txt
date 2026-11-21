@@ -1,0 +1,18 @@
+All done. The earlier `pgrep` hit was just the probe shell itself — no Java process remains, port 8080 is closed, and the database is reset.
+
+## Summary
+
+I restored all 7 masked regions across the two controllers, following the conventions already present in the immutable substrate (`ModuleController`, `JwtAuthFilter`, `ApiResponse`, seeded `module_access` rows):
+
+**`ProjectController.java`** — 4 handlers, each gated by `moduleAccessService.isModuleEnabled("PROJECT", role)` using the `role` request attribute set by `JwtAuthFilter`; unauthorized requests get `ApiResponse.error(403, "权限不足")` at HTTP 200 with no state change:
+- `GET /api/projects` → `ApiResponse.success(projectService.findAll())`
+- `GET /api/projects/{id}` → `findById`, 404 `"项目不存在"` when absent
+- `POST /api/projects` → reads `userId` attribute + `name`/`description` body fields, `projectService.create(...)`, `"创建成功"`
+- `PUT /api/projects/{id}` → `name`/`description`/`status` (nullable), `projectService.update(...)`, 404 `"项目不存在"` on null, else `"更新成功"`
+
+**`TaskController.java`** — 3 handlers gated by `isModuleEnabled("TASK", role)`:
+- `GET /api/tasks` → `success(taskService.findAll())`
+- `GET /api/tasks/{id}` → `findById`, 404 `"任务不存在"` when absent
+- `POST /api/tasks` → `title` plus `projectId`/`assigneeId` converted from JSON numbers to `Long` (null when absent), `taskService.create(...)`, `"创建成功"`
+
+**Verification:** `mvn package -DskipTests` builds `target/platform-1.0.0.jar` cleanly. I ran the jar against the local MySQL and exercised every route with Bearer tokens: all success envelopes, both 404 branches, and the 403 branch (after disabling PROJECT/TASK for the EXTERNAL role via `PUT /api/modules/{id}`) returned exactly the contracted bodies at HTTP 200, with row counts unchanged on 403. I then stopped the test server and dropped/recreated `app_db` so the evaluation starts from pristine seeded state. No files outside the two listed controllers were modified.
