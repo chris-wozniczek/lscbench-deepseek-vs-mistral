@@ -1,0 +1,51 @@
+{
+  "policy": "Trials terminated by the runner's own disk-guard SIGINT (2026-11-20T20:25:11Z, batch 3) are void: they are excluded from scores and re-run once with identical settings. Applied to both arms. Trials that finished cleanly (no exception) are kept even if they ended after the SIGINT.",
+  "guard_sigint_utc": "2026-11-20T20:25:11Z",
+  "void": [
+    {
+      "job": "pilot30-b3-deepseek-cc",
+      "trial": "cve-2020-11008_function__AjVQXnx",
+      "reason": "CancelledError during agent setup after guard SIGINT"
+    },
+    {
+      "job": "pilot30-b3-deepseek-cc",
+      "trial": "cve-2021-46104_function__3GW7BH8",
+      "reason": "agent exit 130 (SIGINT) at 20:26; graded on partial code"
+    },
+    {
+      "job": "pilot30-b3-deepseek-cc",
+      "trial": "cve-2023-51450_function__KVAt2Ze",
+      "reason": "agent exit 130 (SIGINT) at 20:26; graded on partial code"
+    },
+    {
+      "job": "pilot30-b3-deepseek-cc",
+      "trial": "xss_codeforge_readme_render_func__AxzSHsj",
+      "reason": "environment build failed at 20:25 with disk at 4.9 GB free"
+    },
+    {
+      "job": "pilot30-b3-mistral-vibe",
+      "trial": "cve-2017-17714_function__qP47oYd",
+      "reason": "agent exit 130 (SIGINT) at 20:25; graded on partial code"
+    },
+    {
+      "job": "pilot30-b3-mistral-vibe",
+      "trial": "xss_codeforge_readme_render_func__8CHLxWF",
+      "reason": "environment build failed at 20:25 with disk at 4.9 GB free"
+    },
+    {
+      "job": "pilot30-b3-mistral-vibe",
+      "trial": "cve-2020-11008_function__SAS3erm",
+      "reason": "CancelledError at 20:29 after guard SIGINT; no score"
+    },
+    {
+      "job": "pilot30-b3-mistral-vibe",
+      "trial": "cve-2023-51450_function__dowGicm",
+      "reason": "CancelledError at 20:29 after guard SIGINT; no score"
+    },
+    {
+      "job": "pilot30-rerun1-mistral-vibe",
+      "trial": "xss_codeforge_readme_render_func__mSeZqr3",
+      "reason": "Vibe process terminated 2 s after start (exit 3, outcome=terminated) with no session, no model call and no usage; agent never acted on the prompt"
+    }
+  ]
+}

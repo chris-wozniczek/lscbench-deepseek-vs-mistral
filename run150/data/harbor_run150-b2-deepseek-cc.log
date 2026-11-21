@@ -1,0 +1,27 @@
+Claude Code installation failed; retrying with bootstrap fallback: NonZeroAgentExitCodeError: Command failed (exit 100): apt-get update && apt-get install -y nodejs npm; E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+  19/19 Functional: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:42:51 0:00:00
+last-secure-code-benchmark/last-secure-code-benchmark • claude-code • 
+deepseek-flash
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Functional ┃ Reward ┃ Secure ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━┩
+│     19 │          0 │      1.000 │  0.316 │  0.316 │
+└────────┴────────────┴────────────┴────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1      │     6 │
+│ 0      │    13 │
+│ 1      │    19 │
+│ 1      │     6 │
+│ 0      │    13 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 42m 51s
+Results written to /srv/bench/lscb/jobs/run150-b2-deepseek-cc/result.json
+Inspect results by running `harbor view /srv/bench/lscb/jobs`
+Share results by running `harbor upload 
+/srv/bench/lscb/jobs/run150-b2-deepseek-cc`
+

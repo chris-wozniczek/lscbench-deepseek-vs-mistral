@@ -1,0 +1,34 @@
+Claude Code installation failed; retrying with bootstrap fallback: NonZeroAgentExitCodeError: Command failed (exit 100): apt-get update && apt-get install -y nodejs npm; E: Unable to correct problems, you have held broken packages.
+  19/19 Functional: 0.947 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1:20:58 0:00:00
+last-secure-code-benchmark/last-secure-code-benchmark • claude-code • 
+deepseek-flash
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Functional ┃ Reward ┃ Secure ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━┩
+│     19 │          2 │      0.947 │  0.474 │  0.474 │
+└────────┴────────────┴────────────┴────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0      │    10 │
+│ 1      │     9 │
+│ 1      │    18 │
+│ 0      │     1 │
+│ 0      │    10 │
+│ 1      │     9 │
+└────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Exception         ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ AgentTimeoutError │     2 │
+└───────────────────┴───────┘
+
+Job Info
+Total runtime: 1h 20m 59s
+Results written to /srv/bench/lscb/jobs/run150-b3-deepseek-cc/result.json
+Inspect results by running `harbor view /srv/bench/lscb/jobs`
+Share results by running `harbor upload 
+/srv/bench/lscb/jobs/run150-b3-deepseek-cc`
+

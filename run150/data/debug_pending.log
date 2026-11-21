@@ -1,0 +1,221 @@
+⠋ 0/6 Running trials...                                          0:00:01 -:--:--╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/cli/jobs.py:2083   │
+│ in start                                                                     │
+│                                                                              │
+│   2080 │   options.apply_defaults()                                          │
+│   2081 │   try:                                                              │
+│   2082 │   │   config = build_job_config(**options.arguments)                │
+│ ❱ 2083 │   │   return _execute_job(                                          │
+│   2084 │   │   │   config,                                                   │
+│   2085 │   │   │   diff_sources=options.arguments["diff_sources"],           │
+│   2086 │   │   │   print_config=options.arguments["print_config"],           │
+│                                                                              │
+│ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/cli/jobs.py:2437   │
+│ in _execute_job                                                              │
+│                                                                              │
+│   2434 │   # (when --upload is set) so everything stays on one event loop.   │
+│        See                                                                   │
+│   2435 │   # the long comment in `HarborHubUploadPlugin.on_job_end` for why  │
+│        this matters.                                                         │
+│   2436 │   try:                                                              │
+│ ❱ 2437 │   │   job, job_result = run_async(_run_job())                       │
+│   2438 │   except DATASET_RESOLUTION_ERRORS as exc:                          │
+│   2439 │   │   abort_dataset_resolution(console, exc, "No job was started.") │
+│   2440                                                                       │
+│                                                                              │
+│ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/cli/utils.py:126   │
+│ in run_async                                                                 │
+│                                                                              │
+│   123 │   │   return asyncio.run(                                            │
+│   124 │   │   │   with_async_cleanup(coro),                                  │
+│       loop_factory=asyncio.ProactorEventLoop                                 │
+│   125 │   │   )                                                              │
+│ ❱ 126 │   return asyncio.run(with_async_cleanup(coro))                       │
+│   127                                                                        │
+│   128                                                                        │
+│   129 def parse_kwargs(kwargs_list: list[str] | None) -> dict[str, Any]:     │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/runners.py:194 in run                            │
+│                                                                              │
+│   191 │   │   │   "asyncio.run() cannot be called from a running event       │
+│       loop")                                                                 │
+│   192 │                                                                      │
+│   193 │   with Runner(debug=debug, loop_factory=loop_factory) as runner:     │
+│ ❱ 194 │   │   return runner.run(main)                                        │
+│   195                                                                        │
+│   196                                                                        │
+│   197 def _cancel_all_tasks(loop):                                           │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/runners.py:118 in run                            │
+│                                                                              │
+│   115 │   │                                                                  │
+│   116 │   │   self._interrupt_count = 0                                      │
+│   117 │   │   try:                                                           │
+│ ❱ 118 │   │   │   return self._loop.run_until_complete(task)                 │
+│   119 │   │   except exceptions.CancelledError:                              │
+│   120 │   │   │   if self._interrupt_count > 0:                              │
+│   121 │   │   │   │   uncancel = getattr(task, "uncancel", None)             │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/base_events.py:687 in run_until_complete         │
+│                                                                              │
+│    684 │   │   if not future.done():                                         │
+│    685 │   │   │   raise RuntimeError('Event loop stopped before Future      │
+│        completed.')                                                          │
+│    686 │   │                                                                 │
+│ ❱  687 │   │   return future.result()                                        │
+│    688 │                                                                     │
+│    689 │   def stop(self):                                                   │
+│    690 │   │   """Stop running the event loop.                               │
+│                                                                              │
+│ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/utils/async_cleanu │
+│ p.py:20 in with_async_cleanup                                                │
+│                                                                              │
+│   17 │   async with AsyncExitStack() as stack:                               │
+│   18 │   │   token = _exit_stack.set(stack)                                  │
+│   19 │   │   try:                                                            │
+│ ❱ 20 │   │   │   return await coro                                           │
+│   21 │   │   finally:                                                        │
+│   22 │   │   │   _exit_stack.reset(token)                                    │
+│   23                                                                         │
+│                                                                              │
+│ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/cli/jobs.py:2394   │
+│ in _run_job                                                                  │
+│                                                                              │
+│   2391 │   │   │   )                                                         │
+│   2392 │   │   │   await hub_plugin.on_job_start(job)                        │
+│   2393 │   │                                                                 │
+│ ❱ 2394 │   │   job_result = await job.run()                                  │
+│   2395 │   │                                                                 │
+│   2396 │   │   # Print the run summary BEFORE plugin and Harbor Hub finalize │
+│        so users                                                              │
+│   2397 │   │   # see results even if downstream operations fail.             │
+│                                                                              │
+│ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/job.py:1172 in run │
+│                                                                              │
+│   1169 │   │   │   │   │   │   completed=n_existing,                         │
+│   1170 │   │   │   │   │   )                                                 │
+│   1171 │   │   │   │   │                                                     │
+│ ❱ 1172 │   │   │   │   │   trial_results = await                             │
+│        self._run_trials_with_queue(                                          │
+│   1173 │   │   │   │   │   │   loading_progress, progress_task,              │
+│        running_progress                                                      │
+│   1174 │   │   │   │   │   )                                                 │
+│   1175                                                                       │
+│                                                                              │
+│ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/job.py:1323 in     │
+│ _run_trials_with_queue                                                       │
+│                                                                              │
+│   1320 │   │                                                                 │
+│   1321 │   │   coros =                                                       │
+│        self._trial_queue.submit_batch(self._remaining_trial_configs)         │
+│   1322 │   │                                                                 │
+│ ❱ 1323 │   │   async with asyncio.TaskGroup() as tg:                         │
+│   1324 │   │   │   tasks = [tg.create_task(coro) for coro in coros]          │
+│   1325 │   │                                                                 │
+│   1326 │   │   return [t.result() for t in tasks]                            │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/taskgroups.py:145 in __aexit__                   │
+│                                                                              │
+│   142 │   │   │   # a bunch of them.                                         │
+│   143 │   │   │   try:                                                       │
+│   144 │   │   │   │   me = BaseExceptionGroup('unhandled errors in a         │
+│       TaskGroup', self._errors)                                              │
+│ ❱ 145 │   │   │   │   raise me from None                                     │
+│   146 │   │   │   finally:                                                   │
+│   147 │   │   │   │   self._errors = None                                    │
+│   148                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+
+╭────────────────────────────── Sub-exception #1 ──────────────────────────────╮
+│ ╭─────────────────── Traceback (most recent call last) ────────────────────╮ │
+│ │ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/trial/queue.py │ │
+│ │ :223 in _run_trial                                                       │ │
+│ │                                                                          │ │
+│ │   220 │   async def _run_trial(self, trial_config: TrialConfig) ->       │ │
+│ │       TrialResult:                                                       │ │
+│ │   221 │   │   """Execute a single trial, acquiring the semaphore for     │ │
+│ │       concurrency control."""                                            │ │
+│ │   222 │   │   async with self._semaphore:                                │ │
+│ │ ❱ 223 │   │   │   return await                                           │ │
+│ │       self._execute_trial_with_retries(trial_config)                     │ │
+│ │   224 │                                                                  │ │
+│ │   225 │   def submit(self, trial_config: TrialConfig) -> Coroutine[Any,  │ │
+│ │       Any, TrialResult]:                                                 │ │
+│ │   226 │   │   """                                                        │ │
+│ │                                                                          │ │
+│ │ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/trial/queue.py │ │
+│ │ :179 in _execute_trial_with_retries                                      │ │
+│ │                                                                          │ │
+│ │   176 │   │   from harbor.trial.trial import Trial                       │ │
+│ │   177 │   │                                                              │ │
+│ │   178 │   │   for attempt in range(self._retry_config.max_retries + 1):  │ │
+│ │ ❱ 179 │   │   │   trial = await Trial.create(trial_config)               │ │
+│ │   180 │   │   │   self._setup_hooks(trial)                               │ │
+│ │   181 │   │   │   result = await trial.run()                             │ │
+│ │   182                                                                    │ │
+│ │                                                                          │ │
+│ │ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/trial/trial.py │ │
+│ │ :478 in create                                                           │ │
+│ │                                                                          │ │
+│ │    475 │   │   │   # Regrades carry the source trial's already-resolved  │ │
+│ │        agent config                                                      │ │
+│ │    476 │   │   │   # verbatim; the agent is never re-run, so don't       │ │
+│ │        re-resolve skills.                                                │ │
+│ │    477 │   │   │   cls._resolve_agent_skills(config)                     │ │
+│ │ ❱  478 │   │   task, task_download_result = await cls._load_task(config) │ │
+│ │    479 │   │   for warning in check_trial_config(                        │ │
+│ │    480 │   │   │   task.config, config.environment, config.verifier      │ │
+│ │    481 │   │   ):                                                        │ │
+│ │                                                                          │ │
+│ │ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/trial/trial.py │ │
+│ │ :550 in _load_task                                                       │ │
+│ │                                                                          │ │
+│ │    547 │   │   │   )                                                     │ │
+│ │    548 │   │   ).results[0]                                              │ │
+│ │    549 │   │   return (                                                  │ │
+│ │ ❱  550 │   │   │   Task(                                                 │ │
+│ │    551 │   │   │   │   task_dir=download_result.path,                    │ │
+│ │    552 │   │   │   │                                                     │ │
+│ │        extra_instruction_paths=config.extra_instruction_paths,           │ │
+│ │    553 │   │   │   │   extra_instructions=config.extra_instructions,     │ │
+│ │                                                                          │ │
+│ │ /srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/models/task/ta │ │
+│ │ sk.py:75 in __init__                                                     │ │
+│ │                                                                          │ │
+│ │    72 │   │   self._extra_instructions = self._read_extra_instructions() │ │
+│ │    73 │   │   self.paths = TaskPaths(self._task_dir)                     │ │
+│ │    74 │   │   self.file_filter = TaskFileFilter(self._task_dir)          │ │
+│ │ ❱  75 │   │   self.config =                                              │ │
+│ │       TaskConfig.model_validate_toml(self.paths.config_path.read_text()) │ │
+│ │    76 │   │   self._validate_input_paths(                                │ │
+│ │    77 │   │   │   self.config, self.paths, file_filter=self.file_filter  │ │
+│ │    78 │   │   )                                                          │ │
+│ │                                                                          │ │
+│ │ /usr/lib/python3.12/pathlib.py:1029 in read_text                         │ │
+│ │                                                                          │ │
+│ │   1026 │   │   Open the file in text mode, read it, and close the file.  │ │
+│ │   1027 │   │   """                                                       │ │
+│ │   1028 │   │   encoding = io.text_encoding(encoding)                     │ │
+│ │ ❱ 1029 │   │   with self.open(mode='r', encoding=encoding,               │ │
+│ │        errors=errors) as f:                                              │ │
+│ │   1030 │   │   │   return f.read()                                       │ │
+│ │   1031 │                                                                 │ │
+│ │   1032 │   def write_bytes(self, data):                                  │ │
+│ │                                                                          │ │
+│ │ /usr/lib/python3.12/pathlib.py:1015 in open                              │ │
+│ │                                                                          │ │
+│ │   1012 │   │   """                                                       │ │
+│ │   1013 │   │   if "b" not in mode:                                       │ │
+│ │   1014 │   │   │   encoding = io.text_encoding(encoding)                 │ │
+│ │ ❱ 1015 │   │   return io.open(self, mode, buffering, encoding, errors,   │ │
+│ │        newline)                                                          │ │
+│ │   1016 │                                                                 │ │
+│ │   1017 │   def read_bytes(self):                                         │ │
+│ │   1018 │   │   """                                                       │ │
+│ ╰──────────────────────────────────────────────────────────────────────────╯ │
+│ FileNotFoundError: [Errno 2] No such file or directory:                      │
+│ '/srv/bench/.cache/harbor/tasks/packages/last-secure-code-benchmark/cve-2024 │
+│ -5181_function/1e96d30675815b6bbcdf60a1b3d55ea806297c3a6c33bc6bc098f23512b10 │
+│ a99/task.toml'                                                               │
+╰──────────────────────────────────────────────────────────────────────────────╯

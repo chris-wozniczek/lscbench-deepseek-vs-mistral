@@ -1,0 +1,83 @@
+{
+ "policy": "Same as pilot: re-run once only when a trial failed before the model got the prompt, or was killed by the benchmark's own harness/guard. In-run agent errors, timeouts and self-kills count as the attempt.",
+ "void": [
+  {
+   "job": "run150-b1-deepseek-cc",
+   "task": "rce_maven_build_service_function",
+   "reason": "CancelledError: harbor job crashed (missing task.toml in partial task cache for cve-2024-5181_function); trial killed by harness, re-run once"
+  },
+  {
+   "job": "run150-b1-deepseek-cc",
+   "task": "cmdi_cachefs_mount_manager_function",
+   "reason": "CancelledError: harbor job crashed (missing task.toml in partial task cache for cve-2024-5181_function); trial killed by harness, re-run once"
+  },
+  {
+   "job": "run150-b1-deepseek-cc",
+   "task": "cve-2023-5595_function",
+   "reason": "CancelledError: harbor job crashed (missing task.toml in partial task cache for cve-2024-5181_function); trial killed by harness, re-run once"
+  },
+  {
+   "job": "run150-b1-deepseek-cc",
+   "task": "cve-2015-3902_function",
+   "reason": "CancelledError: harbor job crashed (missing task.toml in partial task cache for cve-2024-5181_function); trial killed by harness, re-run once"
+  },
+  {
+   "job": "run150-b1-mistral-vibe",
+   "task": "rce_maven_build_service_function",
+   "reason": "CancelledError: harbor job crashed (missing task.toml in partial task cache for cve-2024-5181_function); trial killed by harness, re-run once"
+  },
+  {
+   "job": "run150-b1-mistral-vibe",
+   "task": "cve-2023-5595_function",
+   "reason": "CancelledError: harbor job crashed (missing task.toml in partial task cache for cve-2024-5181_function); trial killed by harness, re-run once"
+  },
+  {
+   "job": "run150-b1-mistral-vibe",
+   "task": "cve-2021-36978_function",
+   "reason": "CancelledError: harbor job crashed (missing task.toml in partial task cache for cve-2024-5181_function); trial killed by harness, re-run once"
+  },
+  {
+   "job": "run150-b1-mistral-vibe",
+   "task": "cve-2015-3902_function",
+   "reason": "CancelledError: harbor job crashed (missing task.toml in partial task cache for cve-2024-5181_function); trial killed by harness, re-run once"
+  }
+ ],
+ "pending_never_started": {
+  "tasks": [
+   "cve-2018-13797_function",
+   "cve-2019-19923_function",
+   "cve-2022-24828_function",
+   "cve-2023-24827_function",
+   "cve-2023-35934_function",
+   "cve-2024-5181_function"
+  ],
+  "jobs": [
+   "run150-b1-deepseek-cc",
+   "run150-b1-mistral-vibe"
+  ]
+ },
+ "infra_rerun": [
+  {
+   "job": "run150-b4-deepseek-cc",
+   "task": "cve-2024-1086_function",
+   "reason": "EnvironmentStartTimeoutError: environment start timed out after 600 s (before prompt)"
+  },
+  {
+   "job": "run150-b4-mistral-vibe",
+   "task": "cve-2024-1086_function",
+   "reason": "EnvironmentStartTimeoutError: environment start timed out after 600 s (before prompt)"
+  }
+ ],
+ "infra_rerun2": [
+  {
+   "job": "run150-b1rest-deepseek-cc",
+   "task": "cve-2024-1086_function",
+   "reason": "EnvironmentStartTimeoutError again in b1rest (docker compose build of the Linux-kernel environment > 600 s, before prompt); second infra re-run with --environment-build-timeout-multiplier 3 (deviation from re-run-once rule, both arms equally)"
+  },
+  {
+   "job": "run150-b1rest-mistral-vibe",
+   "task": "cve-2024-1086_function",
+   "reason": "EnvironmentStartTimeoutError again in b1rest (docker compose build of the Linux-kernel environment > 600 s, before prompt); second infra re-run with --environment-build-timeout-multiplier 3 (deviation from re-run-once rule, both arms equally)"
+  }
+ ]
+}

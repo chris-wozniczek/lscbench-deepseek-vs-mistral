@@ -1,0 +1,51 @@
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  19/19 Functional: 0.947 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1:03:53 0:00:00
+last-secure-code-benchmark/last-secure-code-benchmark • vibe • mistral-large-4-0
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Functional ┃ Reward ┃ Secure ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━┩
+│     19 │          1 │      0.947 │  0.105 │  0.105 │
+└────────┴────────────┴────────────┴────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0      │    17 │
+│ 1      │     2 │
+│ 1      │    18 │
+│ 0      │     1 │
+│ 0      │    17 │
+│ 1      │     2 │
+└────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Exception                 ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ NonZeroAgentExitCodeError │     1 │
+└───────────────────────────┴───────┘
+
+Job Info
+Total runtime: 1h 3m 53s
+Results written to /srv/bench/lscb/jobs/run150-b5-mistral-vibe/result.json
+Inspect results by running `harbor view /srv/bench/lscb/jobs`
+Share results by running `harbor upload 
+/srv/bench/lscb/jobs/run150-b5-mistral-vibe`
+

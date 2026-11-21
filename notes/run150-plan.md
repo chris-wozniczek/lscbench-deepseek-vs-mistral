@@ -1,0 +1,120 @@
+# 150-task run on factory VPS — state (2026-11-21 ~01:45 CET)
+Done:
+- VPS root@<vps-host> via ~/.ssh/otter_factory (key saved as user secret OTTER_FACTORY_SSH_KEY; it lacked BEGIN/END lines, I added them).
+- user `bench` (home /srv/bench), group benchdocker; separate dockerd `bench-docker.service` (config /srv/bench/etc/daemon.json, data-root /srv/bench/docker, socket unix:///run/bench-docker.sock, bridge bench0 10.210.0.1/24, containerd namespace bench). Otter daemon untouched (/var/lib/docker, prune timer otter-build-cache only sees Otter daemon).
+- /srv/bench/lscb has harness/, notes/, report/extract.py+build_report.py, .venv with harbor 0.26.0 + matplotlib. Keys in /srv/bench/etc/keys.env (DEEPSEEK_API_KEY, MISTRAL_API_KEY), 0600 bench.
+Next:
+- Make run_150.py from harness/run_pilot.py (1011 lines; constants at top lines 16-29: ROOT, TASKS_FILE=notes/pilot30.json expects 30, job names pilot30-b{n}-{deepseek-cc|mistral-vibe}, read_mistral_key reads ~/.vibe/.env, -n 3). Change: ROOT=/srv/bench/lscb, tasks=notes/function_tasks.json (150, list of {task,lang,cwe,sev,cve}), job prefix run150, batch size 20 strided (8 batches), -n 5 per arm, DOCKER_HOST=unix:///run/bench-docker.sock for harbor + all docker calls, keys from /srv/bench/etc/keys.env, mid-batch cleanup threshold 60 GB, guard 20 GB disk / $2 DeepSeek.
+- Same rules as pilot: re-run policy + void rule (notes/pilot30-commands.md, notes/void_trials.json); write notes/run150-commands.md; balance CSV; host sampler; key-prefix scan per job.
+- Run as bench under tmux/setsid, monitor; DeepSeek balance $4.98 — user asked to top up ~$10.
+- Report: adapt extract.py (manifest/job regex run150-...) and build_report.py; later consolidated report with pilot30.
+- Teardown at end: systemctl disable --now bench-docker; rm unit; ip link del bench0; userdel -r bench (only after copying results back).
+- 2026-11-21 00:39 UTC: run_150.py launched on VPS (pid 759929), logs /srv/bench/lscb/data/run150_runner.log, jobs /srv/bench/lscb/jobs/run150-b{1..8}-{deepseek-cc,mistral-vibe}. Monitor; after done: rerun policy (--rerun-infra → run150-rerun1-*), copy jobs+data back to /home/ubuntu/lscb-bench/run150/, adapt report.
+- 00:55 UTC attempt 2 launched (attempt 1 aborted, see run150-commands.md). Both harbor b1 jobs running by 01:01.
+- Report TODO: extract.py is pilot-specific (ROOT, MANIFEST=pilot30.json, job regex pilot30-(b[123]|rerun\d*)); build_report.py hardcodes pilot30 jobs/text (lines ~282, 921, 930, 1062, 1474-1477, 1583, 1610, 1696, 1719-1736). Plan: copy to report150/ with RUN prefix run150, manifest function_tasks.json (list, keys task/lang/cwe/sev/cve), batches b[1-8], void list notes/void_trials_run150.json; copy VPS jobs+data to /home/ubuntu/lscb-bench/run150/.
+- 01:36 UTC (VPS clock) runner relaunched --start-batch 2 (pid 1186961); batch 2 harbor started 01:45:50. Batch-1 leftovers: harness/run_b1rest.py (run as bench after the runner finishes; job names run150-b1rest-<arm>; reads notes/void_trials_run150.json). Report: report150/extract.py (RUN=/home/ubuntu/lscb-bench/run150, needs jobs copied back with rsync). VPS status script: data/status150.py.
+- 02:09 UTC: batch 2 healthy (DS 10/19 done, M 7/19), no harbor tracebacks, balance $14.32, load ~10-18. Monitor loop: `ssh ... '.venv/bin/python data/status150.py; tail -1 data/run150_runner.log'` every ~10 min; report to user after every ~2 batches. After batch 8: run `harness/run_b1rest.py` as bench (source keys.env), then rsync jobs+data to /home/ubuntu/lscb-bench/run150 and run report150/extract.py; build_report for run150 still to adapt (copy report/build_report.py → report150/, replace pilot30 constants listed above). Also: tag Mistral exit-143 self-kills (pkill -f matching argv prompt), then sensitivity re-run with prompt-from-file Vibe adapter (not built yet).
+- Built `lscb_agents:VibePromptFile` (local + VPS; VPS backup lscb_agents.py.bak-run150): writes instruction to /logs/agent/prompt.txt and runs `vibe --prompt-file` instead of `--prompt=<text>` (Vibe 3.1.3 supports --prompt-file). Use ONLY for the post-run Mistral sensitivity re-run of self-kill tasks (job names run150-sens-mistral-vibe); main run keeps VibeNoPluginCache. Untested yet: smoke 1 task first.
+- 02:20 UTC batch 2: DS 15/19, M 12/19 done; balance $14.06.
+- 02:29 UTC batch 2: DS 19/19 (6 reward), M 15/19 (4 reward); balance $13.99. No harbor tracebacks.
+- 02:39 UTC: b2 DS done 19/19; M 18/19 (cve-2019-19925 running). M cve-2016-6897 lost agent logs (container stopped early).
+- 02:49 UTC: b2 waiting on M cve-2019-19925 (agent running ~35 min, VPS load 0.1 — batch-tail idle). Sent user progress: DS 6/28, M 5/27 reward; ETA ~11:00 UTC finish.
+- 03:05 UTC: M b2 cve-2019-19925: vibe-rs running 46 min with no tool child processes (likely long model turns/API waits); will hit 1h agent timeout.
+- 03:15 UTC: still waiting on M b2 cve-2019-19925 (agent started ~02:19, timeout ~03:20). Batch 3 not started yet.
+- 03:18 UTC: batch 2 ended (1h33m, tail-bound by M cve-2019-19925 1h timeout). Batch 3 started. Revised ETA: 6 batches x ~1.5h + b1rest ~1.5h → finish ~14:00 UTC.
+- 03:32 UTC: batch 3 harbor jobs started 03:25:17, healthy; balance $13.97.
+- 03:41 UTC: b3 DS 5/19 (4 reward), M 2/19; balance $13.66. Note DeepSeek peak pricing 01-04 and 06-10 UTC Mon-Fri (today is Saturday → off-peak all day; extractor uses weekday check).
+- 03:51 UTC: b3 DS 8/19 (6 reward), M 6/19 (4 reward); balance $13.46; load spike 44 (1-min) on 16 cores — check sustained.
+- 04:01 UTC: b3 DS 8/19 (6 reward), M 8/19 (4 reward); balance $13.35; load back to ~9. Runner continues; keep monitoring every ~10-20 min; next user update after batch 4.
+- 04:10 UTC: b3 DS 9/19 (6), M 9/19 (5); balance $13.24; 1-min load spiked to 61 (CPU oversubscription from agents' parallel builds/grep -r /). Check load distribution in host_samples_run150.csv; consider -n 4 for later batches if timeouts appear.
+- Load distribution so far (421 samples @30s): median 4.5, p90 16.7, max 61.8 → spikes only; keep -n 5.
+- 04:20 UTC: b3 DS 13/19 (8 reward), M 14/19 (6 reward); balance $13.13; no tracebacks. Cumulative official so far approx: DS b1 0/9 + b2 6/19 + b3 partial; M b1 1/9 + b2 4/19 + b3 partial.
+- 04:30 UTC: b3 DS 16/19 (9 reward), M 18/19 (7 reward); balance $12.97.
+- 04:39 UTC: b3 DS 18/19 (9 reward), M 19/19 (7 reward); balance $12.92; waiting on last DS trial before batch 4.
+- 04:46 UTC: batch 3 ended (03:18→04:46). b3 DS 9/19, M 7/19 reward. Cumulative official reward: DS 15/47, M 12/47. Balance ~$12.9. Batch 4 starting.
+- 04:58 UTC: batch 4 pulls nearly done (started 04:49); harbor b4 jobs not yet started.
+- 05:08 UTC: batch 4 running (DS 2/19, M 2/19 done, 2 reward each); balance $12.82; no tracebacks. Next user update after batch 4 ends.
+- 05:17 UTC: b4 DS 6/19 (2), M 6/19 (2); balance $12.72; load ~15. Continue monitor loop; after b8: run_b1rest.py, then VibePromptFile smoke + sensitivity rerun of Mistral exit-143 self-kills, rsync back, report150.
+- 05:27 UTC: b4 DS 10/19 (3), M 9/19 (3); balance $12.61; no tracebacks.
+- 05:36 UTC: b4 DS 12/19 (3), M 11/19 (3); balance $12.56; no tracebacks. Cumulative official reward before b4: DS 15/47, M 12/47.
+- 05:46 UTC: b4 DS 16/19 (3), M 14/19 (3); balance $12.41; no tracebacks.
+- 06:00 UTC: b4 almost done (DS 18/19). cve-2024-1086 env-start timeout both arms → added to void_trials_run150.json infra_rerun; run_b1rest.py must ALSO include infra_rerun entries (TODO edit before launching). M b4 exit-143: xss_codeforge, negative_qty.
+- run_b1rest.py now also includes infra_rerun entries (cve-2024-1086 both arms); synced to VPS. Self-kill evidence b4: M xss_codeforge (pkill -f x5), M negative_qty (`pkill -f 'java .*-jar'` x9) — verify argv match at report time (prompt text in result.json exception_message).
+- 06:04 UTC: b4 waiting on last DS trial (18/19). Cumulative reward after b4 so far: DS 18/65, M 15/66 (approx). Balance $12.39.
+- 06:07 UTC runner aborted on b4 image-cleanup timeout; manual prune + relaunch --start-batch 5 (~06:15 UTC).
+- 06:25 UTC: user updated after b4 (DS 18/66, M 15/66 reward; DS spend $2.59). Runner relaunched --start-batch 5.
+- 06:28 UTC: batch 5 harbor jobs started 06:24:49 (DS pid ?, M pid 3764345); healthy. Next: keep monitoring b5-b8 (each ~1.3-1.5h), then b1rest (incl. cve-2024-1086 infra rerun), sensitivity rerun of M self-kills with VibePromptFile, rsync, report150.
+- 06:37 UTC: b5 DS 3/19 (1), M 1/19 (0); balance $12.29; no tracebacks; load ~2.5.
+- 06:47 UTC: monitoring b5 (status check issued).
+- 06:47 UTC: b5 DS 4/19 (1), M 4/19 (1); balance $12.18; no tracebacks.
+- 06:57 UTC: monitoring b5 (status check issued).
+- 06:56 UTC: b5 DS 11/19 (1), M 11/19 (2); balance $11.93; no tracebacks. Monitor loop continues.
+- 07:06 UTC: monitoring b5 (status check issued). State is fully described in this file + run150-commands.md + void_trials_run150.json.
+- 07:06 UTC: b5 DS 14/19 (2), M 14/19 (2); balance $11.74; no tracebacks.
+- 07:16 UTC: monitoring b5 (status check issued).
+- 07:16 UTC: b5 DS 16/19 (2), M 15/19 (2); balance $11.52; no tracebacks. Continue: wait for b5 end → b6, b7, b8 → b1rest → sensitivity → report.
+- 07:26 UTC: monitoring b5 end (status check issued).
+- 07:25 UTC: b5 DS 17/19 (2), M 17/19 (2); balance $11.35.
+- 07:30 UTC: resume_watch.sh running on VPS (root, nohup); marker data/resumed_N prevents repeats. Kill it before b1rest/teardown: pkill -f resume_watch.sh (run as root over ssh — careful, pattern not in any agent argv).
+- 07:40 UTC: monitoring b5 end (status check issued).
+- 07:35 UTC: b5 DS 18/19 (2), M 19/19 (2); balance $11.23; watcher alive (pid 216527; 2nd pgrep hit was the ssh shell itself).
+- 07:50 UTC: checking b5 end / b6 start.
+- 07:44 UTC: b5 ended cleanly (DS 2/19, M 2/19). Cumulative official reward: DS 20/85, M 17/85. Batch 6 started 07:44 (pulling).
+- 07:55 UTC: extract on b1-b5 (local rsync) OK: DS 20/85 reward, 81 functional, 5 exc, 1 infra, $3.47 computed (balance drop $3.75 incl. void trials); M 17/85, 79 functional, 10 exc, 1 infra, $24.71 API-eq (projected ~$45 for 150, above earlier $30 estimate). rows 178 official 170.
+- 08:05 UTC: monitoring b6 (status check issued).
+- build_report.py (1877 lines) pilot hard-codes: L20-33 paths (manifest pilot30.json, logs, pulls, commands, void), L282 'pilot30-rerun', L916-932 run end/title/caveat, L1062 '30 per arm', L1474-1477 DS job list, L1583, L1610 aborted text, L1696 published totals, L1715-1736 provenance list, L1869. Plan: copy to report150/build_report.py with REPORT=ROOT/'run150/report' after run completes. b6 running at 07:56 UTC (5+5 started).
+- 08:15 UTC: monitoring b6 (status check issued).
+- 08:06 UTC: b6 DS 3/19 (2), M 4/19 (3); balance $11.08; no tracebacks.
+- 08:16 UTC: monitoring b6 (status check issued).
+- 08:16 UTC: b6 DS 8/19 (5), M 7/19 (4); balance $10.92; no tracebacks.
+- 08:26 UTC: monitoring b6 (status check issued).
+- 08:25 UTC: b6 DS 12/19 (5), M 12/19 (4); balance $10.83; load 29 spike; no tracebacks.
+- 08:36 UTC: monitoring b6 (status check issued).
+- 08:35 UTC: b6 DS 15/19 (5), M 14/19 (4); balance $10.70; no tracebacks.
+- 08:45 UTC: monitoring b6 end (status check issued).
+- 08:45 UTC: b6 DS 18/19 (6), M 18/19 (4); balance $10.59; no tracebacks.
+- 08:55 UTC: checking b6 end / b7 start.
+- 08:55 UTC: b6 DS 19/19 (6), M 18/19 (4); waiting on last M trial.
+- 09:05 UTC: checking b6 end / b7 start.
+- 09:03 UTC: b6 ended (DS 6/19, M 4/19). Cumulative official reward: DS 26/104, M 21/104. Cleanup in progress; b7 next (watcher covers cleanup timeout).
+- 09:15 UTC: checking b7 start.
+- 09:12 UTC: b7 harbor jobs started (DS pid 967696, M pid 967697); balance $10.59.
+- 09:24 UTC: monitoring b7 (status check issued).
+- 09:23 UTC: b7 DS 2/19 (1), M 2/19 (0); balance $10.51; no tracebacks.
+- 09:34 UTC: monitoring b7 (status check issued).
+- 09:32 UTC: b7 DS 7/19 (2), M 7/19 (1); balance $10.36; no tracebacks.
+- 09:43 UTC: monitoring b7 (status check issued).
+- 09:42 UTC: b7 DS 12/19 (3), M 12/19 (2); balance $10.22; no tracebacks.
+- 09:53 UTC: monitoring b7 (status check issued).
+- 09:51 UTC: b7 (18 tasks) DS 16/18 (5), M 16/18 (4); balance $10.06; no tracebacks.
+- 10:02 UTC: checking b7 end (status check issued).
+- 10:02 UTC: b7 DS 17/18 (5), M 17/18 (4); balance $9.93; waiting on last trial per arm.
+- 10:12 UTC: checking b7 end (status check issued).
+- 10:11 UTC: b7 DS 18/18 (5), M 17/18 (4); balance $9.84; waiting on last M trial.
+- 10:21 UTC: checking b7 end (status check issued).
+- 10:21 UTC: b7 still waiting on last M trial (load 0.3, tail-bound); balance $9.82.
+- 10:31 UTC: checking b7 end (status check issued).
+- 10:25 UTC: b7 ended (DS 5/18, M 5/18). Cumulative official reward: DS 31/122, M 26/122. Batch 8 (last) started 10:25, pulling. After b8: kill watcher, launch run_b1rest.py as bench.
+- 10:40 UTC: checking b8 start (status check issued).
+- 10:35 UTC: b8 harbor jobs started (M pid 1574025); balance $9.82. User update sent after b7.
+- 10:50 UTC: b8 DS 3/19 (2), M 2/19 (0); balance $9.69; load 24; 1 traceback in M b8 harbor log (checking). User update sent after b7 (DS 31/122, M 26/122).
+- 10:52 UTC: M b8 cve-2019-15150 lost agent logs (container init died) — second case after b2 cve-2016-6897.
+- 11:02 UTC: monitoring b8 (status check issued).
+- 10:59 UTC: b8 DS 7/19 (4), M 7/19 (3); balance $9.63.
+- 11:10 UTC: b8 DS 8/19 (4), M 9/19 (3); balance $9.48. Sensitivity list (12 M exit-143/137 tasks) in notes/sens_run150.json; append any new b8/b1rest matches.
+- 11:19 UTC: b8 DS 14/19 (4), M 12/19 (3); balance $9.31. Next: write harness/run_sens.py (mistral-only, VibePromptFile).
+- 11:30 UTC: harness/run_sens.py written + synced (mistral-only, swaps agent to VibePromptFile; usage: run_sens.py [JOB] [TASK...]). Plan: smoke 1 task (job run150-senssmoke-mistral-vibe, e.g. cve-2021-46104_function) after b1rest, then full sens list.
+- 11:40 UTC: checking b8 (status check issued).
+- 11:29 UTC (VPS): b8 (18 tasks) DS 17/18 (4), M 14/18 (3); balance $9.19. (Earlier note timestamps after ~11:10 were my estimates; VPS log times are authoritative.)
+- ~11:39 UTC: checking b8 end (status check issued).
+- ~11:42 UTC: b8 DS 18/18 (4), M 17/18 (3). Launched harness/chain_after150.sh on VPS (root): waits for run_150 exit → kills watcher → run_b1rest.py → sens smoke (run150-senssmoke-mistral-vibe, cve-2021-46104). CHAIN lines in run150_runner.log.
+- ~11:52 UTC: checking b8 end / chain (status check issued).
+- 11:49 UTC (VPS): b8 waiting on last M trial (17/18); chain script waiting (pid 2527966).
+- 11:56 UTC: b8 ended (DS 4/18, M 3/18). Main batches done: DS 35/140, M 29/140 reward (b1rest 10 per arm + cve-2024-1086 pending). Batch8 cleanup running; chain will start b1rest. (Session moved machines; local files + key intact.)
+- 12:04 UTC: b1rest started (chain), both arms; watcher stopped. After b1rest the chain runs the 1-task VibePromptFile smoke.
+- 12:10 UTC: b1rest running (0 done). Local rsync b1-b8 + extract: DS 35/140 reward, 134 functional, 6 exc, $5.47; M 29/140, 133 functional, 16 exc, $36.49 API-eq. Next: write report150/build_report.py importing report/build_report.py helpers/plots with patched paths + new make_readme.
+- 12:12 UTC: b1rest trials running (containers up). Cloning upstream LSCBench (sparse) to /home/ubuntu/lscb-bench/upstream to recompute published rewards for all 150 function tasks (pilot30.json had published_reward for 6 models).
+- notes/published150.json: published per-task rewards (6 models) for the 150 function tasks from upstream traces/catalog.json.
+- 13:19 UTC: b1rest finished (DS 3/11 reward, Mistral 0/11). cve-2024-1086 EnvironmentStartTimeoutError again in both arms -> run_infra2.py started 13:19 (build timeout x3, deviation documented in run150-commands.md). No Mistral exit-143/137 in b1rest, so sens list stays at 12. DeepSeek b1rest cve-2024-5181 ended exit 137 (Claude Code; scored attempt). Sens smoke (VibePromptFile, cve-2021-46104) started 13:18.
+- 13:35 UTC: smoke verified --prompt-file in Vibe argv (prompt not visible). after_smoke.sh launched: runs run_sens.py (11 tasks, job run150-sens-mistral-vibe) if smoke has no exit 143/137. Smoke = sens result for cve-2021-46104.
+- 14:01 UTC: infra2 done: cve-2024-1086 DS reward 1, Mistral functional only. 14:31 UTC: full sensitivity job done (11 tasks) + smoke. All benchmark runs finished. cve-2019-15150 ended exit 143 again with --prompt-file (and again lost Vibe logs), so that one is not explained by the argv prompt.

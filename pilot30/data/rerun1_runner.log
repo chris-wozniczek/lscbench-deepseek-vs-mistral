@@ -1,0 +1,71 @@
+2026-11-20T20:42:25+00:00 Mistral optional rerun selected: task=cve-2020-11008_function; reason=cve-2020-11008_function__SAS3erm: CancelledError
+2026-11-20T20:42:25+00:00 Mistral optional rerun selected: task=cve-2023-51450_function; reason=cve-2023-51450_function__dowGicm: CancelledError
+2026-11-20T20:42:25+00:00 batch3 pre-rerun cleanup start: disk_available_gb=101.746
+2026-11-20T20:42:25+00:00 batch3 pre-rerun cleanup end: disk_available_gb=101.746
+2026-11-20T20:44:08+00:00 rerun1 pulls complete: tasks=6 disk_available_gb=87.144
+2026-11-20T20:44:09+00:00 sampler pid=1652084 output=data/host_samples_rerun1.csv; disk watcher pid=1652085 threshold_gb=40.0
+2026-11-20T20:44:09+00:00 pilot30-rerun1-deepseek-cc started pid=1652086 tasks=4 concurrency=2
+2026-11-20T20:44:09+00:00 pilot30-rerun1-mistral-vibe started pid=1652087 tasks=5 concurrency=2
+2026-11-20T20:44:09+00:00 disk guard sample: disk_available_gb=87.144
+2026-11-20T20:44:39+00:00 disk guard sample: disk_available_gb=78.486
+2026-11-20T20:45:09+00:00 disk guard sample: disk_available_gb=75.289
+2026-11-20T20:45:39+00:00 disk guard sample: disk_available_gb=72.375
+2026-11-20T20:46:09+00:00 disk guard sample: disk_available_gb=64.272
+2026-11-20T20:46:39+00:00 disk guard sample: disk_available_gb=63.435
+2026-11-20T20:47:09+00:00 disk guard sample: disk_available_gb=60.492
+2026-11-20T20:47:39+00:00 disk guard sample: disk_available_gb=58.319
+2026-11-20T20:48:09+00:00 disk guard sample: disk_available_gb=55.589
+2026-11-20T20:48:39+00:00 disk guard sample: disk_available_gb=55.488
+2026-11-20T20:49:09+00:00 disk guard sample: disk_available_gb=55.485
+2026-11-20T20:49:39+00:00 disk guard sample: disk_available_gb=59.079
+2026-11-20T20:50:09+00:00 disk guard sample: disk_available_gb=60.701
+2026-11-20T20:50:39+00:00 disk guard sample: disk_available_gb=59.631
+2026-11-20T20:51:09+00:00 disk guard sample: disk_available_gb=57.183
+2026-11-20T20:51:39+00:00 disk guard sample: disk_available_gb=55.553
+2026-11-20T20:52:09+00:00 disk guard sample: disk_available_gb=54.194
+2026-11-20T20:52:39+00:00 disk guard sample: disk_available_gb=53.954
+2026-11-20T20:53:09+00:00 disk guard sample: disk_available_gb=53.913
+2026-11-20T20:53:39+00:00 disk guard sample: disk_available_gb=55.673
+2026-11-20T20:54:09+00:00 disk guard sample: disk_available_gb=58.520
+2026-11-20T20:54:39+00:00 disk guard sample: disk_available_gb=58.436
+2026-11-20T20:55:09+00:00 disk guard sample: disk_available_gb=58.199
+2026-11-20T20:55:39+00:00 disk guard sample: disk_available_gb=55.962
+2026-11-20T20:56:09+00:00 disk guard sample: disk_available_gb=60.147
+2026-11-20T20:56:39+00:00 disk guard sample: disk_available_gb=60.083
+2026-11-20T20:57:09+00:00 disk guard sample: disk_available_gb=59.131
+2026-11-20T20:57:39+00:00 disk guard sample: disk_available_gb=59.115
+2026-11-20T20:58:09+00:00 disk guard sample: disk_available_gb=59.888
+2026-11-20T20:58:39+00:00 disk guard sample: disk_available_gb=59.299
+2026-11-20T20:59:09+00:00 disk guard sample: disk_available_gb=59.298
+2026-11-20T20:59:39+00:00 disk guard sample: disk_available_gb=59.298
+2026-11-20T21:00:09+00:00 disk guard sample: disk_available_gb=59.298
+2026-11-20T21:00:39+00:00 disk guard sample: disk_available_gb=59.298
+2026-11-20T21:01:09+00:00 disk guard sample: disk_available_gb=59.298
+2026-11-20T21:01:39+00:00 disk guard sample: disk_available_gb=59.298
+2026-11-20T21:02:09+00:00 disk guard sample: disk_available_gb=59.293
+2026-11-20T21:02:39+00:00 disk guard sample: disk_available_gb=60.534
+2026-11-20T21:03:09+00:00 disk guard sample: disk_available_gb=60.583
+2026-11-20T21:03:39+00:00 disk guard sample: disk_available_gb=60.583
+2026-11-20T21:04:09+00:00 disk guard sample: disk_available_gb=60.583
+2026-11-20T21:04:39+00:00 disk guard sample: disk_available_gb=60.583
+2026-11-20T21:05:09+00:00 disk guard sample: disk_available_gb=60.583
+2026-11-20T21:05:39+00:00 disk guard sample: disk_available_gb=60.583
+2026-11-20T21:06:09+00:00 disk guard sample: disk_available_gb=60.582
+2026-11-20T21:06:39+00:00 disk guard sample: disk_available_gb=60.370
+2026-11-20T21:07:09+00:00 disk guard sample: disk_available_gb=59.880
+2026-11-20T21:07:39+00:00 disk guard sample: disk_available_gb=59.372
+2026-11-20T21:08:09+00:00 disk guard sample: disk_available_gb=59.371
+2026-11-20T21:08:39+00:00 disk guard sample: disk_available_gb=59.370
+2026-11-20T21:09:09+00:00 disk guard sample: disk_available_gb=59.370
+2026-11-20T21:09:39+00:00 disk guard sample: disk_available_gb=59.370
+2026-11-20T21:10:09+00:00 disk guard sample: disk_available_gb=59.369
+2026-11-20T21:10:39+00:00 disk guard sample: disk_available_gb=59.369
+2026-11-20T21:11:09+00:00 disk guard sample: disk_available_gb=61.394
+2026-11-20T21:11:39+00:00 pilot30-rerun1-deepseek-cc exited with status 0
+2026-11-20T21:11:39+00:00 pilot30-rerun1-mistral-vibe exited with status 0
+2026-11-20T21:11:39+00:00 disk watcher stopped
+2026-11-20T21:11:39+00:00 host sampler stopped
+2026-11-20T21:11:39+00:00 pilot30-rerun1-deepseek-cc prefix scan: zero hits
+2026-11-20T21:11:39+00:00 pilot30-rerun1-mistral-vibe prefix scan: zero hits
+2026-11-20T21:11:39+00:00 rerun1-end balance recorded
+2026-11-20T21:11:51+00:00 rerun1 final cleanup complete: disk_available_gb=101.352

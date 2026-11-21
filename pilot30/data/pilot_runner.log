@@ -1,0 +1,347 @@
+2026-11-20T16:50:47+00:00 pilot runner pid=281361 start_batch=1
+2026-11-20T16:50:47+00:00 host sampler started pid=281363 output=/home/ubuntu/lscb-bench/data/host_samples_pilot_runner.csv
+2026-11-20T16:50:47+00:00 batch1 start
+2026-11-20T16:50:47+00:00 batch1 df before: /dev/root       124G   97G   28G  78% /
+2026-11-20T16:50:48+00:00 batch1 prelaunch guard: disk_available_gb=29.390, deepseek_balance=6.00
+2026-11-20T16:50:48+00:00 command pilot30-b1-deepseek-cc: /home/ubuntu/lscb-bench/.venv/bin/harbor run -d last-secure-code-benchmark/last-secure-code-benchmark@v1.0 --agent lscb_agents:ClaudeCodeFallbackInstall -m deepseek-flash --ak version=2.1.143 --ak reasoning_effort=max --allow-agent-host api.deepseek.com -i last-secure-code-benchmark/vert_priv_module_revoke_bypass_function -i last-secure-code-benchmark/ssrf_dms_instance_ping_function -i last-secure-code-benchmark/jexl_inject_excel_quotation_function -i last-secure-code-benchmark/cve-2015-1789_function -i last-secure-code-benchmark/cve-2024-35241_function -i last-secure-code-benchmark/cve-2022-31032_function -i last-secure-code-benchmark/cve-2021-39207_function -i last-secure-code-benchmark/cve-2018-13797_function -i last-secure-code-benchmark/cve-2022-0871_function -i last-secure-code-benchmark/cve-2021-4236_function -n 3 --max-retries 0 --jobs-dir /home/ubuntu/lscb-bench/jobs --job-name pilot30-b1-deepseek-cc
+2026-11-20T16:50:48+00:00 started pilot30-b1-deepseek-cc pid=281376
+2026-11-20T16:50:48+00:00 command pilot30-b1-mistral-vibe: /home/ubuntu/lscb-bench/.venv/bin/harbor run -d last-secure-code-benchmark/last-secure-code-benchmark@v1.0 --agent lscb_agents:VibeNoPluginCache -m mistral/mistral-large-4-0 --ak version=3.1.3 --ak thinking=high --allow-agent-host api.mistral.ai -i last-secure-code-benchmark/vert_priv_module_revoke_bypass_function -i last-secure-code-benchmark/ssrf_dms_instance_ping_function -i last-secure-code-benchmark/jexl_inject_excel_quotation_function -i last-secure-code-benchmark/cve-2015-1789_function -i last-secure-code-benchmark/cve-2024-35241_function -i last-secure-code-benchmark/cve-2022-31032_function -i last-secure-code-benchmark/cve-2021-39207_function -i last-secure-code-benchmark/cve-2018-13797_function -i last-secure-code-benchmark/cve-2022-0871_function -i last-secure-code-benchmark/cve-2021-4236_function -n 3 --max-retries 0 --jobs-dir /home/ubuntu/lscb-bench/jobs --job-name pilot30-b1-mistral-vibe
+2026-11-20T16:50:48+00:00 started pilot30-b1-mistral-vibe pid=281377
+2026-11-20T16:51:48+00:00 batch1 60-second guard: disk_available_gb=19.657, deepseek_balance=6.00
+2026-11-20T16:52:48+00:00 batch1 60-second guard: disk_available_gb=14.867, deepseek_balance=6.00
+2026-11-20T16:53:48+00:00 batch1 60-second guard: disk_available_gb=14.959, deepseek_balance=6.00
+2026-11-20T16:54:49+00:00 batch1 60-second guard: disk_available_gb=7.540, deepseek_balance=6.00
+2026-11-20T16:54:49+00:00 batch1 guard tripped; sending SIGINT
+2026-11-20T16:56:58+00:00 pilot30-b1-deepseek-cc prefix scan: zero hits
+2026-11-20T16:56:58+00:00 pilot30-b1-mistral-vibe prefix scan: zero hits
+2026-11-20T16:56:58+00:00 batch1 df before cleanup: /dev/root       124G  123G  995M 100% /
+2026-11-20T16:56:58+00:00 Removing batch images: cve-2022-0871_function__4ruwyy4__env-main:latest, cve-2022-31032_function__8g2qnrd__env-main:latest, lscbench/last-secure-code-bench:cve-2015-1789_function_lscb, lscbench/last-secure-code-bench:cve-2018-13797_function_lscb, lscbench/last-secure-code-bench:cve-2021-39207_function_lscb, lscbench/last-secure-code-bench:cve-2021-4236_function_lscb, lscbench/last-secure-code-bench:cve-2022-0871_function_lscb, lscbench/last-secure-code-bench:cve-2022-31032_function_lscb, lscbench/last-secure-code-bench:cve-2024-35241_function_lscb, lscbench/last-secure-code-bench:jexl_inject_excel_quotation_function_lscb, lscbench/last-secure-code-bench:ssrf_dms_instance_ping_function_lscb, lscbench/last-secure-code-bench:vert_priv_module_revoke_bypass_function_lscb, ssrf_dms_instance_ping_function__qplzwag__env-main:latest
+2026-11-20T16:56:59+00:00 docker image rm: Untagged: lscbench/last-secure-code-bench:cve-2015-1789_function_lscb | Deleted: sha256:8c2b3d45ade86d6e4c382c9e99d4623fd5408a7d8168579b77d9a6de5851d4d6 | Untagged: lscbench/last-secure-code-bench:cve-2018-13797_function_lscb | Deleted: sha256:c7a0c06984108ae5e687c24922895a53bed4c832287ade0c9b1f60482ed79689 | Untagged: lscbench/last-secure-code-bench:cve-2021-39207_function_lscb | Deleted: sha256:0efd421a2e171467ec0b5670c5f713fa6fe858bbe5758ecb9bac87eb3c863b6b | Untagged: lscbench/last-secure-code-bench:cve-2021-4236_function_lscb | Deleted: sha256:e1b72f6586b06d894357051a0068fc770a9aed49fcfdcbdee08e3f2df14d2140 | Untagged: lscbench/last-secure-code-bench:cve-2022-0871_function_lscb | Deleted: sha256:e8f8be5e1a57fc58c8a96a7c84cea9f8df0509b96ab4b87e66ff478194216bbb | Untagged: lscbench/last-secure-code-bench:cve-2022-31032_function_lscb | Deleted: sha256:7aebe6db9cd82e265e02808e7342cac94a566dbb3cdd5fa3d6e06c5d13701496 | Untagged: lscbench/last-secure-code-bench:cve-2024-35241_function_lscb | Deleted: sha256:348ffab34ecad8a678ed3b4b41f43839248e4fe6ce3ff766bf63c880c4018630 | Untagged: lscbench/last-secure-code-bench:jexl_inject_excel_quotation_function_lscb | Deleted: sha256:b2ef3902f1e720159dae1e321c3e3b5bc86f8ae9752a65773c97c78516132d50 | Untagged: lscbench/last-secure-code-bench:ssrf_dms_instance_ping_function_lscb | Deleted: sha256:1d98b0e30c0f2271011510c294d92b991eaa9f07ab8e51222ac5a21c39172d38 | Untagged: lscbench/last-secure-code-bench:vert_priv_module_revoke_bypass_function_lscb | Deleted: sha256:88a06285fc59e920ee0cc1b411ad6b3bcec9865ada36f1bc2538826ae6a2bc56 | Untagged: ssrf_dms_instance_ping_function__qplzwag__env-main:latest | Deleted: sha256:c90e9cbf120f33ddd9de601a4348f63a4e03735f1b0268d14d200c9231b254d1
+2026-11-20T16:56:59+00:00 docker image rm stderr: Error response from daemon: conflict: unable to delete cve-2022-0871_function__4ruwyy4__env-main:latest (must be forced) - container f363a82d17ab is using its referenced image 42eaed3b204a | Error response from daemon: conflict: unable to delete cve-2022-31032_function__8g2qnrd__env-main:latest (must be forced) - container 27432e9fceb9 is using its referenced image 3e8476d272d8
+2026-11-20T16:57:11+00:00 builder prune completed
+2026-11-20T16:57:11+00:00 batch1 image cleanup failed (RuntimeError)
+2026-11-20T16:57:11+00:00 batch1 df after cleanup: /dev/root       124G   68G   57G  55% /
+2026-11-20T16:57:11+00:00 batch1 boundary balance: 5.96
+2026-11-20T16:57:11+00:00 batch1 end
+2026-11-20T17:05:33+00:00 pilot runner pid=409901 start_batch=1
+2026-11-20T17:05:33+00:00 host sampler started pid=409903 output=/home/ubuntu/lscb-bench/data/host_samples_pilot_runner.csv
+2026-11-20T17:05:33+00:00 batch1 start
+2026-11-20T17:05:33+00:00 batch1 df before: /dev/root       124G   24G  101G  19% /
+2026-11-20T17:05:34+00:00 batch1 prelaunch guard: disk_available_gb=108.028, deepseek_balance=5.94
+2026-11-20T17:05:54+00:00 batch1 pull vert_priv_module_revoke_bypass_function: image=lscbench/last-secure-code-bench:vert_priv_module_revoke_bypass_function_lscb bytes=3153020621 pull_s=20.537 status=ok
+2026-11-20T17:06:15+00:00 batch1 pull ssrf_dms_instance_ping_function: image=lscbench/last-secure-code-bench:ssrf_dms_instance_ping_function_lscb bytes=3152964756 pull_s=21.393 status=ok
+2026-11-20T17:06:37+00:00 batch1 pull jexl_inject_excel_quotation_function: image=lscbench/last-secure-code-bench:jexl_inject_excel_quotation_function_lscb bytes=3154815435 pull_s=21.495 status=ok
+2026-11-20T17:06:44+00:00 batch1 pull cve-2015-1789_function: image=lscbench/last-secure-code-bench:cve-2015-1789_function_lscb bytes=1022317589 pull_s=6.986 status=ok
+2026-11-20T17:06:54+00:00 batch1 pull cve-2024-35241_function: image=lscbench/last-secure-code-bench:cve-2024-35241_function_lscb bytes=1094502758 pull_s=9.832 status=ok
+2026-11-20T17:07:01+00:00 batch1 pull cve-2022-31032_function: image=lscbench/last-secure-code-bench:cve-2022-31032_function_lscb bytes=1015124217 pull_s=7.261 status=ok
+2026-11-20T17:08:40+00:00 batch1 pull cve-2021-39207_function: image=lscbench/last-secure-code-bench:cve-2021-39207_function_lscb bytes=15403136620 pull_s=99.387 status=ok
+2026-11-20T17:08:45+00:00 batch1 pull cve-2018-13797_function: image=lscbench/last-secure-code-bench:cve-2018-13797_function_lscb bytes=652317904 pull_s=4.912 status=ok
+2026-11-20T17:09:00+00:00 batch1 pull cve-2022-0871_function: image=lscbench/last-secure-code-bench:cve-2022-0871_function_lscb bytes=2507564911 pull_s=15.102 status=ok
+2026-11-20T17:09:11+00:00 batch1 pull cve-2021-4236_function: image=lscbench/last-secure-code-bench:cve-2021-4236_function_lscb bytes=1629722121 pull_s=10.354 status=ok
+2026-11-20T17:09:11+00:00 batch1 pull total: images=10 bytes=32785486932 pull_s=217.261
+2026-11-20T17:09:11+00:00 batch1 post-pull guard: disk_available_gb=75.241, deepseek_balance=5.94
+2026-11-20T17:09:11+00:00 command pilot30-b1-deepseek-cc: /home/ubuntu/lscb-bench/.venv/bin/harbor run -d last-secure-code-benchmark/last-secure-code-benchmark@v1.0 --agent lscb_agents:ClaudeCodeFallbackInstall -m deepseek-flash --ak version=2.1.143 --ak reasoning_effort=max --allow-agent-host api.deepseek.com -i last-secure-code-benchmark/vert_priv_module_revoke_bypass_function -i last-secure-code-benchmark/ssrf_dms_instance_ping_function -i last-secure-code-benchmark/jexl_inject_excel_quotation_function -i last-secure-code-benchmark/cve-2015-1789_function -i last-secure-code-benchmark/cve-2024-35241_function -i last-secure-code-benchmark/cve-2022-31032_function -i last-secure-code-benchmark/cve-2021-39207_function -i last-secure-code-benchmark/cve-2018-13797_function -i last-secure-code-benchmark/cve-2022-0871_function -i last-secure-code-benchmark/cve-2021-4236_function -n 3 --max-retries 0 --jobs-dir /home/ubuntu/lscb-bench/jobs --job-name pilot30-b1-deepseek-cc
+2026-11-20T17:09:11+00:00 started pilot30-b1-deepseek-cc pid=411190
+2026-11-20T17:09:11+00:00 command pilot30-b1-mistral-vibe: /home/ubuntu/lscb-bench/.venv/bin/harbor run -d last-secure-code-benchmark/last-secure-code-benchmark@v1.0 --agent lscb_agents:VibeNoPluginCache -m mistral/mistral-large-4-0 --ak version=3.1.3 --ak thinking=high --allow-agent-host api.mistral.ai -i last-secure-code-benchmark/vert_priv_module_revoke_bypass_function -i last-secure-code-benchmark/ssrf_dms_instance_ping_function -i last-secure-code-benchmark/jexl_inject_excel_quotation_function -i last-secure-code-benchmark/cve-2015-1789_function -i last-secure-code-benchmark/cve-2024-35241_function -i last-secure-code-benchmark/cve-2022-31032_function -i last-secure-code-benchmark/cve-2021-39207_function -i last-secure-code-benchmark/cve-2018-13797_function -i last-secure-code-benchmark/cve-2022-0871_function -i last-secure-code-benchmark/cve-2021-4236_function -n 3 --max-retries 0 --jobs-dir /home/ubuntu/lscb-bench/jobs --job-name pilot30-b1-mistral-vibe
+2026-11-20T17:09:11+00:00 started pilot30-b1-mistral-vibe pid=411191
+2026-11-20T17:10:11+00:00 batch1 60-second guard: disk_available_gb=66.772, deepseek_balance=5.94
+2026-11-20T17:11:12+00:00 batch1 60-second guard: disk_available_gb=63.008, deepseek_balance=5.94
+2026-11-20T17:12:12+00:00 batch1 60-second guard: disk_available_gb=62.437, deepseek_balance=5.94
+2026-11-20T17:13:12+00:00 batch1 60-second guard: disk_available_gb=62.984, deepseek_balance=5.93
+2026-11-20T17:14:13+00:00 batch1 60-second guard: disk_available_gb=64.016, deepseek_balance=5.92
+2026-11-20T17:15:13+00:00 batch1 60-second guard: disk_available_gb=61.425, deepseek_balance=5.90
+2026-11-20T17:16:13+00:00 batch1 60-second guard: disk_available_gb=60.353, deepseek_balance=5.90
+2026-11-20T17:17:13+00:00 batch1 60-second guard: disk_available_gb=58.815, deepseek_balance=5.90
+2026-11-20T17:18:14+00:00 batch1 60-second guard: disk_available_gb=49.989, deepseek_balance=5.89
+2026-11-20T17:19:14+00:00 batch1 60-second guard: disk_available_gb=40.131, deepseek_balance=5.88
+2026-11-20T17:20:14+00:00 batch1 60-second guard: disk_available_gb=36.277, deepseek_balance=5.85
+2026-11-20T17:21:15+00:00 batch1 60-second guard: disk_available_gb=37.107, deepseek_balance=5.85
+2026-11-20T17:22:15+00:00 batch1 60-second guard: disk_available_gb=33.300, deepseek_balance=5.83
+2026-11-20T17:23:15+00:00 batch1 60-second guard: disk_available_gb=26.898, deepseek_balance=5.83
+2026-11-20T17:24:16+00:00 batch1 60-second guard: disk_available_gb=26.309, deepseek_balance=5.83
+2026-11-20T17:25:16+00:00 batch1 60-second guard: disk_available_gb=24.610, deepseek_balance=5.81
+2026-11-20T17:26:16+00:00 batch1 60-second guard: disk_available_gb=22.466, deepseek_balance=5.81
+2026-11-20T17:27:16+00:00 batch1 60-second guard: disk_available_gb=32.540, deepseek_balance=5.78
+2026-11-20T17:28:17+00:00 batch1 60-second guard: disk_available_gb=38.617, deepseek_balance=5.78
+2026-11-20T17:29:17+00:00 batch1 60-second guard: disk_available_gb=33.767, deepseek_balance=5.77
+2026-11-20T17:30:17+00:00 batch1 60-second guard: disk_available_gb=39.941, deepseek_balance=5.75
+2026-11-20T17:31:18+00:00 batch1 60-second guard: disk_available_gb=39.544, deepseek_balance=5.73
+2026-11-20T17:32:18+00:00 batch1 60-second guard: disk_available_gb=36.043, deepseek_balance=5.71
+2026-11-20T17:33:18+00:00 batch1 60-second guard: disk_available_gb=38.290, deepseek_balance=5.71
+2026-11-20T17:34:19+00:00 batch1 60-second guard: disk_available_gb=35.227, deepseek_balance=5.71
+2026-11-20T17:35:19+00:00 batch1 60-second guard: disk_available_gb=35.227, deepseek_balance=5.69
+2026-11-20T17:36:19+00:00 batch1 60-second guard: disk_available_gb=38.287, deepseek_balance=5.68
+2026-11-20T17:37:19+00:00 batch1 60-second guard: disk_available_gb=38.157, deepseek_balance=5.67
+2026-11-20T17:38:20+00:00 batch1 60-second guard: disk_available_gb=37.903, deepseek_balance=5.65
+2026-11-20T17:39:20+00:00 batch1 60-second guard: disk_available_gb=38.945, deepseek_balance=5.64
+2026-11-20T17:39:51+00:00 pilot30-b1-deepseek-cc prefix scan: zero hits
+2026-11-20T17:40:20+00:00 batch1 60-second guard: disk_available_gb=39.194, deepseek_balance=5.63
+2026-11-20T17:41:21+00:00 batch1 60-second guard: disk_available_gb=39.193, deepseek_balance=5.62
+2026-11-20T17:42:21+00:00 batch1 60-second guard: disk_available_gb=39.193, deepseek_balance=5.61
+2026-11-20T17:43:21+00:00 batch1 60-second guard: disk_available_gb=39.191, deepseek_balance=5.61
+2026-11-20T17:44:22+00:00 batch1 60-second guard: disk_available_gb=39.189, deepseek_balance=5.61
+2026-11-20T17:45:22+00:00 batch1 60-second guard: disk_available_gb=39.189, deepseek_balance=5.61
+2026-11-20T17:46:22+00:00 batch1 60-second guard: disk_available_gb=39.187, deepseek_balance=5.61
+2026-11-20T17:47:22+00:00 batch1 60-second guard: disk_available_gb=39.182, deepseek_balance=5.61
+2026-11-20T17:48:23+00:00 batch1 60-second guard: disk_available_gb=39.182, deepseek_balance=5.61
+2026-11-20T17:49:23+00:00 batch1 60-second guard: disk_available_gb=39.173, deepseek_balance=5.61
+2026-11-20T17:50:23+00:00 batch1 60-second guard: disk_available_gb=39.173, deepseek_balance=5.61
+2026-11-20T17:51:24+00:00 batch1 60-second guard: disk_available_gb=39.172, deepseek_balance=5.61
+2026-11-20T17:52:24+00:00 batch1 60-second guard: disk_available_gb=39.172, deepseek_balance=5.61
+2026-11-20T17:53:24+00:00 batch1 60-second guard: disk_available_gb=39.172, deepseek_balance=5.61
+2026-11-20T17:54:25+00:00 batch1 60-second guard: disk_available_gb=39.171, deepseek_balance=5.61
+2026-11-20T17:55:25+00:00 batch1 60-second guard: disk_available_gb=39.171, deepseek_balance=5.61
+2026-11-20T17:56:25+00:00 batch1 60-second guard: disk_available_gb=39.169, deepseek_balance=5.61
+2026-11-20T17:57:26+00:00 batch1 60-second guard: disk_available_gb=39.168, deepseek_balance=5.61
+2026-11-20T17:58:26+00:00 batch1 60-second guard: disk_available_gb=39.168, deepseek_balance=5.61
+2026-11-20T17:59:26+00:00 batch1 60-second guard: disk_available_gb=39.167, deepseek_balance=5.61
+2026-11-20T18:00:27+00:00 batch1 60-second guard: disk_available_gb=39.166, deepseek_balance=5.61
+2026-11-20T18:01:27+00:00 batch1 60-second guard: disk_available_gb=40.505, deepseek_balance=5.61
+2026-11-20T18:02:27+00:00 batch1 60-second guard: disk_available_gb=40.505, deepseek_balance=5.61
+2026-11-20T18:03:27+00:00 batch1 60-second guard: disk_available_gb=40.505, deepseek_balance=5.61
+2026-11-20T18:04:28+00:00 batch1 60-second guard: disk_available_gb=40.505, deepseek_balance=5.61
+2026-11-20T18:05:28+00:00 batch1 60-second guard: disk_available_gb=40.505, deepseek_balance=5.61
+2026-11-20T18:06:28+00:00 batch1 60-second guard: disk_available_gb=40.500, deepseek_balance=5.61
+2026-11-20T18:07:29+00:00 batch1 60-second guard: disk_available_gb=40.500, deepseek_balance=5.61
+2026-11-20T18:08:29+00:00 batch1 60-second guard: disk_available_gb=40.500, deepseek_balance=5.61
+2026-11-20T18:09:29+00:00 batch1 60-second guard: disk_available_gb=40.500, deepseek_balance=5.61
+2026-11-20T18:10:30+00:00 batch1 60-second guard: disk_available_gb=42.034, deepseek_balance=5.61
+2026-11-20T18:10:33+00:00 pilot30-b1-mistral-vibe prefix scan: zero hits
+2026-11-20T18:10:33+00:00 batch1 df before cleanup: /dev/root       124G   85G   40G  69% /
+2026-11-20T18:10:33+00:00 before batch image removal: no remaining batch containers
+2026-11-20T18:10:33+00:00 Removing batch images (attempt 1): lscbench/last-secure-code-bench:cve-2015-1789_function_lscb, lscbench/last-secure-code-bench:cve-2018-13797_function_lscb, lscbench/last-secure-code-bench:cve-2021-39207_function_lscb, lscbench/last-secure-code-bench:cve-2021-4236_function_lscb, lscbench/last-secure-code-bench:cve-2022-0871_function_lscb, lscbench/last-secure-code-bench:cve-2022-31032_function_lscb, lscbench/last-secure-code-bench:cve-2024-35241_function_lscb, lscbench/last-secure-code-bench:jexl_inject_excel_quotation_function_lscb, lscbench/last-secure-code-bench:ssrf_dms_instance_ping_function_lscb, lscbench/last-secure-code-bench:vert_priv_module_revoke_bypass_function_lscb
+2026-11-20T18:10:38+00:00 docker image rm: Untagged: lscbench/last-secure-code-bench:cve-2015-1789_function_lscb | Deleted: sha256:8c2b3d45ade86d6e4c382c9e99d4623fd5408a7d8168579b77d9a6de5851d4d6 | Untagged: lscbench/last-secure-code-bench:cve-2018-13797_function_lscb | Deleted: sha256:c7a0c06984108ae5e687c24922895a53bed4c832287ade0c9b1f60482ed79689 | Untagged: lscbench/last-secure-code-bench:cve-2021-39207_function_lscb | Deleted: sha256:0efd421a2e171467ec0b5670c5f713fa6fe858bbe5758ecb9bac87eb3c863b6b | Untagged: lscbench/last-secure-code-bench:cve-2021-4236_function_lscb | Deleted: sha256:e1b72f6586b06d894357051a0068fc770a9aed49fcfdcbdee08e3f2df14d2140 | Untagged: lscbench/last-secure-code-bench:cve-2022-0871_function_lscb | Deleted: sha256:e8f8be5e1a57fc58c8a96a7c84cea9f8df0509b96ab4b87e66ff478194216bbb | Untagged: lscbench/last-secure-code-bench:cve-2022-31032_function_lscb | Deleted: sha256:7aebe6db9cd82e265e02808e7342cac94a566dbb3cdd5fa3d6e06c5d13701496 | Untagged: lscbench/last-secure-code-bench:cve-2024-35241_function_lscb | Deleted: sha256:348ffab34ecad8a678ed3b4b41f43839248e4fe6ce3ff766bf63c880c4018630 | Untagged: lscbench/last-secure-code-bench:jexl_inject_excel_quotation_function_lscb | Deleted: sha256:b2ef3902f1e720159dae1e321c3e3b5bc86f8ae9752a65773c97c78516132d50 | Untagged: lscbench/last-secure-code-bench:ssrf_dms_instance_ping_function_lscb | Deleted: sha256:1d98b0e30c0f2271011510c294d92b991eaa9f07ab8e51222ac5a21c39172d38 | Untagged: lscbench/last-secure-code-bench:vert_priv_module_revoke_bypass_function_lscb | Deleted: sha256:88a06285fc59e920ee0cc1b411ad6b3bcec9865ada36f1bc2538826ae6a2bc56
+2026-11-20T18:10:48+00:00 builder prune completed
+2026-11-20T18:10:48+00:00 batch1 df after cleanup: /dev/root       124G   24G  101G  19% /
+2026-11-20T18:10:48+00:00 batch1 boundary balance: 5.61
+2026-11-20T18:10:48+00:00 batch1 end
+2026-11-20T18:10:48+00:00 batch2 start
+2026-11-20T18:10:48+00:00 batch2 df before: /dev/root       124G   24G  101G  19% /
+2026-11-20T18:10:48+00:00 batch2 prelaunch guard: disk_available_gb=107.919, deepseek_balance=5.61
+2026-11-20T18:11:06+00:00 batch2 pull idor_article_publish_takeover_function: image=lscbench/last-secure-code-bench:idor_article_publish_takeover_function_lscb bytes=3152786065 pull_s=18.262 status=ok
+2026-11-20T18:11:29+00:00 batch2 pull deserialization_ons_event_consumer_function: image=lscbench/last-secure-code-bench:deserialization_ons_event_consumer_function_lscb bytes=3380057003 pull_s=22.388 status=ok
+2026-11-20T18:11:36+00:00 batch2 pull cve-2019-19925_function: image=lscbench/last-secure-code-bench:cve-2019-19925_function_lscb bytes=1103512819 pull_s=6.897 status=ok
+2026-11-20T18:11:42+00:00 batch2 pull cve-2021-3119_function: image=lscbench/last-secure-code-bench:cve-2021-3119_function_lscb bytes=943617314 pull_s=6.132 status=ok
+2026-11-20T18:11:57+00:00 batch2 pull cve-2019-15150_function: image=lscbench/last-secure-code-bench:cve-2019-15150_function_lscb bytes=2269557670 pull_s=15.141 status=ok
+2026-11-20T18:12:09+00:00 batch2 pull cve-2012-4456_function: image=lscbench/last-secure-code-bench:cve-2012-4456_function_lscb bytes=1755958147 pull_s=11.616 status=ok
+2026-11-20T18:12:13+00:00 batch2 pull cve-2023-34237_function: image=lscbench/last-secure-code-bench:cve-2023-34237_function_lscb bytes=619077655 pull_s=4.793 status=ok
+2026-11-20T18:12:25+00:00 batch2 pull cve-2019-10749_function: image=lscbench/last-secure-code-bench:cve-2019-10749_function_lscb bytes=1990108580 pull_s=11.860 status=ok
+2026-11-20T18:12:36+00:00 batch2 pull cve-2022-39213_function: image=lscbench/last-secure-code-bench:cve-2022-39213_function_lscb bytes=1590117539 pull_s=10.480 status=ok
+2026-11-20T18:12:44+00:00 batch2 pull cve-2021-36978_function: image=lscbench/last-secure-code-bench:cve-2021-36978_function_lscb bytes=1392852183 pull_s=8.325 status=ok
+2026-11-20T18:12:44+00:00 batch2 pull total: images=10 bytes=18197644975 pull_s=115.896
+2026-11-20T18:12:44+00:00 batch2 post-pull guard: disk_available_gb=89.940, deepseek_balance=5.61
+2026-11-20T18:12:44+00:00 command pilot30-b2-deepseek-cc: /home/ubuntu/lscb-bench/.venv/bin/harbor run -d last-secure-code-benchmark/last-secure-code-benchmark@v1.0 --agent lscb_agents:ClaudeCodeFallbackInstall -m deepseek-flash --ak version=2.1.143 --ak reasoning_effort=max --allow-agent-host api.deepseek.com -i last-secure-code-benchmark/idor_article_publish_takeover_function -i last-secure-code-benchmark/deserialization_ons_event_consumer_function -i last-secure-code-benchmark/cve-2019-19925_function -i last-secure-code-benchmark/cve-2021-3119_function -i last-secure-code-benchmark/cve-2019-15150_function -i last-secure-code-benchmark/cve-2012-4456_function -i last-secure-code-benchmark/cve-2023-34237_function -i last-secure-code-benchmark/cve-2019-10749_function -i last-secure-code-benchmark/cve-2022-39213_function -i last-secure-code-benchmark/cve-2021-36978_function -n 3 --max-retries 0 --jobs-dir /home/ubuntu/lscb-bench/jobs --job-name pilot30-b2-deepseek-cc
+2026-11-20T18:12:44+00:00 started pilot30-b2-deepseek-cc pid=786905
+2026-11-20T18:12:44+00:00 command pilot30-b2-mistral-vibe: /home/ubuntu/lscb-bench/.venv/bin/harbor run -d last-secure-code-benchmark/last-secure-code-benchmark@v1.0 --agent lscb_agents:VibeNoPluginCache -m mistral/mistral-large-4-0 --ak version=3.1.3 --ak thinking=high --allow-agent-host api.mistral.ai -i last-secure-code-benchmark/idor_article_publish_takeover_function -i last-secure-code-benchmark/deserialization_ons_event_consumer_function -i last-secure-code-benchmark/cve-2019-19925_function -i last-secure-code-benchmark/cve-2021-3119_function -i last-secure-code-benchmark/cve-2019-15150_function -i last-secure-code-benchmark/cve-2012-4456_function -i last-secure-code-benchmark/cve-2023-34237_function -i last-secure-code-benchmark/cve-2019-10749_function -i last-secure-code-benchmark/cve-2022-39213_function -i last-secure-code-benchmark/cve-2021-36978_function -n 3 --max-retries 0 --jobs-dir /home/ubuntu/lscb-bench/jobs --job-name pilot30-b2-mistral-vibe
+2026-11-20T18:12:44+00:00 started pilot30-b2-mistral-vibe pid=786906
+2026-11-20T18:13:45+00:00 batch2 60-second guard: disk_available_gb=82.094, deepseek_balance=5.61
+2026-11-20T18:14:45+00:00 batch2 60-second guard: disk_available_gb=78.588, deepseek_balance=5.61
+2026-11-20T18:15:45+00:00 batch2 60-second guard: disk_available_gb=75.656, deepseek_balance=5.61
+2026-11-20T18:16:46+00:00 batch2 60-second guard: disk_available_gb=72.664, deepseek_balance=5.61
+2026-11-20T18:17:46+00:00 batch2 60-second guard: disk_available_gb=75.802, deepseek_balance=5.59
+2026-11-20T18:18:46+00:00 batch2 60-second guard: disk_available_gb=73.775, deepseek_balance=5.57
+2026-11-20T18:19:46+00:00 batch2 60-second guard: disk_available_gb=69.876, deepseek_balance=5.55
+2026-11-20T18:20:47+00:00 batch2 60-second guard: disk_available_gb=63.218, deepseek_balance=5.53
+2026-11-20T18:21:47+00:00 batch2 60-second guard: disk_available_gb=61.649, deepseek_balance=5.52
+2026-11-20T18:22:47+00:00 batch2 60-second guard: disk_available_gb=61.313, deepseek_balance=5.52
+2026-11-20T18:23:48+00:00 batch2 60-second guard: disk_available_gb=62.566, deepseek_balance=5.50
+2026-11-20T18:24:48+00:00 batch2 60-second guard: disk_available_gb=60.650, deepseek_balance=5.47
+2026-11-20T18:25:48+00:00 batch2 60-second guard: disk_available_gb=57.443, deepseek_balance=5.45
+2026-11-20T18:26:49+00:00 batch2 60-second guard: disk_available_gb=56.514, deepseek_balance=5.43
+2026-11-20T18:27:49+00:00 batch2 60-second guard: disk_available_gb=55.932, deepseek_balance=5.42
+2026-11-20T18:28:49+00:00 batch2 60-second guard: disk_available_gb=53.835, deepseek_balance=5.40
+2026-11-20T18:29:50+00:00 batch2 60-second guard: disk_available_gb=51.105, deepseek_balance=5.37
+2026-11-20T18:30:50+00:00 batch2 60-second guard: disk_available_gb=47.802, deepseek_balance=5.36
+2026-11-20T18:31:50+00:00 batch2 60-second guard: disk_available_gb=47.726, deepseek_balance=5.36
+2026-11-20T18:32:50+00:00 batch2 60-second guard: disk_available_gb=51.545, deepseek_balance=5.35
+2026-11-20T18:33:51+00:00 batch2 60-second guard: disk_available_gb=51.722, deepseek_balance=5.33
+2026-11-20T18:34:51+00:00 batch2 60-second guard: disk_available_gb=51.669, deepseek_balance=5.31
+2026-11-20T18:35:51+00:00 batch2 60-second guard: disk_available_gb=51.671, deepseek_balance=5.30
+2026-11-20T18:36:52+00:00 batch2 60-second guard: disk_available_gb=51.624, deepseek_balance=5.28
+2026-11-20T18:37:52+00:00 batch2 60-second guard: disk_available_gb=51.310, deepseek_balance=5.27
+2026-11-20T18:38:52+00:00 batch2 60-second guard: disk_available_gb=51.310, deepseek_balance=5.26
+2026-11-20T18:39:53+00:00 batch2 60-second guard: disk_available_gb=51.559, deepseek_balance=5.26
+2026-11-20T18:40:53+00:00 batch2 60-second guard: disk_available_gb=51.535, deepseek_balance=5.26
+2026-11-20T18:41:53+00:00 batch2 60-second guard: disk_available_gb=51.329, deepseek_balance=5.26
+2026-11-20T18:42:54+00:00 batch2 60-second guard: disk_available_gb=51.203, deepseek_balance=5.26
+2026-11-20T18:43:54+00:00 batch2 60-second guard: disk_available_gb=52.917, deepseek_balance=5.26
+2026-11-20T18:44:54+00:00 batch2 60-second guard: disk_available_gb=52.341, deepseek_balance=5.26
+2026-11-20T18:45:54+00:00 batch2 60-second guard: disk_available_gb=52.284, deepseek_balance=5.26
+2026-11-20T18:46:55+00:00 batch2 60-second guard: disk_available_gb=51.965, deepseek_balance=5.26
+2026-11-20T18:47:55+00:00 batch2 60-second guard: disk_available_gb=51.965, deepseek_balance=5.26
+2026-11-20T18:48:55+00:00 batch2 60-second guard: disk_available_gb=51.965, deepseek_balance=5.26
+2026-11-20T18:49:56+00:00 batch2 60-second guard: disk_available_gb=51.964, deepseek_balance=5.26
+2026-11-20T18:50:56+00:00 batch2 60-second guard: disk_available_gb=51.964, deepseek_balance=5.26
+2026-11-20T18:51:56+00:00 batch2 60-second guard: disk_available_gb=51.964, deepseek_balance=5.26
+2026-11-20T18:52:57+00:00 batch2 60-second guard: disk_available_gb=51.567, deepseek_balance=5.26
+2026-11-20T18:53:57+00:00 batch2 60-second guard: disk_available_gb=51.032, deepseek_balance=5.26
+2026-11-20T18:54:57+00:00 batch2 60-second guard: disk_available_gb=50.509, deepseek_balance=5.26
+2026-11-20T18:55:58+00:00 batch2 60-second guard: disk_available_gb=51.640, deepseek_balance=5.26
+2026-11-20T18:56:58+00:00 batch2 60-second guard: disk_available_gb=51.166, deepseek_balance=5.26
+2026-11-20T18:57:58+00:00 batch2 60-second guard: disk_available_gb=52.733, deepseek_balance=5.26
+2026-11-20T18:58:58+00:00 batch2 60-second guard: disk_available_gb=54.123, deepseek_balance=5.26
+2026-11-20T18:59:59+00:00 batch2 60-second guard: disk_available_gb=52.749, deepseek_balance=5.26
+2026-11-20T19:00:59+00:00 batch2 60-second guard: disk_available_gb=52.739, deepseek_balance=5.26
+2026-11-20T19:01:59+00:00 batch2 60-second guard: disk_available_gb=54.191, deepseek_balance=5.26
+2026-11-20T19:03:00+00:00 batch2 60-second guard: disk_available_gb=51.577, deepseek_balance=5.26
+2026-11-20T19:04:00+00:00 batch2 60-second guard: disk_available_gb=52.970, deepseek_balance=5.26
+2026-11-20T19:05:00+00:00 batch2 60-second guard: disk_available_gb=54.955, deepseek_balance=5.26
+2026-11-20T19:06:00+00:00 batch2 60-second guard: disk_available_gb=55.125, deepseek_balance=5.26
+2026-11-20T19:07:01+00:00 batch2 60-second guard: disk_available_gb=55.121, deepseek_balance=5.26
+2026-11-20T19:08:01+00:00 batch2 60-second guard: disk_available_gb=56.426, deepseek_balance=5.26
+2026-11-20T19:09:01+00:00 batch2 60-second guard: disk_available_gb=56.426, deepseek_balance=5.26
+2026-11-20T19:10:02+00:00 batch2 60-second guard: disk_available_gb=56.425, deepseek_balance=5.26
+2026-11-20T19:11:02+00:00 batch2 60-second guard: disk_available_gb=56.425, deepseek_balance=5.26
+2026-11-20T19:12:02+00:00 batch2 60-second guard: disk_available_gb=56.425, deepseek_balance=5.26
+2026-11-20T19:13:03+00:00 batch2 60-second guard: disk_available_gb=56.425, deepseek_balance=5.26
+2026-11-20T19:14:03+00:00 batch2 60-second guard: disk_available_gb=56.424, deepseek_balance=5.26
+2026-11-20T19:15:03+00:00 batch2 60-second guard: disk_available_gb=56.424, deepseek_balance=5.26
+2026-11-20T19:16:03+00:00 batch2 60-second guard: disk_available_gb=56.446, deepseek_balance=5.26
+2026-11-20T19:17:04+00:00 batch2 60-second guard: disk_available_gb=56.422, deepseek_balance=5.26
+2026-11-20T19:18:04+00:00 batch2 60-second guard: disk_available_gb=56.424, deepseek_balance=5.26
+2026-11-20T19:19:04+00:00 batch2 60-second guard: disk_available_gb=56.423, deepseek_balance=5.26
+2026-11-20T19:20:05+00:00 batch2 60-second guard: disk_available_gb=56.423, deepseek_balance=5.26
+2026-11-20T19:21:05+00:00 batch2 60-second guard: disk_available_gb=56.423, deepseek_balance=5.26
+2026-11-20T19:22:05+00:00 batch2 60-second guard: disk_available_gb=56.423, deepseek_balance=5.26
+2026-11-20T19:23:06+00:00 batch2 60-second guard: disk_available_gb=56.423, deepseek_balance=5.26
+2026-11-20T19:24:06+00:00 batch2 60-second guard: disk_available_gb=56.422, deepseek_balance=5.26
+2026-11-20T19:25:06+00:00 batch2 60-second guard: disk_available_gb=56.422, deepseek_balance=5.26
+2026-11-20T19:26:07+00:00 batch2 60-second guard: disk_available_gb=57.072, deepseek_balance=5.26
+2026-11-20T19:27:07+00:00 batch2 60-second guard: disk_available_gb=56.971, deepseek_balance=5.26
+2026-11-20T19:27:13+00:00 pilot30-b2-deepseek-cc prefix scan: zero hits
+2026-11-20T19:28:07+00:00 batch2 60-second guard: disk_available_gb=57.094, deepseek_balance=5.26
+2026-11-20T19:29:07+00:00 batch2 60-second guard: disk_available_gb=57.123, deepseek_balance=5.26
+2026-11-20T19:30:08+00:00 batch2 60-second guard: disk_available_gb=58.433, deepseek_balance=5.26
+2026-11-20T19:31:08+00:00 batch2 60-second guard: disk_available_gb=58.324, deepseek_balance=5.26
+2026-11-20T19:31:10+00:00 pilot30-b2-mistral-vibe prefix scan: zero hits
+2026-11-20T19:31:10+00:00 batch2 df before cleanup: /dev/root       124G   70G   55G  57% /
+2026-11-20T19:31:10+00:00 before batch image removal: no remaining batch containers
+2026-11-20T19:31:10+00:00 Removing batch images (attempt 1): lscbench/last-secure-code-bench:cve-2012-4456_function_lscb, lscbench/last-secure-code-bench:cve-2019-10749_function_lscb, lscbench/last-secure-code-bench:cve-2019-15150_function_lscb, lscbench/last-secure-code-bench:cve-2019-19925_function_lscb, lscbench/last-secure-code-bench:cve-2021-3119_function_lscb, lscbench/last-secure-code-bench:cve-2021-36978_function_lscb, lscbench/last-secure-code-bench:cve-2022-39213_function_lscb, lscbench/last-secure-code-bench:cve-2023-34237_function_lscb, lscbench/last-secure-code-bench:deserialization_ons_event_consumer_function_lscb, lscbench/last-secure-code-bench:idor_article_publish_takeover_function_lscb
+2026-11-20T19:31:15+00:00 docker image rm: Untagged: lscbench/last-secure-code-bench:cve-2012-4456_function_lscb | Deleted: sha256:b435a1564cd8f5054a8bc2665f86d74ac59294ad4c7f8d6714a617d2c9a58d9c | Untagged: lscbench/last-secure-code-bench:cve-2019-10749_function_lscb | Deleted: sha256:ab93b95c26aaec8349d322323a737070e17edc809d8ad260ac38316227be33ee | Untagged: lscbench/last-secure-code-bench:cve-2019-15150_function_lscb | Deleted: sha256:de918f346f7e26c871b5510fd0a044937a6655b4b9b6e1a5d1aaceddbf15596e | Untagged: lscbench/last-secure-code-bench:cve-2019-19925_function_lscb | Deleted: sha256:eea17349b3424d37cdb0a8c2e878fc5ff48ecc80e5bee09715cdf697ce748a72 | Untagged: lscbench/last-secure-code-bench:cve-2021-3119_function_lscb | Deleted: sha256:16d290631da88e89da993ff6cdeab865deb683f96a5fae44eb2ad0a423ee02d8 | Untagged: lscbench/last-secure-code-bench:cve-2021-36978_function_lscb | Deleted: sha256:48e24026344363c5f0ca0c28f0c5bd5053d8afa50f00fbe58d1b0534cbe74499 | Untagged: lscbench/last-secure-code-bench:cve-2022-39213_function_lscb | Deleted: sha256:6313c962765079c3500414f50d3f3847b5e667cab0fbe56af336315b10538509 | Untagged: lscbench/last-secure-code-bench:cve-2023-34237_function_lscb | Deleted: sha256:169a14cb31a0b1d00ccc839351d2b2c2b5b558a9fc8eaaf76b1512b8fb9635cc | Untagged: lscbench/last-secure-code-bench:deserialization_ons_event_consumer_function_lscb | Deleted: sha256:a17f664da43b52ea602d8f7315cb6d5a4c652aa0fed86ef68a679597f0282d2f | Untagged: lscbench/last-secure-code-bench:idor_article_publish_takeover_function_lscb | Deleted: sha256:e89f3d5c1d944cdc209ba0c486b6d5c1c07d0d096444960a8ff8c3979053e333
+2026-11-20T19:31:26+00:00 builder prune completed
+2026-11-20T19:31:26+00:00 batch2 df after cleanup: /dev/root       124G   25G  100G  20% /
+2026-11-20T19:31:26+00:00 batch2 boundary balance: 5.26
+2026-11-20T19:31:26+00:00 batch2 end
+2026-11-20T19:31:26+00:00 batch3 start
+2026-11-20T19:31:26+00:00 batch3 df before: /dev/root       124G   25G  100G  20% /
+2026-11-20T19:31:26+00:00 batch3 prelaunch guard: disk_available_gb=107.153, deepseek_balance=5.26
+2026-11-20T19:31:59+00:00 batch3 pull xss_codeforge_readme_render_function: image=lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb bytes=4804341463 pull_s=32.610 status=ok
+2026-11-20T19:32:32+00:00 batch3 pull path_traversal_zip_import_function: image=lscbench/last-secure-code-bench:path_traversal_zip_import_function_lscb bytes=4804242071 pull_s=33.513 status=ok
+2026-11-20T19:32:41+00:00 batch3 pull cve-2023-36327_function: image=lscbench/last-secure-code-bench:cve-2023-36327_function_lscb bytes=934582670 pull_s=8.636 status=ok
+2026-11-20T19:32:53+00:00 batch3 pull cve-2020-11008_function: image=lscbench/last-secure-code-bench:cve-2020-11008_function_lscb bytes=1959736607 pull_s=11.610 status=ok
+2026-11-20T19:32:58+00:00 batch3 pull cve-2023-51450_function: image=lscbench/last-secure-code-bench:cve-2023-51450_function_lscb bytes=0 pull_s=5.362 status=failed
+2026-11-20T19:32:58+00:00 batch3 pull error cve-2023-51450_function: Error response from daemon: failed to resolve reference "docker.io/lscbench/last-secure-code-bench:cve-2023-51450_function_lscb": failed to authorize: failed to fetch anonymous token: Get "https://auth.docker.io/token?scope=repository%3Alscbench%2Flast-secure-code-bench%3Apull&service=registry.docker.io": dial tcp: lookup auth.docker.io on 127.0.0.53:53: read udp 127.0.0.1:54359->127.0.0.53:53: i/o timeout
+2026-11-20T19:32:58+00:00 batch3 pull total before failure: bytes=12502902811 pull_s=91.731
+2026-11-20T19:32:58+00:00 batch3 base-image pull failed
+2026-11-20T19:32:58+00:00 batch3 df before cleanup: /dev/root       124G   36G   89G  29% /
+2026-11-20T19:32:58+00:00 before batch image removal: no remaining batch containers
+2026-11-20T19:32:58+00:00 Removing batch images (attempt 1): lscbench/last-secure-code-bench:cve-2020-11008_function_lscb, lscbench/last-secure-code-bench:cve-2023-36327_function_lscb, lscbench/last-secure-code-bench:path_traversal_zip_import_function_lscb, lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb
+2026-11-20T19:33:02+00:00 docker image rm: Untagged: lscbench/last-secure-code-bench:cve-2020-11008_function_lscb | Deleted: sha256:5da6b1f0cc1e982e572c4f30eaaef7d5ce990c266d80f4cd14d9d1b9287b26a6 | Untagged: lscbench/last-secure-code-bench:cve-2023-36327_function_lscb | Deleted: sha256:66fbf58f6d9930ec27b7b03c633378962b01f15646a2b117a11a00adf06fe481 | Untagged: lscbench/last-secure-code-bench:path_traversal_zip_import_function_lscb | Deleted: sha256:aee08685d64f029725961f7f73ca673f8098aa4c2eacc6271bb7637498a4caac | Untagged: lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb | Deleted: sha256:c6de075492bd70f2d376377da2c29e2f4ca4d05eaa8836c12f8d24796c3dcb27
+2026-11-20T19:33:02+00:00 builder prune completed
+2026-11-20T19:33:02+00:00 batch3 df after cleanup: /dev/root       124G   25G  100G  20% /
+2026-11-20T19:33:02+00:00 batch3 boundary balance: 5.26
+2026-11-20T19:33:02+00:00 batch3 aborted: batch3 base-image pull failed
+2026-11-20T19:45:20+00:00 pilot runner pid=1406947 start_batch=3
+2026-11-20T19:45:20+00:00 host sampler started pid=1406948 output=/home/ubuntu/lscb-bench/data/host_samples_pilot_runner.csv
+2026-11-20T19:45:20+00:00 batch3 start
+2026-11-20T19:45:20+00:00 batch3 df before: /dev/root       124G   25G  100G  20% /
+2026-11-20T19:45:20+00:00 batch3 prelaunch guard: disk_available_gb=107.152, deepseek_balance=5.26
+2026-11-20T19:45:50+00:00 batch3 pull xss_codeforge_readme_render_function attempt=1/4: image=lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb bytes=4804333271 pull_s=29.286 status=ok
+2026-11-20T19:46:23+00:00 batch3 pull path_traversal_zip_import_function attempt=1/4: image=lscbench/last-secure-code-bench:path_traversal_zip_import_function_lscb bytes=4804237975 pull_s=33.386 status=ok
+2026-11-20T19:46:24+00:00 batch3 pull cve-2023-36327_function attempt=1/4 failed: Error response from daemon: unknown: failed to resolve reference "docker.io/lscbench/last-secure-code-bench:cve-2023-36327_function_lscb": unexpected status from HEAD request to https://registry-1.docker.io/v2/lscbench/last-secure-code-bench/manifests/cve-2023-36327_function_lscb: 429 Too Many Requests
+2026-11-20T19:46:24+00:00 batch3 pull cve-2023-36327_function status=retry_failed; retrying in 900s after rate limit
+2026-11-20T20:01:33+00:00 batch3 pull cve-2023-36327_function attempt=2/4: image=lscbench/last-secure-code-bench:cve-2023-36327_function_lscb bytes=934582670 pull_s=9.208 status=ok
+2026-11-20T20:01:51+00:00 batch3 pull cve-2020-11008_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2020-11008_function_lscb bytes=1959736607 pull_s=18.151 status=ok
+2026-11-20T20:01:59+00:00 batch3 pull cve-2023-51450_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2023-51450_function_lscb bytes=971490938 pull_s=7.754 status=ok
+2026-11-20T20:02:10+00:00 batch3 pull cve-2017-17714_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2017-17714_function_lscb bytes=1647984989 pull_s=11.229 status=ok
+2026-11-20T20:02:21+00:00 batch3 pull cve-2018-20835_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2018-20835_function_lscb bytes=1655953842 pull_s=10.463 status=ok
+2026-11-20T20:02:33+00:00 batch3 pull cve-2021-21421_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2021-21421_function_lscb bytes=1909077273 pull_s=12.092 status=ok
+2026-11-20T20:02:45+00:00 batch3 pull cve-2021-46104_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2021-46104_function_lscb bytes=2145225280 pull_s=12.684 status=ok
+2026-11-20T20:02:51+00:00 batch3 pull cve-2017-6839_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2017-6839_function_lscb bytes=848210209 pull_s=5.773 status=ok
+2026-11-20T20:02:51+00:00 batch3 pull total: images=10 bytes=21680833054 pull_s=1051.000
+2026-11-20T20:02:52+00:00 batch3 post-pull guard: disk_available_gb=85.659, deepseek_balance=5.26
+2026-11-20T20:02:52+00:00 command pilot30-b3-deepseek-cc: /home/ubuntu/lscb-bench/.venv/bin/harbor run -d last-secure-code-benchmark/last-secure-code-benchmark@v1.0 --agent lscb_agents:ClaudeCodeFallbackInstall -m deepseek-flash --ak version=2.1.143 --ak reasoning_effort=max --allow-agent-host api.deepseek.com -i last-secure-code-benchmark/xss_codeforge_readme_render_function -i last-secure-code-benchmark/path_traversal_zip_import_function -i last-secure-code-benchmark/cve-2023-36327_function -i last-secure-code-benchmark/cve-2020-11008_function -i last-secure-code-benchmark/cve-2023-51450_function -i last-secure-code-benchmark/cve-2017-17714_function -i last-secure-code-benchmark/cve-2018-20835_function -i last-secure-code-benchmark/cve-2021-21421_function -i last-secure-code-benchmark/cve-2021-46104_function -i last-secure-code-benchmark/cve-2017-6839_function -n 3 --max-retries 0 --jobs-dir /home/ubuntu/lscb-bench/jobs --job-name pilot30-b3-deepseek-cc
+2026-11-20T20:02:52+00:00 started pilot30-b3-deepseek-cc pid=1411551
+2026-11-20T20:02:52+00:00 command pilot30-b3-mistral-vibe: /home/ubuntu/lscb-bench/.venv/bin/harbor run -d last-secure-code-benchmark/last-secure-code-benchmark@v1.0 --agent lscb_agents:VibeNoPluginCache -m mistral/mistral-large-4-0 --ak version=3.1.3 --ak thinking=high --allow-agent-host api.mistral.ai -i last-secure-code-benchmark/xss_codeforge_readme_render_function -i last-secure-code-benchmark/path_traversal_zip_import_function -i last-secure-code-benchmark/cve-2023-36327_function -i last-secure-code-benchmark/cve-2020-11008_function -i last-secure-code-benchmark/cve-2023-51450_function -i last-secure-code-benchmark/cve-2017-17714_function -i last-secure-code-benchmark/cve-2018-20835_function -i last-secure-code-benchmark/cve-2021-21421_function -i last-secure-code-benchmark/cve-2021-46104_function -i last-secure-code-benchmark/cve-2017-6839_function -n 3 --max-retries 0 --jobs-dir /home/ubuntu/lscb-bench/jobs --job-name pilot30-b3-mistral-vibe
+2026-11-20T20:02:52+00:00 started pilot30-b3-mistral-vibe pid=1411552
+2026-11-20T20:03:52+00:00 batch3 60-second guard: disk_available_gb=76.668, deepseek_balance=5.26
+2026-11-20T20:04:52+00:00 batch3 60-second guard: disk_available_gb=71.115, deepseek_balance=5.26
+2026-11-20T20:05:53+00:00 batch3 60-second guard: disk_available_gb=68.022, deepseek_balance=5.26
+2026-11-20T20:06:53+00:00 batch3 60-second guard: disk_available_gb=69.733, deepseek_balance=5.26
+2026-11-20T20:07:53+00:00 batch3 60-second guard: disk_available_gb=70.006, deepseek_balance=5.23
+2026-11-20T20:08:53+00:00 batch3 60-second guard: disk_available_gb=67.548, deepseek_balance=5.22
+2026-11-20T20:09:54+00:00 batch3 60-second guard: disk_available_gb=67.599, deepseek_balance=5.21
+2026-11-20T20:10:54+00:00 batch3 60-second guard: disk_available_gb=67.567, deepseek_balance=5.20
+2026-11-20T20:11:54+00:00 batch3 60-second guard: disk_available_gb=68.664, deepseek_balance=5.19
+2026-11-20T20:12:55+00:00 batch3 60-second guard: disk_available_gb=65.203, deepseek_balance=5.17
+2026-11-20T20:13:55+00:00 batch3 60-second guard: disk_available_gb=61.798, deepseek_balance=5.16
+2026-11-20T20:14:55+00:00 batch3 60-second guard: disk_available_gb=52.631, deepseek_balance=5.15
+2026-11-20T20:15:55+00:00 batch3 60-second guard: disk_available_gb=55.130, deepseek_balance=5.14
+2026-11-20T20:16:56+00:00 batch3 60-second guard: disk_available_gb=55.088, deepseek_balance=5.14
+2026-11-20T20:17:56+00:00 batch3 60-second guard: disk_available_gb=54.845, deepseek_balance=5.14
+2026-11-20T20:18:56+00:00 batch3 60-second guard: disk_available_gb=52.361, deepseek_balance=5.12
+2026-11-20T20:19:57+00:00 batch3 60-second guard: disk_available_gb=48.402, deepseek_balance=5.10
+2026-11-20T20:20:57+00:00 batch3 60-second guard: disk_available_gb=48.502, deepseek_balance=5.09
+2026-11-20T20:21:57+00:00 batch3 60-second guard: disk_available_gb=47.088, deepseek_balance=5.08
+2026-11-20T20:22:58+00:00 batch3 60-second guard: disk_available_gb=47.647, deepseek_balance=5.08
+2026-11-20T20:23:58+00:00 batch3 60-second guard: disk_available_gb=25.783, deepseek_balance=5.07
+2026-11-20T20:23:58+00:00 batch3 disk below 30 GB; running mid-batch cleanup
+2026-11-20T20:23:58+00:00 batch3 mid-batch cleanup start: disk_available_gb=25.556
+2026-11-20T20:24:09+00:00 docker builder prune -f: status=0 freed_gb=9.040 detail=Total:	13.41GB
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2017-17714_function__rmhhszt__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2017-6839_function__dfcarkw__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2018-20835_function__flnzogq__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2021-21421_function__nm9bysv__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2023-36327_function__oz9fp97__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=path_traversal_zip_import_functi__hmhyf4g__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2017-6839_function__ysrrgh3__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2018-20835_function__2okbu7x__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2021-21421_function__ghvpv4e__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:09+00:00 completed trial image absent: image=cve-2021-46104_function__cn7go5o__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:10+00:00 completed trial image absent: image=cve-2023-36327_function__kvywwt5__env-main:latest; freed_gb=0.000
+2026-11-20T20:24:10+00:00 batch3 mid-batch cleanup end: disk_available_gb=34.523
+2026-11-20T20:24:10+00:00 batch3 60-second guard after cleanup: disk_available_gb=34.523, deepseek_balance=5.07
+2026-11-20T20:25:10+00:00 batch3 60-second guard: disk_available_gb=5.560, deepseek_balance=5.06
+2026-11-20T20:25:10+00:00 batch3 disk below 30 GB; running mid-batch cleanup
+2026-11-20T20:25:10+00:00 batch3 mid-batch cleanup start: disk_available_gb=5.391
+2026-11-20T20:25:11+00:00 docker builder prune -f: status=0 freed_gb=0.000 detail=Total:	0B
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2017-17714_function__rmhhszt__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2017-6839_function__dfcarkw__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2018-20835_function__flnzogq__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2021-21421_function__nm9bysv__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2023-36327_function__oz9fp97__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=path_traversal_zip_import_functi__hmhyf4g__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2017-6839_function__ysrrgh3__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2018-20835_function__2okbu7x__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2021-21421_function__ghvpv4e__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2021-46104_function__cn7go5o__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 completed trial image absent: image=cve-2023-36327_function__kvywwt5__env-main:latest; freed_gb=0.000
+2026-11-20T20:25:11+00:00 batch3 mid-batch cleanup end: disk_available_gb=4.939
+2026-11-20T20:25:11+00:00 batch3 60-second guard after cleanup: disk_available_gb=4.939, deepseek_balance=5.06
+2026-11-20T20:25:11+00:00 batch3 guard tripped; sending SIGINT
+2026-11-20T20:29:36+00:00 pilot30-b3-deepseek-cc prefix scan: zero hits
+2026-11-20T20:29:36+00:00 pilot30-b3-mistral-vibe prefix scan: zero hits
+2026-11-20T20:29:36+00:00 batch3 df before cleanup: /dev/root       124G   67G   58G  54% /
+2026-11-20T20:29:36+00:00 before batch image removal: no remaining batch containers
+2026-11-20T20:29:36+00:00 Removing batch images (attempt 1): lscbench/last-secure-code-bench:cve-2017-17714_function_lscb, lscbench/last-secure-code-bench:cve-2017-6839_function_lscb, lscbench/last-secure-code-bench:cve-2018-20835_function_lscb, lscbench/last-secure-code-bench:cve-2020-11008_function_lscb, lscbench/last-secure-code-bench:cve-2021-21421_function_lscb, lscbench/last-secure-code-bench:cve-2021-46104_function_lscb, lscbench/last-secure-code-bench:cve-2023-36327_function_lscb, lscbench/last-secure-code-bench:cve-2023-51450_function_lscb, lscbench/last-secure-code-bench:path_traversal_zip_import_function_lscb, lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb
+2026-11-20T20:29:39+00:00 docker image rm: Untagged: lscbench/last-secure-code-bench:cve-2017-17714_function_lscb | Deleted: sha256:7c405b4f0388370cfc50fb676532519d2a2fa411abbd03fc315e8e051a5f4d89 | Untagged: lscbench/last-secure-code-bench:cve-2017-6839_function_lscb | Deleted: sha256:c1ee084ef03e097b6ba9915f0f24f399162f7abb0efe5c17047f3b41d9f9c52b | Untagged: lscbench/last-secure-code-bench:cve-2018-20835_function_lscb | Deleted: sha256:1feb00c58ddde1386d41d30c0f730d5a6eaafa9446c0a9c9012e694fe3c5108a | Untagged: lscbench/last-secure-code-bench:cve-2020-11008_function_lscb | Deleted: sha256:5da6b1f0cc1e982e572c4f30eaaef7d5ce990c266d80f4cd14d9d1b9287b26a6 | Untagged: lscbench/last-secure-code-bench:cve-2021-21421_function_lscb | Deleted: sha256:d37e4c627781f590a206703c2a637b9eea71529a967f93f2ee2a63a45c806ca3 | Untagged: lscbench/last-secure-code-bench:cve-2021-46104_function_lscb | Deleted: sha256:bc47380c1df752e43d27d0a00b8d81534aa955a80d5f53a675d2b6be44b8ea47 | Untagged: lscbench/last-secure-code-bench:cve-2023-36327_function_lscb | Deleted: sha256:66fbf58f6d9930ec27b7b03c633378962b01f15646a2b117a11a00adf06fe481 | Untagged: lscbench/last-secure-code-bench:cve-2023-51450_function_lscb | Deleted: sha256:46c4081c80546a739e105ce3df4d6272d745b0797c5c6685410ecf4d14820d15 | Untagged: lscbench/last-secure-code-bench:path_traversal_zip_import_function_lscb | Deleted: sha256:aee08685d64f029725961f7f73ca673f8098aa4c2eacc6271bb7637498a4caac | Untagged: lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb | Deleted: sha256:c6de075492bd70f2d376377da2c29e2f4ca4d05eaa8836c12f8d24796c3dcb27
+2026-11-20T20:29:49+00:00 builder prune completed
+2026-11-20T20:29:49+00:00 batch3 df after cleanup: /dev/root       124G   30G   95G  24% /
+2026-11-20T20:29:50+00:00 batch3 boundary balance: 5.06
+2026-11-20T20:29:50+00:00 batch3 aborted: batch3 guard tripped; sending SIGINT
+2026-11-20T20:42:25+00:00 before batch image removal: no remaining batch containers
+2026-11-20T20:42:25+00:00 No batch images matched for removal
+2026-11-20T20:42:25+00:00 builder prune completed
+2026-11-20T20:42:39+00:00 rerun1 pull cve-2017-17714_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2017-17714_function_lscb bytes=1647984989 pull_s=13.630 status=ok
+2026-11-20T20:42:55+00:00 rerun1 pull cve-2020-11008_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2020-11008_function_lscb bytes=1959736607 pull_s=16.349 status=ok
+2026-11-20T20:43:08+00:00 rerun1 pull cve-2021-46104_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2021-46104_function_lscb bytes=2145225280 pull_s=12.375 status=ok
+2026-11-20T20:43:14+00:00 rerun1 pull cve-2023-51450_function attempt=1/4: image=lscbench/last-secure-code-bench:cve-2023-51450_function_lscb bytes=971490938 pull_s=6.772 status=ok
+2026-11-20T20:43:34+00:00 rerun1 pull ssrf_dms_instance_ping_function attempt=1/4: image=lscbench/last-secure-code-bench:ssrf_dms_instance_ping_function_lscb bytes=3152964756 pull_s=19.252 status=ok
+2026-11-20T20:44:08+00:00 rerun1 pull xss_codeforge_readme_render_function attempt=1/4: image=lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb bytes=4804345559 pull_s=34.617 status=ok
+2026-11-20T20:44:08+00:00 rerun1 pull total: images=6 bytes=14681748129 pull_s=102.995
+2026-11-20T21:11:39+00:00 before batch image removal: no remaining batch containers
+2026-11-20T21:11:39+00:00 Removing batch images (attempt 1): lscbench/last-secure-code-bench:cve-2017-17714_function_lscb, lscbench/last-secure-code-bench:cve-2020-11008_function_lscb, lscbench/last-secure-code-bench:cve-2021-46104_function_lscb, lscbench/last-secure-code-bench:cve-2023-51450_function_lscb, lscbench/last-secure-code-bench:ssrf_dms_instance_ping_function_lscb, lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb
+2026-11-20T21:11:42+00:00 docker image rm: Untagged: lscbench/last-secure-code-bench:cve-2017-17714_function_lscb | Deleted: sha256:7c405b4f0388370cfc50fb676532519d2a2fa411abbd03fc315e8e051a5f4d89 | Untagged: lscbench/last-secure-code-bench:cve-2020-11008_function_lscb | Deleted: sha256:5da6b1f0cc1e982e572c4f30eaaef7d5ce990c266d80f4cd14d9d1b9287b26a6 | Untagged: lscbench/last-secure-code-bench:cve-2021-46104_function_lscb | Deleted: sha256:bc47380c1df752e43d27d0a00b8d81534aa955a80d5f53a675d2b6be44b8ea47 | Untagged: lscbench/last-secure-code-bench:cve-2023-51450_function_lscb | Deleted: sha256:46c4081c80546a739e105ce3df4d6272d745b0797c5c6685410ecf4d14820d15 | Untagged: lscbench/last-secure-code-bench:ssrf_dms_instance_ping_function_lscb | Deleted: sha256:1d98b0e30c0f2271011510c294d92b991eaa9f07ab8e51222ac5a21c39172d38 | Untagged: lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb | Deleted: sha256:c6de075492bd70f2d376377da2c29e2f4ca4d05eaa8836c12f8d24796c3dcb27
+2026-11-20T21:11:51+00:00 builder prune completed
+2026-11-20T21:18:14+00:00 rerun2 pull xss_codeforge_readme_render_function attempt=1/4: image=lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb bytes=4804337367 pull_s=33.008 status=ok
+2026-11-20T21:18:14+00:00 rerun2 pull total: images=1 bytes=4804337367 pull_s=33.008

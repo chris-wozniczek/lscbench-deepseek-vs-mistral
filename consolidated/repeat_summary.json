@@ -1,0 +1,61 @@
+{
+ "note": "Pilot (30 tasks, seed 20261120) is a separate earlier run on a subset of the 150 function tasks, different host (Devin VM, 3 concurrent) and same agent/model settings. It is NOT pooled with the 150-task run; it is used only as a repeat to measure run-to-run outcome stability.",
+ "repeat_summary": {
+  "deepseek-cc": {
+   "n": 30,
+   "same_reward": 28,
+   "pass_both": 7,
+   "pass_pilot_only": 0,
+   "pass_main_only": 2,
+   "fail_both": 21,
+   "pilot_reward": 7,
+   "main_reward_on_pilot_tasks": 9,
+   "same_functional": 28,
+   "unscored_either": 0
+  },
+  "mistral-vibe": {
+   "n": 30,
+   "same_reward": 27,
+   "pass_both": 6,
+   "pass_pilot_only": 2,
+   "pass_main_only": 1,
+   "fail_both": 21,
+   "pilot_reward": 8,
+   "main_reward_on_pilot_tasks": 7,
+   "same_functional": 27,
+   "unscored_either": 0
+  }
+ },
+ "pilot_tasks": [
+  "cve-2012-4456_function",
+  "cve-2015-1789_function",
+  "cve-2017-17714_function",
+  "cve-2017-6839_function",
+  "cve-2018-13797_function",
+  "cve-2018-20835_function",
+  "cve-2019-10749_function",
+  "cve-2019-15150_function",
+  "cve-2019-19925_function",
+  "cve-2020-11008_function",
+  "cve-2021-21421_function",
+  "cve-2021-3119_function",
+  "cve-2021-36978_function",
+  "cve-2021-39207_function",
+  "cve-2021-4236_function",
+  "cve-2021-46104_function",
+  "cve-2022-0871_function",
+  "cve-2022-31032_function",
+  "cve-2022-39213_function",
+  "cve-2023-34237_function",
+  "cve-2023-36327_function",
+  "cve-2023-51450_function",
+  "cve-2024-35241_function",
+  "deserialization_ons_event_consumer_function",
+  "idor_article_publish_takeover_function",
+  "jexl_inject_excel_quotation_function",
+  "path_traversal_zip_import_function",
+  "ssrf_dms_instance_ping_function",
+  "vert_priv_module_revoke_bypass_function",
+  "xss_codeforge_readme_render_function"
+ ]
+}

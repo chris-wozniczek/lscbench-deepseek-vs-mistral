@@ -1,0 +1,8 @@
+language,n_deepseek,reward_passes_deepseek,reward_rate_deepseek,n_mistral,reward_passes_mistral,reward_rate_mistral
+c,5,2,0.400000,5,3,0.600000
+cpp,2,0,0.000000,2,0,0.000000
+go,4,1,0.250000,4,2,0.500000
+java,7,2,0.285714,7,1,0.142857
+javascript,4,1,0.250000,4,1,0.250000
+php,4,0,0.000000,4,0,0.000000
+python,4,1,0.250000,4,1,0.250000

@@ -1,0 +1,22 @@
+{
+ "rule": "Sensitivity re-run (reported separately, never replaces main-run results): every Mistral/Vibe main-run trial whose Vibe process ended with exit 143 (SIGTERM) or 137 (SIGKILL), rerun once with lscb_agents:VibePromptFile (prompt via --prompt-file, not argv). Rule and list fixed 2026-11-21 ~11:10 UTC after b1-b7 + partial b8, before any sensitivity run; b8 and b1rest trials matching the rule are appended when they finish.",
+ "job": "run150-sens-mistral-vibe",
+ "tasks": [
+  "cve-2016-6897_function",
+  "cve-2022-24840_function",
+  "sqli_esf_service_query_function",
+  "cve-2023-40017_function",
+  "negative_qty_catering_order_function",
+  "xss_codeforge_readme_render_function",
+  "xss_content_type_passthrough_function",
+  "cve-2017-17714_function",
+  "deserialization_rpc_task_dispatch_function",
+  "idor_hotword_update_function",
+  "cve-2019-15150_function"
+ ],
+ "smoke": {
+  "job": "run150-senssmoke-mistral-vibe",
+  "task": "cve-2021-46104_function",
+  "note": "The smoke trial is the sensitivity result for this task; the full sensitivity job runs the remaining tasks."
+ }
+}

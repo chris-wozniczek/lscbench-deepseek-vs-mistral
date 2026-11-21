@@ -1,0 +1,36 @@
+{
+  "deepseek-cc": {
+    "label": "DeepSeek Flash / Claude Code",
+    "n_tasks": 30,
+    "functional": 28,
+    "secure": 7,
+    "reward": 7,
+    "exceptions": 1,
+    "infra_failures": 0,
+    "input_tokens": 58344396,
+    "cached_input_tokens": 56780288,
+    "output_tokens": 823826,
+    "cost_usd": 0.8993,
+    "median_agent_execution_s": 116.71100000000001,
+    "median_trial_total_s": 350.5325,
+    "sum_agent_execution_s": 8458.6,
+    "median_steps": 23.0
+  },
+  "mistral-vibe": {
+    "label": "Mistral Large 4 / Vibe",
+    "n_tasks": 30,
+    "functional": 29,
+    "secure": 8,
+    "reward": 8,
+    "exceptions": 2,
+    "infra_failures": 0,
+    "input_tokens": 54278806,
+    "cached_input_tokens": 52406272,
+    "output_tokens": 772606,
+    "cost_usd": 6.6017,
+    "median_agent_execution_s": 408.4085,
+    "median_trial_total_s": 621.2094999999999,
+    "sum_agent_execution_s": 21532.9,
+    "median_steps": 24
+  }
+}

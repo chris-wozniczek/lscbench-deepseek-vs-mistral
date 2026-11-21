@@ -1,0 +1,27 @@
+Claude Code installation failed; retrying with bootstrap fallback: NonZeroAgentExitCodeError: Command failed (exit 100): apt-get update && apt-get install -y nodejs npm; E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+  4/4 Functional: 0.750 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:11:31 0:00:00
+last-secure-code-benchmark/last-secure-code-benchmark • claude-code • 
+deepseek-flash
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Functional ┃ Reward ┃ Secure ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━┩
+│      4 │          0 │      0.750 │  0.000 │  0.000 │
+└────────┴────────────┴────────────┴────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0      │     4 │
+│ 1      │     3 │
+│ 0      │     1 │
+│ 0      │     4 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 11m 31s
+Results written to 
+/home/ubuntu/lscb-bench/jobs/pilot30-rerun1-deepseek-cc/result.json
+Inspect results by running `harbor view /home/ubuntu/lscb-bench/jobs`
+Share results by running `harbor upload 
+/home/ubuntu/lscb-bench/jobs/pilot30-rerun1-deepseek-cc`
+

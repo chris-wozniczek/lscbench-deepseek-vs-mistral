@@ -1,0 +1,42 @@
+2026-11-20T21:18:14+00:00 pilot30-rerun2-mistral-vibe started pid=1805907 task=xss_codeforge_readme_render_function concurrency=1
+2026-11-20T21:18:14+00:00 host sampler pid=1805906 output=data/host_samples_rerun2.csv
+2026-11-20T21:18:14+00:00 disk guard sample: disk_available_gb=96.546
+2026-11-20T21:18:44+00:00 disk guard sample: disk_available_gb=93.027
+2026-11-20T21:19:14+00:00 disk guard sample: disk_available_gb=92.966
+2026-11-20T21:19:44+00:00 disk guard sample: disk_available_gb=92.958
+2026-11-20T21:20:14+00:00 disk guard sample: disk_available_gb=92.898
+2026-11-20T21:20:44+00:00 disk guard sample: disk_available_gb=89.178
+2026-11-20T21:21:14+00:00 disk guard sample: disk_available_gb=88.653
+2026-11-20T21:21:44+00:00 disk guard sample: disk_available_gb=88.189
+2026-11-20T21:22:14+00:00 disk guard sample: disk_available_gb=87.825
+2026-11-20T21:22:44+00:00 disk guard sample: disk_available_gb=84.491
+2026-11-20T21:23:14+00:00 disk guard sample: disk_available_gb=83.284
+2026-11-20T21:23:44+00:00 disk guard sample: disk_available_gb=83.284
+2026-11-20T21:24:14+00:00 disk guard sample: disk_available_gb=83.232
+2026-11-20T21:24:44+00:00 disk guard sample: disk_available_gb=83.232
+2026-11-20T21:25:14+00:00 disk guard sample: disk_available_gb=83.232
+2026-11-20T21:25:44+00:00 disk guard sample: disk_available_gb=83.232
+2026-11-20T21:26:14+00:00 disk guard sample: disk_available_gb=83.232
+2026-11-20T21:26:44+00:00 disk guard sample: disk_available_gb=83.232
+2026-11-20T21:27:14+00:00 disk guard sample: disk_available_gb=83.232
+2026-11-20T21:27:44+00:00 disk guard sample: disk_available_gb=83.231
+2026-11-20T21:28:14+00:00 disk guard sample: disk_available_gb=83.231
+2026-11-20T21:28:44+00:00 disk guard sample: disk_available_gb=83.231
+2026-11-20T21:29:14+00:00 disk guard sample: disk_available_gb=83.231
+2026-11-20T21:29:44+00:00 disk guard sample: disk_available_gb=83.231
+2026-11-20T21:30:14+00:00 disk guard sample: disk_available_gb=83.231
+2026-11-20T21:30:44+00:00 disk guard sample: disk_available_gb=83.231
+2026-11-20T21:31:14+00:00 disk guard sample: disk_available_gb=87.441
+2026-11-20T21:31:44+00:00 disk guard sample: disk_available_gb=87.438
+2026-11-20T21:32:14+00:00 disk guard sample: disk_available_gb=87.303
+2026-11-20T21:32:44+00:00 pilot30-rerun2-mistral-vibe exited with status 0
+2026-11-20T21:32:44+00:00 host sampler stopped
+2026-11-20T21:32:44+00:00 pilot30-rerun2-mistral-vibe prefix scan: zero hits
+2026-11-20T21:32:44+00:00 rerun2 result task=last-secure-code-benchmark/xss_codeforge_readme_render_function reward=None functional=None secure=None exception=NonZeroAgentExitCodeError agent_execution_s=470.169845
+2026-11-20T21:32:44+00:00 rerun2 export outcome=terminated usage={'input_tokens': 404667, 'output_tokens': 6297, 'cached_input_tokens': 376320, 'total_tokens': 410964}
+2026-11-20T21:32:44+00:00 no rerun2 trial containers remain
+2026-11-20T21:32:44+00:00 cleanup image absent: xss_codeforge_readme_render_func__du95gri__env-main:latest
+2026-11-20T21:32:44+00:00 rerun2 docker image rm status=0: lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb
+2026-11-20T21:32:47+00:00 docker builder prune -f status=0 freed_gb=13.626
+2026-11-20T21:32:47+00:00 docker builder prune output: ID						RECLAIMABLE	SIZE		LAST ACCESSED | qrjpy0iouhnksfnp5dipct81i               	true 		18.29kB   	About a minute ago | dz7pe3r44n62rm9scd2xep5g4               	true 	4.128kB   	9 minutes ago | 3x8i8jy6tdjxo0ysdlex64yci*              	true 	4.096kB   	9 minutes ago | te0trbgq1p040ipojq0tidtqu*              	true 	12.29kB   	9 minutes ago | mmvsq8iafio17fkv0ii15g016*              	true 	8.192kB   	About a minute ago | vvc2l6ylicou2c4uafd3hbtua               	true 	1.816MB   	9 minutes ago | qwvqjzanj5sj97wfiaag6znb2*              	true 	24.58kB   	9 minutes ago | rwhtiz78ua4nf9qnsi5dhuisj*              	true 	149MB     	9 minutes ago | otu7o5vz4ce1er5h1y2fgj6rf*              	true 	28.67kB   	About a minute ago | sfctfpiau6viuyjgf4s7au66h*              	true 	4.096kB   	About a minute ago | s2s9nj24ryi9hfrf2k83mrum8               	true 	20.51kB   	About a minute ago | ek7rupneno5cvpijn8k4xgzdq               	true 	35.31MB   	14 minutes ago | jgww749qa2i1v5scivv8nfre9               	true 	5.103GB   	9 minutes ago | nm11nn5opzmwbqlmk3c8mlg9a               	true 	25.25MB   	9 minutes ago | 83awwar0amxxl91k87a7x3suc               	true 	19.13kB   	About a minute ago | yk5i2w13hclk8oa8ph4nptjuw               	true 	25.21MB   	9 minutes ago | r1mp1xo2b66y2kgt49rzn5yrr               	true 	12.92MB   	14 minutes ago | 7pkfd4qorucft8s3vgprrnyha               	true 	12.29kB   	9 minutes ago | woslb18vjdfmfox4fdkfdpcb3               	true 	20.51kB   	About a minute ago | ssp0ad7mtskj0r7n195zs00sm               	true 	20.48kB   	9 minutes ago | qv7asy0inb69mhj2rqhhtiar2               	true 	18.65kB   	About a minute ago | krmwrvuifzts4o4rkqgm6dy8r               	true 	16.38kB   	9 minutes ago | jnfnswbb7hstn3rtfvhut70f8               	true 	4.096kB   	9 minutes ago | x751yrd86m657cmtxzreh4ch6               	true 	4.096kB   	9 minutes ago | a3d3tx18jwgb9aaocdl2hprpk               	true 	4.096kB   	9 minutes ago | hyfqrzqnk3j9kr8xtlddcixcv               	true 	4.096kB   	9 minutes ago | znbhds5vkkrdyovzesibi17ey               	true 	102.4kB   	9 minutes ago | tt0u9a3oz7uebdhjzbke57n5o               	true 	4.096kB   	9 minutes ago | v0fltj31pdew9gzr86yo6ymes               	true 	4.096kB   	9 minutes ago | iopywymg5ih30feibqs7stkx0               	true 	4.096kB   	9 minutes ago | 136gwlbcadxwhihf5hj0dwec9               	true 	4.096kB   	9 minutes ago | vone71vlevk9exiddvredl2zc               	true 	4.096kB   	9 minutes ago | 39kdlse4x6f6cwk2etf3ulg3i               	true 	16.38kB   	9 minutes ago | urcnilcxyvstuw22eifk32lp2               	true 	4.096kB   	9 minutes ago | tuyx4ejmtg38gg3yebicijb5l               	true 	28.67kB   	9 minutes ago | xfm43qsne0kdv2b1oxe9ne729               	true 	4.804GB   	About a minute ago | Total:	10.16GB
+2026-11-20T21:32:47+00:00 rerun2 cleanup complete: disk_available_gb=101.337

@@ -1,0 +1,68 @@
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Agent 'vibe' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Failed to remove Vibe plugin cache with code 1: Error response from daemon: container bfd05e1185e7816e66418fd01cc18d7ea3d790ca564edbf03318277b788cd0d5 is not running
+
+Failed to download logs to /srv/bench/lscb/jobs/run150-b2-mistral-vibe/cve-2016-6897_function__tJEYLut/agent: Engine cp failed ('bfd05e1185e7:/logs/agent/.' -> '/srv/bench/lscb/jobs/run150-b2-mistral-vibe/cve-2016-6897_function__tJEYLut/agent'): linkat vibe-home/logs/session/plugins/blobs/6c/6c288482b77047b21056653f3264d014090f4b7987ad19deacb0e95b01bf2ce3 vibe-home/logs/session/plugins/packages/73/7383f7b653209070505a2a1c03b62b99feb5d3934a3f2b121077f8546f7e2e84/plugin.json: permission denied
+Traceback (most recent call last):
+  File "/srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 835, in _download_role_logs
+    await self.agent_environment.download_dir(
+  File "/srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 1352, in download_dir
+    await self._platform.download_dir(source_dir, target_dir)
+  File "/srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker_unix.py", line 304, in download_dir
+    await self._download_via_engine_cp(f"{source_dir}/.", target_dir, service)
+  File "/srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker_unix.py", line 253, in _download_via_engine_cp
+    await self._engine_cp(f"{container}:{container_path}", str(target_path))
+  File "/srv/bench/lscb/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker_unix.py", line 244, in _engine_cp
+    raise RuntimeError(
+RuntimeError: Engine cp failed ('bfd05e1185e7:/logs/agent/.' -> '/srv/bench/lscb/jobs/run150-b2-mistral-vibe/cve-2016-6897_function__tJEYLut/agent'): linkat vibe-home/logs/session/plugins/blobs/6c/6c288482b77047b21056653f3264d014090f4b7987ad19deacb0e95b01bf2ce3 vibe-home/logs/session/plugins/packages/73/7383f7b653209070505a2a1c03b62b99feb5d3934a3f2b121077f8546f7e2e84/plugin.json: permission denied
+
+  19/19 Functional: 0.947 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1:29:42 0:00:00
+last-secure-code-benchmark/last-secure-code-benchmark • vibe • mistral-large-4-0
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Functional ┃ Reward ┃ Secure ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━┩
+│     19 │          4 │      0.947 │  0.211 │  0.211 │
+└────────┴────────────┴────────────┴────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0      │    15 │
+│ 1      │     4 │
+│ 1      │    18 │
+│ 0      │     1 │
+│ 0      │    15 │
+│ 1      │     4 │
+└────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Exception                 ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ NonZeroAgentExitCodeError │     3 │
+│ AgentTimeoutError         │     1 │
+└───────────────────────────┴───────┘
+
+Job Info
+Total runtime: 1h 29m 42s
+Results written to /srv/bench/lscb/jobs/run150-b2-mistral-vibe/result.json
+Inspect results by running `harbor view /srv/bench/lscb/jobs`
+Share results by running `harbor upload 
+/srv/bench/lscb/jobs/run150-b2-mistral-vibe`
+
