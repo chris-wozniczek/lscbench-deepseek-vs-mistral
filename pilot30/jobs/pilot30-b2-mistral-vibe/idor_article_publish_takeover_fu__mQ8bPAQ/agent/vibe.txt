@@ -1,0 +1,10 @@
+The masked region is restored and the project builds cleanly.
+
+**What I did:** Replaced the single `<MASKED>` placeholder in `src/main/java/com/studyhub/platform/service/ArticleService.java` with the `updateArticle(Long id, UpdateArticleRequest request, String username)` method, following the contract's branch order exactly:
+
+1. `articleMapper.findById(id)` returns null → `ApiResponse.error(404, "文章不存在")`
+2. `userMapper.findByUsername(username)` returns null → `ApiResponse.error(401, "用户不存在")`
+3. Submitted `path` is null or doesn't start with `username + "/"` → `ApiResponse.error(403, "无权操作该路径")`
+4. Otherwise, set `title`, `content`, `path`, `status` from the request and refresh `updatedAt` to `LocalDateTime.now()`, persist via `articleMapper.update(article)` (which writes only those columns plus `updated_at` by id, leaving `author_id`/`created_at` untouched), and return `ApiResponse.success("更新成功", article)` with code 200.
+
+The method matches the style of the neighboring `getArticleById`/`deleteArticle` methods and uses only the retained fields and imports. Verified with `mvn package -DskipTests` from `/workspace`: compilation succeeds and the runnable jar `target/studyhub-platform-1.0.0.jar` is produced. No other files were modified.

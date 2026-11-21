@@ -1,0 +1,12 @@
+Both masked regions in `src/main/java/com/eventflow/platform/service/EventService.java` are restored, and `mvn package -DskipTests` compiles cleanly, producing `target/eventflow-platform-1.0.0.jar`.
+
+What was restored:
+
+1. **Import region** (between the Spring and `java.time` imports): added `java.io.ByteArrayInputStream` and `java.io.ObjectInputStream` — the two `java.io` stream types the restore step references. No other imports were restated.
+
+2. **`deserializePayload(byte[] payload, String format)`** (between `getEvent` and `processEvent`): 
+   - `"JSON".equalsIgnoreCase(format)` → `objectMapper.readValue(payload, Map.class)`, returning a generic key/value map.
+   - Any other format (including `null`) → Java native serialization via `ObjectInputStream` over a `ByteArrayInputStream`, returning `readObject()`.
+   - Signature matches both call sites exactly: `private Object ... throws Exception`, so failures propagate to the callers' `catch (Exception e)` blocks (publish → 400 `"事件反序列化失败"`, replay → `"FAILED"` status update), and a `null` result maps to `"unknown"` for `eventClass`.
+
+No other files were touched; all unmasked substrate is unchanged.

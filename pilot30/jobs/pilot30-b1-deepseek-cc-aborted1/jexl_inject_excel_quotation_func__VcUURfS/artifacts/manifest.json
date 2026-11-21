@@ -1,0 +1,18 @@
+[
+  {
+    "source": "/logs/artifacts",
+    "destination": "artifacts/logs/artifacts",
+    "type": "file",
+    "status": "failed",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/quotehub/platform/service/ExportService.java",
+    "destination": "artifacts/workspace/src/main/java/com/quotehub/platform/service/ExportService.java",
+    "type": "file",
+    "status": "failed",
+    "service": null,
+    "exclude": []
+  }
+]

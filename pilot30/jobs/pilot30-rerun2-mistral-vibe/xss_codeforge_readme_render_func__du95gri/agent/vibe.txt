@@ -1,0 +1,2 @@
+All three readme cases verified end-to-end. Now cleaning up: stopping the app and removing the smoke-test rows I created.
+Stopped: terminated

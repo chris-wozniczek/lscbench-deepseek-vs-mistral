@@ -1,0 +1,188 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 613, in run
+    await self._prepare()
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 652, in _prepare
+    await self._setup_agent_environment()
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 1875, in _setup_agent_environment
+    await self._start_agent_environment()
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 1881, in _start_agent_environment
+    await asyncio.wait_for(
+  File "/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 1108, in start
+    await self._run_docker_compose_command(["build"])
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 808, in _run_docker_compose_command
+    raise RuntimeError(
+RuntimeError: Docker compose command failed for environment xss_codeforge_readme_render_function. Command: docker compose --project-name xss_codeforge_readme_render_func__8chlxwf__env --project-directory /home/ubuntu/.cache/harbor/tasks/packages/last-secure-code-benchmark/xss_codeforge_readme_render_function/d9f3410de3bdc239ed40b0ae88510e01df5e45f23da4821e85293413b57a0d44/environment -f /tmp/tmpnbkaa9al/xss_codeforge_readme_render_func__8CHLxWF__env-docker-compose-resources.json -f /home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml -f /home/ubuntu/.cache/harbor/tasks/packages/last-secure-code-benchmark/xss_codeforge_readme_render_function/d9f3410de3bdc239ed40b0ae88510e01df5e45f23da4821e85293413b57a0d44/environment/docker-compose.yaml -f /tmp/tmp_ieh4nyg/docker-compose-environment.json -f /tmp/tmpwrkjoh4o/docker-compose-mounts.json -f /home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-egress-control.yaml -f /tmp/tmpwka_7u4d/docker-compose-egress-control-services.json build. Return code: 130. Stdout:  Image xss_codeforge_readme_render_func__8chlxwf__env-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 886B done
+#1 DONE 0.0s
+
+#2 FROM docker.io/axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6
+#2 resolve docker.io/axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6 done
+#2 CACHED
+
+#3 [staged  1/20] FROM docker.io/lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb@sha256:c6de075492bd70f2d376377da2c29e2f4ca4d05eaa8836c12f8d24796c3dcb27
+#3 resolve docker.io/lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb@sha256:c6de075492bd70f2d376377da2c29e2f4ca4d05eaa8836c12f8d24796c3dcb27 done
+#3 extracting sha256:d358a438b47c2fc0245b1b211f62f417eb8a0036c88ea8e73a2df2931daeb6e3 24.1s done
+#3 DONE 24.1s
+
+#4 [staged  2/20] COPY redact_comments.py /opt/vsb/redact_comments.py
+#4 DONE 1.3s
+
+#5 [staged  3/20] RUN command -v python3 >/dev/null || { echo "VSB: python3 is absent, so comment redaction cannot run; refusing to ship an image that may still narrate the vulnerability" >&2; exit 1; }
+#5 DONE 0.1s
+
+#6 [staged  4/20] RUN python3 /opt/vsb/redact_comments.py && rm -f /opt/vsb/redact_comments.py
+#6 0.135 redaction touched 0 file(s)
+#6 DONE 0.1s
+
+#7 [staged  5/20] RUN rm -rf /workspace/.git 2>/dev/null || true
+#7 DONE 0.2s
+
+#8 [staged  6/20] RUN find /workspace \( -type d \( -name node_modules -o -name vendor -o -name .venv -o -name site-packages -o -name third_party \) -prune \) -o \( -type f \( -name '*.lo' -o -name '*.la' \) -exec rm -f {} + \) -o \( -type f -exec sh -c 'm=$(head -c8 "$1"); case "$m" in *ELF*|'"'"'!<arch>'"'"'*) rm -f "$1";; esac' _ {} \; \) 2>/dev/null || true
+#8 DONE 0.2s
+
+#9 [staged  7/20] RUN find /workspace \( -type d \( -name node_modules -o -name vendor -o -name .venv -o -name site-packages -o -name third_party \) -prune \) -o \( -type f \( -name '*.jar' -o -name '*.war' -o -name '*.ear' -o -name '*.jar.original' -o -name '*.war.original' \) \( -path '*/target/*' -o -path '*/build/*' -o -path '*/out/*' \) -exec rm -f {} + \) 2>/dev/null || true
+#9 DONE 0.1s
+
+#10 [staged  8/20] RUN for r in $(find / -maxdepth 8 -type d ! -path '/proc/*' ! -path '/sys/*' ! -path '/dev/*' \( -name site-packages -o -name dist-packages \) 2>/dev/null; find /workspace -maxdepth 5 -type d -path '*/build/lib*' 2>/dev/null); do for n in $(cd /workspace 2>/dev/null && for d in */ src/*/; do [ -f "${d}__init__.py" ] && basename "$d"; done; for f in *.py src/*.py; do [ -f "$f" ] && basename "$f" .py; done); do rm -f "$r/$n.py"; for w in "/workspace/$n" "/workspace/src/$n"; do if [ -d "$r/$n" ] && [ -d "$w" ]; then (cd "$w" && find . \( -path '*/_vendor/*' -o -path '*/vendored/*' -o -path '*/extern/*' -o -path '*/third_party/*' \) -prune -o -type f -name '*.py' -print) | while read f; do rm -f "$r/$n/$f"; done; fi; done; done; done 2>/dev/null; true
+#10 DONE 0.3s
+
+#11 [staged  9/20] RUN for r in /usr/local/lib /usr/local/bin /usr/local/lib64; do [ -d "$r" ] || continue; find "$r" -type f \( -name '*.a' -o -name '*.o' -o -name '*.so*' -o -perm -u+x \) -exec sh -c 'grep -qaF "/workspace/" "$1" 2>/dev/null && rm -f "$1"' _ {} \; ; done 2>/dev/null || true
+#11 DONE 0.3s
+
+#12 [staged 10/20] RUN find / ! -path '/proc/*' ! -path '/sys/*' ! -path '/dev/*' \( -name '*.pyc' -o -name '*.pyo' -o -name '*.class' -o -name '__pycache__' \) -exec rm -rf {} + 2>/dev/null || true
+#12 DONE 0.4s
+
+#13 [staged 11/20] RUN rm -rf /root/.npm/_cacache /root/.cache/pip /root/.cache/yarn /usr/local/share/.cache /root/.cargo/registry/cache /root/.m2/repository /root/.composer/cache /root/.gem/specs /root/.cache/go-build "$(go env GOCACHE 2>/dev/null || echo /root/.cache/go-build)" 2>/dev/null || true
+#13 DONE 0.2s
+
+#14 [staged 12/20] RUN rm -rf /tests 2>/dev/null || true
+#14 DONE 0.2s
+
+#15 [staged 13/20] RUN find / ! -path '/proc/*' ! -path '/sys/*' ! -path '/dev/*' \( -name test_vuln.py -o -name test_func.py -o -name poc.sh -o -name test_case.sh -o -name solution.sh -o -name solve.sh \) -print -delete 2>/dev/null || true
+#15 DONE 0.4s
+
+#16 [staged 14/20] RUN find /tmp -mindepth 1 -delete 2>/dev/null || true
+#16 DONE 0.2s
+
+#17 [staged 15/20] RUN rm -f /app/lib/seccodebench-hook.jar /app/lib/hook_reader.py       /app/lib/callback_server.py /app/lib/ysoserial_server.py       /app/lib/ysoserial.jar 2>/dev/null || true
+#17 DONE 0.1s
+
+#18 [staged 16/20] COPY start_env.sh /app/scripts/start_env.sh
+#18 DONE 0.0s
+
+#19 [staged 17/20] COPY start.sh /workspace/start.sh
+#19 DONE 0.0s
+
+#20 [staged 18/20] COPY --from=axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6 /mailpit /usr/local/bin/mailpit
+#20 DONE 0.1s
+
+#21 [staged 19/20] RUN chmod +x /app/scripts/start_env.sh /workspace/start.sh /usr/local/bin/mailpit
+#21 DONE 0.1s
+
+#22 [internal] load build definition from Dockerfile
+#22 transferring dockerfile: 7.39kB done
+#22 DONE 0.0s
+
+#23 [internal] load metadata for docker.io/lscbench/last-secure-code-bench:xss_codeforge_readme_render_function_lscb
+#23 DONE 0.0s
+
+#24 [internal] load metadata for docker.io/axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6
+#24 DONE 0.0s
+
+#25 [internal] load .dockerignore
+#25 transferring context: 2B done
+#25 DONE 0.0s
+
+#26 [internal] load build context
+#26 transferring context: 10.81kB done
+#26 DONE 0.0s
+
+#27 [staged 20/20] RUN cd /workspace  && d=$( [ -f pom.xml ] && echo . || find . -maxdepth 3 -name pom.xml -not -path '*/.git/*' -exec dirname {} \; | head -1 )  && cd "${d:?pom.xml not found}"  && mvn -B -q dependency:go-offline  && (mvn -B -q -DskipTests package >/dev/null 2>&1 || true)  && rm -rf target
+#27 DONE 141.9s
+
+#28 [staged 20/20] RUN cd /workspace  && d=$( [ -f pom.xml ] && echo . || find . -maxdepth 3 -name pom.xml -not -path '*/.git/*' -exec dirname {} \; | head -1 )  && cd "${d:?pom.xml not found}"  && mvn -B -q dependency:go-offline  && (mvn -B -q -DskipTests package >/dev/null 2>&1 || true)  && rm -rf target
+#28 CACHED
+
+#29 [staged 16/20] COPY start_env.sh /app/scripts/start_env.sh
+#29 CACHED
+
+#30 [staged 18/20] COPY --from=axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6 /mailpit /usr/local/bin/mailpit
+#30 CACHED
+
+#31 [staged 10/20] RUN find / ! -path '/proc/*' ! -path '/sys/*' ! -path '/dev/*' \( -name '*.pyc' -o -name '*.pyo' -o -name '*.class' -o -name '__pycache__' \) -exec rm -rf {} + 2>/dev/null || true
+#31 CACHED
+
+#32 [staged  3/20] RUN command -v python3 >/dev/null || { echo "VSB: python3 is absent, so comment redaction cannot run; refusing to ship an image that may still narrate the vulnerability" >&2; exit 1; }
+#32 CACHED
+
+#33 [staged 15/20] RUN rm -f /app/lib/seccodebench-hook.jar /app/lib/hook_reader.py       /app/lib/callback_server.py /app/lib/ysoserial_server.py       /app/lib/ysoserial.jar 2>/dev/null || true
+#33 CACHED
+
+#34 [staged  6/20] RUN find /workspace \( -type d \( -name node_modules -o -name vendor -o -name .venv -o -name site-packages -o -name third_party \) -prune \) -o \( -type f \( -name '*.lo' -o -name '*.la' \) -exec rm -f {} + \) -o \( -type f -exec sh -c 'm=$(head -c8 "$1"); case "$m" in *ELF*|'"'"'!<arch>'"'"'*) rm -f "$1";; esac' _ {} \; \) 2>/dev/null || true
+#34 CACHED
+
+#35 [staged  7/20] RUN find /workspace \( -type d \( -name node_modules -o -name vendor -o -name .venv -o -name site-packages -o -name third_party \) -prune \) -o \( -type f \( -name '*.jar' -o -name '*.war' -o -name '*.ear' -o -name '*.jar.original' -o -name '*.war.original' \) \( -path '*/target/*' -o -path '*/build/*' -o -path '*/out/*' \) -exec rm -f {} + \) 2>/dev/null || true
+#35 CACHED
+
+#36 [staged 11/20] RUN rm -rf /root/.npm/_cacache /root/.cache/pip /root/.cache/yarn /usr/local/share/.cache /root/.cargo/registry/cache /root/.m2/repository /root/.composer/cache /root/.gem/specs /root/.cache/go-build "$(go env GOCACHE 2>/dev/null || echo /root/.cache/go-build)" 2>/dev/null || true
+#36 CACHED
+
+#37 [staged 19/20] RUN chmod +x /app/scripts/start_env.sh /workspace/start.sh /usr/local/bin/mailpit
+#37 CACHED
+
+#38 [staged 17/20] COPY start.sh /workspace/start.sh
+#38 CACHED
+
+#39 [staged 12/20] RUN rm -rf /tests 2>/dev/null || true
+#39 CACHED
+
+#40 [staged 13/20] RUN find / ! -path '/proc/*' ! -path '/sys/*' ! -path '/dev/*' \( -name test_vuln.py -o -name test_func.py -o -name poc.sh -o -name test_case.sh -o -name solution.sh -o -name solve.sh \) -print -delete 2>/dev/null || true
+#40 CACHED
+
+#41 [staged 14/20] RUN find /tmp -mindepth 1 -delete 2>/dev/null || true
+#41 CACHED
+
+#42 [staged  5/20] RUN rm -rf /workspace/.git 2>/dev/null || true
+#42 CACHED
+
+#43 [staged  4/20] RUN python3 /opt/vsb/redact_comments.py && rm -f /opt/vsb/redact_comments.py
+#43 CACHED
+
+#44 [staged  2/20] COPY redact_comments.py /opt/vsb/redact_comments.py
+#44 CACHED
+
+#45 [staged  8/20] RUN for r in $(find / -maxdepth 8 -type d ! -path '/proc/*' ! -path '/sys/*' ! -path '/dev/*' \( -name site-packages -o -name dist-packages \) 2>/dev/null; find /workspace -maxdepth 5 -type d -path '*/build/lib*' 2>/dev/null); do for n in $(cd /workspace 2>/dev/null && for d in */ src/*/; do [ -f "${d}__init__.py" ] && basename "$d"; done; for f in *.py src/*.py; do [ -f "$f" ] && basename "$f" .py; done); do rm -f "$r/$n.py"; for w in "/workspace/$n" "/workspace/src/$n"; do if [ -d "$r/$n" ] && [ -d "$w" ]; then (cd "$w" && find . \( -path '*/_vendor/*' -o -path '*/vendored/*' -o -path '*/extern/*' -o -path '*/third_party/*' \) -prune -o -type f -name '*.py' -print) | while read f; do rm -f "$r/$n/$f"; done; fi; done; done; done 2>/dev/null; true
+#45 CACHED
+
+#46 [staged  9/20] RUN for r in /usr/local/lib /usr/local/bin /usr/local/lib64; do [ -d "$r" ] || continue; find "$r" -type f \( -name '*.a' -o -name '*.o' -o -name '*.so*' -o -perm -u+x \) -exec sh -c 'grep -qaF "/workspace/" "$1" 2>/dev/null && rm -f "$1"' _ {} \; ; done 2>/dev/null || true
+#46 CACHED
+
+#47 [stage-1 1/2] COPY --from=staged / /
+#47 CANCELED
+
+#48 [stage-1 1/2] COPY --from=staged / /
+#48 DONE 4.8s
+
+#49 [stage-1 2/2] WORKDIR /workspace
+#49 DONE 6.6s
+
+#50 exporting to image
+#50 exporting layers
+#50 exporting layers 119.3s done
+#50 exporting manifest sha256:e705856f68945bb1f8e3edb4ae9e140fe5b860c45d734e730febc74ef9fa7a4f
+#50 exporting manifest sha256:e705856f68945bb1f8e3edb4ae9e140fe5b860c45d734e730febc74ef9fa7a4f 0.2s done
+#50 exporting config sha256:9221896b0e518d4afacad560c1306b35991cc949f533446eb30de59dbd6324ed
+#50 exporting config sha256:9221896b0e518d4afacad560c1306b35991cc949f533446eb30de59dbd6324ed 1.0s done
+#50 exporting attestation manifest sha256:30f2f505010e6fe2cecbfbf723e3287f54749db47be1cb01deda06b01daf2607
+#50 exporting attestation manifest sha256:30f2f505010e6fe2cecbfbf723e3287f54749db47be1cb01deda06b01daf2607 0.4s done
+#50 exporting manifest list sha256:4821dc83d3f5074eae1d5cb016773abd35300fe238e0fd2a3619ada07c712635
+#50 exporting manifest list sha256:4821dc83d3f5074eae1d5cb016773abd35300fe238e0fd2a3619ada07c712635 0.2s done
+#50 naming to docker.io/library/xss_codeforge_readme_render_func__8chlxwf__env-main:latest
+#50 naming to docker.io/library/xss_codeforge_readme_render_func__8chlxwf__env-main:latest done
+#50 unpacking to docker.io/library/xss_codeforge_readme_render_func__8chlxwf__env-main:latest
+
+. Stderr: None. 

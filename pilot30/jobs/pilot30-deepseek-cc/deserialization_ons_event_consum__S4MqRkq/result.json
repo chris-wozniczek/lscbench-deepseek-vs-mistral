@@ -1,0 +1,123 @@
+{
+    "schema_version": 1,
+    "id": "e4c7b7ac-3638-40ef-87c4-747824823c65",
+    "task_name": "last-secure-code-benchmark/deserialization_ons_event_consumer_function",
+    "trial_name": "deserialization_ons_event_consum__S4MqRkq",
+    "trial_uri": "file:///home/ubuntu/lscb-bench/jobs/pilot30-deepseek-cc/deserialization_ons_event_consum__S4MqRkq",
+    "task_id": {
+        "org": "last-secure-code-benchmark",
+        "name": "deserialization_ons_event_consumer_function",
+        "ref": "sha256:1f4f3aad25c4a4f7b8d0cc59ea024fb206f6d3871a7124140929cf495dd13d3b"
+    },
+    "source": "last-secure-code-benchmark/last-secure-code-benchmark",
+    "task_checksum": "0cfef215c791b027690a501195db4e1248235697a8e3dd416f49ad7014bae1e7",
+    "config": {
+        "schema_version": 1,
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "last-secure-code-benchmark/deserialization_ons_event_consumer_function",
+            "ref": "sha256:1f4f3aad25c4a4f7b8d0cc59ea024fb206f6d3871a7124140929cf495dd13d3b",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+        },
+        "trial_name": "deserialization_ons_event_consum__S4MqRkq",
+        "trials_dir": "/home/ubuntu/lscb-bench/jobs/pilot30-deepseek-cc",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "claude-code",
+            "import_path": null,
+            "model_name": "deepseek-flash",
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [
+                "api.deepseek.com"
+            ],
+            "kwargs": {
+                "version": "2.1.143",
+                "reasoning_effort": "max"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "override_error_policy": {},
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "e8421026-7002-452c-a456-1af031610b9b",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "claude-code",
+        "version": "2.1.143",
+        "model_info": {
+            "name": "deepseek-flash",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": null,
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": {
+        "exception_type": "CancelledError",
+        "exception_message": "",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/runners.py\", line 195, in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/base_events.py\", line 678, in run_until_complete\n    self.run_forever()\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/base_events.py\", line 645, in run_forever\n    self._run_once()\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/base_events.py\", line 1961, in _run_once\n    event_list = self._selector.select(timeout)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/selectors.py\", line 468, in select\n    fd_event_list = self._selector.poll(timeout, max_ev)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/cli/jobs.py\", line 412, in _handle_sigterm\n    raise KeyboardInterrupt\nKeyboardInterrupt\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 613, in run\n    await self._prepare()\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 652, in _prepare\n    await self._setup_agent_environment()\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 1875, in _setup_agent_environment\n    await self._start_agent_environment()\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 1881, in _start_agent_environment\n    await asyncio.wait_for(\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 1108, in start\n    await self._run_docker_compose_command([\"build\"])\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 801, in _run_docker_compose_command\n    result = await self._collect_buffered_output(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py\", line 831, in _collect_buffered_output\n    stdout_bytes, stderr_bytes = await process.communicate(input=stdin_data)\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/subprocess.py\", line 201, in communicate\n    stdin, stdout, stderr = await tasks.gather(stdin, stdout, stderr)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/subprocess.py\", line 181, in _read_stream\n    output = await stream.read()\n             ^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/streams.py\", line 706, in read\n    block = await self.read(self._limit)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/streams.py\", line 713, in read\n    await self._wait_for_data('read')\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/streams.py\", line 545, in _wait_for_data\n    await self._waiter\nasyncio.exceptions.CancelledError\n",
+        "occurred_at": "2026-11-20T15:51:42.376893Z",
+        "policy": {
+            "should_retry": false,
+            "should_grade": false,
+            "has_valid_reward": false
+        }
+    },
+    "started_at": "2026-11-20T15:50:09.798820Z",
+    "finished_at": "2026-11-20T15:51:42.825470Z",
+    "environment_setup": {
+        "started_at": "2026-11-20T15:50:09.803899Z",
+        "finished_at": "2026-11-20T15:51:42.375661Z"
+    },
+    "agent_setup": null,
+    "agent_execution": null,
+    "verifier": null,
+    "step_results": null,
+    "reward_valid": false
+}

@@ -1,0 +1,16 @@
+Skipping image OS validation for hb__fc06b61cb7b16f580e4cd1f177b9a2d1: docker inspect returned 1
+Running command: set -euo pipefail; if ! command -v uv &> /dev/null; then  curl -LsSf https://astral.sh/uv/install.sh | sh; fi && export PATH="$HOME/.local/bin:$PATH" && UV_OFFLINE=0 uv tool install --python 3.12 mistral-vibe==3.1.3 && vibe --version
+Command failed
+Classified failed command as ApiConnectionError (pattern: 'connect(?:ion)? ?(?:error|timeout|reset|aborted)')
+Trial ssrf_dms_instance_ping_function__R3L868e failed: Command failed (exit 2): set -euo pipefail; if ! command -v uv &> /dev/null; then  curl -LsSf https://astral.sh/uv/install.sh | sh; fi && export PATH="$HOME/.local/bin:$PATH" && UV_OFFLINE=0 uv tool install --python 3.12 mistral-vibe==3.1.3 && vibe --version
+stdout: Downloading cpython-3.12.11-linux-x86_64-gnu (download) (32.8MiB)
+error: Failed to extract archive: cpython-3.12.11-20250612-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz
+  Caused by: failed to unpack `/root/.local/share/uv/python/.temp/.tmpOUwakA/python/lib/thread2.8.9/libthread2.8.9.a`
+  Caused by: failed to unpack `python/lib/thread2.8.9/libthread2.8.9.a` into `/root/.local/share/uv/python/.temp/.tmpOUwakA/python/lib/thread2.8.9/libthread2.8.9.a`
+  Caused by: error decoding response body
+  Caused by: request or response body error
+  Caused by: error reading a body from connection
+  Caused by: connection reset
+
+stderr: None
+Collecting main service artifacts

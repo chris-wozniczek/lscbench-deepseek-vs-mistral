@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 613, in run
+    await self._prepare()
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 652, in _prepare
+    await self._setup_agent_environment()
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 1875, in _setup_agent_environment
+    await self._start_agent_environment()
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 1881, in _start_agent_environment
+    await asyncio.wait_for(
+  File "/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 1108, in start
+    await self._run_docker_compose_command(["build"])
+  File "/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 808, in _run_docker_compose_command
+    raise RuntimeError(
+RuntimeError: Docker compose command failed for environment vert_priv_module_revoke_bypass_function. Command: docker compose --project-name vert_priv_module_revoke_bypass_f__7fjiypg__env --project-directory /home/ubuntu/.cache/harbor/tasks/packages/last-secure-code-benchmark/vert_priv_module_revoke_bypass_function/0ff36b3a5529a5edd5a26f635183f12fb80f83dd7d660dc9df2f2474eb7b3cff/environment -f /tmp/tmp8lvs6u41/vert_priv_module_revoke_bypass_f__7FJiYpG__env-docker-compose-resources.json -f /home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml -f /home/ubuntu/.cache/harbor/tasks/packages/last-secure-code-benchmark/vert_priv_module_revoke_bypass_function/0ff36b3a5529a5edd5a26f635183f12fb80f83dd7d660dc9df2f2474eb7b3cff/environment/docker-compose.yaml -f /tmp/tmpco_srjg1/docker-compose-environment.json -f /tmp/tmp3fvpstog/docker-compose-mounts.json -f /home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-egress-control.yaml -f /tmp/tmpiabclomq/docker-compose-egress-control-services.json build. Return code: 1. Stdout:  Image vert_priv_module_revoke_bypass_f__7fjiypg__env-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 892B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 7.39kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/lscbench/last-secure-code-bench:vert_priv_module_revoke_bypass_function_lscb
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6
+#4 ERROR: unexpected status from HEAD request to https://registry-1.docker.io/v2/axllent/mailpit/manifests/sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6: 429 Too Many Requests
+------
+ > [internal] load metadata for docker.io/axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6:
+------
+Dockerfile:84
+
+--------------------
+
+  82 |     COPY start_env.sh /app/scripts/start_env.sh
+
+  83 |     COPY start.sh /workspace/start.sh
+
+  84 | >>> COPY --from=axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6 /mailpit /usr/local/bin/mailpit
+
+  85 |     RUN chmod +x /app/scripts/start_env.sh /workspace/start.sh /usr/local/bin/mailpit
+
+  86 |     
+
+--------------------
+
+failed to solve: axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6: failed to resolve source metadata for docker.io/axllent/mailpit:v1.30.4@sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6: unexpected status from HEAD request to https://registry-1.docker.io/v2/axllent/mailpit/manifests/sha256:5a49a77c5bdbe7c5474450b4f46348d09949df3695257729c93a30369382d4f6: 429 Too Many Requests
+
+. Stderr: None. 

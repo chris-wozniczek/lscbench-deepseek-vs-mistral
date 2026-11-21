@@ -1,0 +1,126 @@
+{
+    "schema_version": 1,
+    "id": "09e5cbcb-54f5-418b-8e8f-e3ee1ab4aac2",
+    "task_name": "last-secure-code-benchmark/ssrf_dms_instance_ping_function",
+    "trial_name": "ssrf_dms_instance_ping_function__R3L868e",
+    "trial_uri": "file:///home/ubuntu/lscb-bench/jobs/pilot30-b1-mistral-vibe/ssrf_dms_instance_ping_function__R3L868e",
+    "task_id": {
+        "org": "last-secure-code-benchmark",
+        "name": "ssrf_dms_instance_ping_function",
+        "ref": "sha256:1747067d3458c0c92a4c5c91a7d6433c6d4cc050fee451af739d0e6dd6c94809"
+    },
+    "source": "last-secure-code-benchmark/last-secure-code-benchmark",
+    "task_checksum": "53996d41aaec7f24f400488d896997eb5456daa27010ffc083706084f2636408",
+    "config": {
+        "schema_version": 1,
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "last-secure-code-benchmark/ssrf_dms_instance_ping_function",
+            "ref": "sha256:1747067d3458c0c92a4c5c91a7d6433c6d4cc050fee451af739d0e6dd6c94809",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+        },
+        "trial_name": "ssrf_dms_instance_ping_function__R3L868e",
+        "trials_dir": "/home/ubuntu/lscb-bench/jobs/pilot30-b1-mistral-vibe",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "lscb_agents:VibeNoPluginCache",
+            "import_path": null,
+            "model_name": "mistral/mistral-large-4-0",
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [
+                "api.mistral.ai"
+            ],
+            "kwargs": {
+                "version": "3.1.3",
+                "thinking": "high"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "override_error_policy": {},
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "a7cc7471-a527-4685-b8f4-4c117e95ee42",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "vibe",
+        "version": "3.1.3",
+        "model_info": {
+            "name": "mistral-large-4-0",
+            "provider": "mistral"
+        }
+    },
+    "agent_result": null,
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": {
+        "exception_type": "ApiConnectionError",
+        "exception_message": "Command failed (exit 2): set -euo pipefail; if ! command -v uv &> /dev/null; then  curl -LsSf https://astral.sh/uv/install.sh | sh; fi && export PATH=\"$HOME/.local/bin:$PATH\" && UV_OFFLINE=0 uv tool install --python 3.12 mistral-vibe==3.1.3 && vibe --version\nstdout: Downloading cpython-3.12.11-linux-x86_64-gnu (download) (32.8MiB)\nerror: Failed to extract archive: cpython-3.12.11-20250612-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz\n  Caused by: failed to unpack `/root/.local/share/uv/python/.temp/.tmpOUwakA/python/lib/thread2.8.9/libthread2.8.9.a`\n  Caused by: failed to unpack `python/lib/thread2.8.9/libthread2.8.9.a` into `/root/.local/share/uv/python/.temp/.tmpOUwakA/python/lib/thread2.8.9/libthread2.8.9.a`\n  Caused by: error decoding response body\n  Caused by: request or response body error\n  Caused by: error reading a body from connection\n  Caused by: connection reset\n\nstderr: None",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 613, in run\n    await self._prepare()\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 659, in _prepare\n    await self._setup_agent()\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 1911, in _setup_agent\n    await asyncio.wait_for(\n  File \"/home/ubuntu/.pyenv/versions/3.12.16/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 1184, in setup\n    await self.install(environment)\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/agents/installed/vibe.py\", line 232, in install\n    await self.exec_as_agent(\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 1114, in exec_as_agent\n    return await self._exec(\n           ^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/lscb-bench/.venv/lib/python3.12/site-packages/harbor/agents/installed/base.py\", line 1081, in _exec\n    raise self._classify_exec_error(command, result)\nharbor.agents.installed.vibe.ApiConnectionError: Command failed (exit 2): set -euo pipefail; if ! command -v uv &> /dev/null; then  curl -LsSf https://astral.sh/uv/install.sh | sh; fi && export PATH=\"$HOME/.local/bin:$PATH\" && UV_OFFLINE=0 uv tool install --python 3.12 mistral-vibe==3.1.3 && vibe --version\nstdout: Downloading cpython-3.12.11-linux-x86_64-gnu (download) (32.8MiB)\nerror: Failed to extract archive: cpython-3.12.11-20250612-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz\n  Caused by: failed to unpack `/root/.local/share/uv/python/.temp/.tmpOUwakA/python/lib/thread2.8.9/libthread2.8.9.a`\n  Caused by: failed to unpack `python/lib/thread2.8.9/libthread2.8.9.a` into `/root/.local/share/uv/python/.temp/.tmpOUwakA/python/lib/thread2.8.9/libthread2.8.9.a`\n  Caused by: error decoding response body\n  Caused by: request or response body error\n  Caused by: error reading a body from connection\n  Caused by: connection reset\n\nstderr: None\n",
+        "occurred_at": "2026-11-20T17:19:13.803358Z",
+        "policy": {
+            "should_retry": true,
+            "should_grade": true,
+            "has_valid_reward": false
+        }
+    },
+    "started_at": "2026-11-20T17:09:17.122962Z",
+    "finished_at": "2026-11-20T17:19:24.620348Z",
+    "environment_setup": {
+        "started_at": "2026-11-20T17:09:17.207956Z",
+        "finished_at": "2026-11-20T17:19:12.122746Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-20T17:19:12.122774Z",
+        "finished_at": "2026-11-20T17:19:13.801758Z"
+    },
+    "agent_execution": null,
+    "verifier": null,
+    "step_results": null,
+    "reward_valid": false
+}

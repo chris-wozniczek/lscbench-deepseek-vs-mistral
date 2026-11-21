@@ -1,0 +1,13 @@
+All three masked regions in `ExportService.java` are restored and the project compiles cleanly (`mvn package -DskipTests` exits 0, producing `target/quotehub-platform-1.0.0.jar`).
+
+What was reconstructed:
+
+1. **Imports (section 1)** — `import com.quotehub.platform.mapper.QuoteTemplateMapper;` and `import org.jxls.common.Context;`, placed between the retained `QuotationMapper` import and the `org.jxls.transform.Transformer` import, so the field/constructor and the export method resolve.
+
+2. **`List` import (section 2)** — `import java.util.List;` after `import java.io.*;`, with the blank line before `@Service` preserved.
+
+3. **`exportQuotation(Long, Long)` (section 3)** — the method the controller binds to `POST /api/quotations/{id}/export`:
+   - Lookup order template record → quotation record → stored file, throwing `FileNotFoundException` with the exact messages `模板不存在`, `报价单不存在`, `模板文件不存在` (so the first failing condition determines the 404 message the controller returns verbatim).
+   - Loads items via `quotationItemMapper.findByQuotationId`, builds a JXLS `Context` with exactly `quote` (the `Quotation` bean) and `items` (the `List<QuotationItem>`), renders the stored workbook with `JxlsHelper.getInstance().processTemplate(...)` (jxls 2.14.0 per the pom), and returns the generated workbook bytes. Read-only; no writes, no mutation of the stored template; render/IO failures propagate unwrapped.
+
+One note: the retained `Transformer`/`PoiTransformer` imports are now unused — that's harmless (Java only warns), and they're immutable substrate so I left them alone.

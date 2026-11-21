@@ -1,0 +1,11 @@
+The reconstruction is complete and verified. Only the single `<MASKED>` region in `src/main/java/com/docflow/platform/service/ImportService.java` was replaced, with the `importZip` method implementing the full pipeline.
+
+**What was implemented** (`ImportService.java:37`):
+1. Resolve uploader via `userMapper.findByUsername`, insert the `import_tasks` row (`PROCESSING`, `docCount` 0, `createdAt` now) so failures still leave a queryable row.
+2. Create the upload dir `{tmpDir}/{UUID}`, then inside a `try/finally` (finally deletes the dir on every path): Base64-decode the payload, extract all ZIP entries under the upload dir (directories created as directories, files written at their entry-name locations, with a zip-slip guard).
+3. Classified failures — undecodable Base64, `ZipException` during extraction, or zero archive entries — each update the row to `FAILED` with `completedAt` now, then throw `IllegalArgumentException`; any other `IOException` propagates with the row left `PROCESSING`.
+4. Document root = first subdirectory directly inside the upload dir, else the upload dir itself; recursively select regular files ending `.html`/`.md`/`.txt` (reusing the retained `getContentType`).
+5. Create `{docsDir}/{workspaceId}`, copy each selected file there at its root-relative path (parents on demand, `REPLACE_EXISTING`), and insert a `documents` row with title, relative `filePath`, stored-copy byte size, lowercased-extension content type, `importTaskId`, `uploaderId`, `createdAt` now — exactly where `DocumentService` re-reads via `docsDir/workspaceId/filePath`.
+6. Finalize the task to `COMPLETED` with the real `docCount` and `completedAt` now, and return the inserted instance carrying its generated `id`.
+
+**Verification performed:** `mvn package -DskipTests` builds the jar cleanly; I started the service against MySQL and ran an HTTP smoke test — valid folder-rooted ZIP imported 3 of 4 files (skipping `.png` and the root-level file) with `COMPLETED`/`docCount=3`, flat ZIP imported 2 files, document content read back byte-identical through `GET /api/documents/{id}/content`, and bad-Base64 / non-ZIP / empty-ZIP requests all returned code 400 with `FAILED` rows carrying `completedAt`. The tmp dir was empty after every path. The test JVM was stopped and all test data (DB rows, stored files, scripts) was removed afterward.

@@ -1,0 +1,26 @@
+[
+  {
+    "source": "/logs/artifacts",
+    "destination": "artifacts/logs/artifacts",
+    "type": "file",
+    "status": "failed",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/codeforge/platform/service/MarkdownService.java",
+    "destination": "artifacts/workspace/src/main/java/com/codeforge/platform/service/MarkdownService.java",
+    "type": "file",
+    "status": "failed",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/codeforge/platform/service/RepoService.java",
+    "destination": "artifacts/workspace/src/main/java/com/codeforge/platform/service/RepoService.java",
+    "type": "file",
+    "status": "failed",
+    "service": null,
+    "exclude": []
+  }
+]

@@ -1,0 +1,31 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] ERROR: mvn package 失败
+[ERROR] COMPILATION ERROR : 
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/ProjectController.java:[27,1] illegal start of type
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/ProjectController.java:[29,1] illegal start of expression
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/ProjectController.java:[32,1] illegal start of expression
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/TaskController.java:[27,1] illegal start of type
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/TaskController.java:[29,1] illegal start of expression
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/TaskController.java:[30,1] illegal start of expression
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project platform: Compilation failure: Compilation failure: 
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/ProjectController.java:[27,1] illegal start of type
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/ProjectController.java:[29,1] illegal start of expression
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/ProjectController.java:[32,1] illegal start of expression
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/TaskController.java:[27,1] illegal start of type
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/TaskController.java:[29,1] illegal start of expression
+[ERROR] /workspace/src/main/java/com/workspace/platform/controller/TaskController.java:[30,1] illegal start of expression
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[eval] 服务启动失败,测试无法执行
+[VSB] cannot read the JUnit report: [Errno 2] No such file or directory: '/tests/results/a87c7b815e3ab2355315584fda186658.xml'
+VSB functional=0 secure=0 reward=0 (unreadable report)

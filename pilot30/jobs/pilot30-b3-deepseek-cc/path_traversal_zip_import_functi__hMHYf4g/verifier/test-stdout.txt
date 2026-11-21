@@ -1,0 +1,50 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/docflow-platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 403, 2x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 22 items
+
+test_func.py ..................                                          [ 81%]
+test_vuln.py ....                                                        [100%]
+
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/9d029235612e993c708298ce48c7548e.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuth::test_login_success
+PASSED test_func.py::TestAuth::test_login_wrong_password
+PASSED test_func.py::TestAuth::test_login_user
+PASSED test_func.py::TestWorkspaces::test_create_workspace
+PASSED test_func.py::TestWorkspaces::test_create_workspace_requires_auth
+PASSED test_func.py::TestWorkspaces::test_list_workspaces
+PASSED test_func.py::TestWorkspaces::test_get_workspace_detail
+PASSED test_func.py::TestWorkspaces::test_get_workspace_not_found
+PASSED test_func.py::TestImport::test_import_zip
+PASSED test_func.py::TestImport::test_import_invalid_zip
+PASSED test_func.py::TestImport::test_import_to_nonexistent_workspace
+PASSED test_func.py::TestDocuments::test_list_documents
+PASSED test_func.py::TestDocuments::test_document_detail
+PASSED test_func.py::TestDocuments::test_document_not_found
+PASSED test_func.py::TestDocuments::test_document_content
+PASSED test_func.py::TestImportTasks::test_import_task_list
+PASSED test_func.py::TestImportTasks::test_import_task_detail
+PASSED test_func.py::TestImportTasks::test_import_task_not_found
+PASSED test_vuln.py::TestCWE22ZipSlip::test_zip_slip_write_to_tmp
+PASSED test_vuln.py::TestCWE22ZipSlip::test_zip_slip_overwrite_system_file
+PASSED test_vuln.py::TestCWE22ZipSlip::test_zip_slip_directory_name_traversal
+PASSED test_vuln.py::TestCWE22ZipSlip::test_zip_slip_nested_traversal
+============================= 22 passed in 10.40s ==============================
+VSB functional=1 secure=1 reward=1

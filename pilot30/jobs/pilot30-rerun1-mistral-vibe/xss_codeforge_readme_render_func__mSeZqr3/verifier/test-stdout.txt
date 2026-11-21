@@ -1,0 +1,25 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] ERROR: mvn package 失败
+[ERROR] COMPILATION ERROR : 
+[ERROR] /workspace/src/main/java/com/codeforge/platform/service/MarkdownService.java:[7,1] class, interface, enum, or record expected
+[ERROR] /workspace/src/main/java/com/codeforge/platform/service/MarkdownService.java:[16,5] illegal start of type
+[ERROR] /workspace/src/main/java/com/codeforge/platform/service/RepoService.java:[116,1] illegal start of type
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project platform: Compilation failure: Compilation failure: 
+[ERROR] /workspace/src/main/java/com/codeforge/platform/service/MarkdownService.java:[7,1] class, interface, enum, or record expected
+[ERROR] /workspace/src/main/java/com/codeforge/platform/service/MarkdownService.java:[16,5] illegal start of type
+[ERROR] /workspace/src/main/java/com/codeforge/platform/service/RepoService.java:[116,1] illegal start of type
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[eval] 服务启动失败,测试无法执行
+[VSB] cannot read the JUnit report: [Errno 2] No such file or directory: '/tests/results/0138b1318b255cbc681d8ddae1a4cb33.xml'
+VSB functional=0 secure=0 reward=0 (unreadable report)
