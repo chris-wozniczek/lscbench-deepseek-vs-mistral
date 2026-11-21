@@ -1,0 +1,12 @@
+Done. The single `<MASKED>` region in `src/main/java/com/freshbite/platform/service/OrderService.java` is restored with a complete `createOrder(OrderCreateRequest, Long)` method, and no other file was touched.
+
+**Implementation shape** (`OrderService.java:29-88`):
+- Validates `items` first — null/empty → `error(400, "订单项不能为空")`.
+- Resolves every dish via `dishMapper.findById` before any write; missing or unavailable dish → `error(400, "菜品不存在: id=" + dishId)`. A non-positive quantity is also rejected with a 400 (the contract leaves that basis unpinned).
+- Generates `orderNo` as `ORD-<yyyyMMdd>-<8 uppercase hex chars from a UUID>`, inserts the `orders` row (`PENDING`, remark, userId, integer-cent total, `createdAt`), then one `order_items` row per item carrying the generated order id plus dish name/price copied at submission, with `subtotal = quantity × unitPrice` and `total = Σ subtotals`.
+- Returns `success("下单成功", data)` with a `LinkedHashMap` holding exactly `id, orderNo, totalAmount, status, remark, userId, items, createdAt` — `remark` is put even when null, and Jackson's default inclusion serializes it as `"remark": null`.
+
+**Verification performed:**
+- `mvn package -DskipTests -q` in `/workspace` builds clean, producing `target/freshbite-platform-1.0.0.jar`.
+- Started the jar on port 8080 against the local MySQL `app_db` and ran an end-to-end probe: admin login → dish creation → user order with 2 items (no `remark` key) returned code 200, `ORD-20261121-2C117B5E`, total 10200, `PENDING`, `remark: null`, and persisted `OrderItem` records with correct subtotals; a second order with a remark got a distinct order number; empty items, missing items, and an unknown dish id each returned the pinned 400 messages; a mixed valid+invalid submission left zero new rows; list/detail/cancel routes still behaved correctly. All assertions passed.
+- The test server was stopped and the temporary probe script removed; `grep` confirms no `<MASKED>` markers remain in `src`.

@@ -1,0 +1,3 @@
+2026-11-21T14:19:13.969349+00:00 516 518 WARNING Retrying _fetch_response after error attempt=1 delay=0.50s error=ConnectError('')
+2026-11-21T14:19:14.477021+00:00 516 518 WARNING Retrying _fetch_response after error attempt=2 delay=1.05s error=ConnectError('')
+2026-11-21T14:27:07.031788+00:00 516 518 WARNING Retrying _fetch_response after error attempt=1 delay=0.50s error=ConnectError('')

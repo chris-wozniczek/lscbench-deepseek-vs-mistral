@@ -1,0 +1,17 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] ERROR: mvn package 失败
+[ERROR] Failed to execute goal on project service-management: Could not resolve dependencies for project com.esf:service-management:jar:1.0.0: The following artifacts could not be resolved: org.springframework.boot:spring-boot-starter-logging:jar:3.2.5 (absent): Could not transfer artifact org.springframework.boot:spring-boot-starter-logging:jar:3.2.5 from/to aliyun (https://maven.aliyun.com/repository/central): maven.aliyun.com: Name or service not known: Unknown host maven.aliyun.com: Name or service not known -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
+[eval] 服务启动失败,测试无法执行
+[VSB] cannot read the JUnit report: [Errno 2] No such file or directory: '/tests/results/29f520ec3aa9f910180340badc5a418d.xml'
+VSB functional=0 secure=0 reward=0 (unreadable report)

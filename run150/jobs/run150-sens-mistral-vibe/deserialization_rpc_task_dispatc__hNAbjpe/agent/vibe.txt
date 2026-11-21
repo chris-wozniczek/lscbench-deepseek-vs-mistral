@@ -1,0 +1,13 @@
+Done. The `<MASKED>` region in `src/main/java/com/taskbridge/worker/service/RpcService.java` is replaced with a complete `@Service` class implementing the full contract, and nothing else in the project was touched.
+
+**Implementation shape** (`RpcService.java`):
+- Constructor-injected `TaskTypeMapper`, `TaskExecutionMapper`, `ObjectMapper`; public methods `dispatch`, `dispatchBatch`, `retry`, `listExecutions`, `getExecution` matching the signatures the controllers call.
+- `dispatch`: type lookup by name (404 `任务类型不存在`) → effective encoding (request `paramEncoding` if non-empty, else the type's default) → Base64 decode + reconstruct (`JAVA_OBJECT` case-insensitive → `ObjectInputStream`; otherwise Jackson `readValue(bytes, Object.class)`) with any failure → 400 `参数反序列化失败` and nothing persisted → insert `RUNNING` row (payload stored verbatim, generated key → id) → update to `SUCCESS` with result `执行完成: <SimpleName> processed` → 200 `任务已提交` with the full data map including ISO-8601 `submittedAt`.
+- `dispatchBatch`: sequential per-item dispatch, 200 `批量提交完成` with `{total, success, failed, results[{executionId, status}]}` in request order; failed items persist nothing.
+- `retry`: record (404 `执行记录不存在`) → type (404 `任务类型不存在`) → decode/reconstruct stored payload under stored encoding (400 `参数反序列化失败`, record untouched) → in-place update, 200 `重试完成` with `重试完成: <SimpleName> processed`.
+- `listExecutions`/`getExecution`: 200 `success` items with `taskTypeName` (null if the type is gone), text-or-null timestamps, `paramPayload` omitted in list and verbatim in detail; unknown id → 404 `执行记录不存在`. `<SimpleName>` = handlerClass after the last dot, whole string if no dot, `Unknown` if null. Mapper exceptions are never caught.
+
+**Verification** (all executed, not just compiled):
+- `mvn package -DskipTests` from a clean `target/` builds and yields `target/taskbridge-worker-1.0.0.jar`.
+- Launched the JAR on port 8080 against the local MySQL and exercised every route with curl: login, JSON dispatch (`paramClass java.util.LinkedHashMap`), JAVA_OBJECT dispatch via a real Java-serialized `HashMap` (`paramClass java.util.HashMap`), explicit lowercase `json` encoding override, unknown type → 404, invalid Base64 and invalid JSON → 400, batch with mixed success/failure (failures absent from list), list/detail shapes, retry success (result updated, payload unchanged), retry unknown → 404, and retry of a corrupted stored payload → 400 with the record still `RUNNING`.
+- Test process stopped, temp files removed, no `MASKED` placeholders remain.

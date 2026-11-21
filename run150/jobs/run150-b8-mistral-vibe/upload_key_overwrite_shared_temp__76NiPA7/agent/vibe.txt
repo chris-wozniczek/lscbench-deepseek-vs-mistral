@@ -1,0 +1,16 @@
+Done. The reconstruction is complete and verified end-to-end.
+
+## What changed
+
+Only `src/main/java/com/dataflow/platform/service/FileStorageService.java` was edited — the single `<MASKED>` placeholder was replaced with the three required methods plus the class-closing brace, using only the pre-existing import block:
+
+- `upload(MultipartFile, String, Long)` — rejects unacceptable keys (blank, `templates/` prefix, or path escaping the storage root) with code 403 / null data; otherwise writes the bytes under `storageRoot` at the client-chosen key (parent dirs created, existing file replaced), then replaces the `file_records` row via `deleteByKey` + `insert` so re-upload under a UNIQUE `file_key` leaves exactly one newest row. Success returns code 200, message `上传成功`, and a `LinkedHashMap` with `id`, `fileKey`, `originalName`, `fileSize`, `contentType`, `createdAt` (ISO-8601 via `LocalDateTime.toString()`). `IOException` is caught and returned as code 500 with `文件上传失败: ` + detail — never propagated.
+- `download(String) throws IOException` — resolves the key against the storage root (normalized, traversal-safe), returns `null` when no regular file exists there, else a `FileSystemResource`. Never touches `file_records`, so seeded `templates/` files are served from disk.
+- `listByUserId(Long, String)` — `findAll()` when role is `ADMIN`, else `findByUserId(userId)`; returns code 200 / `success` with a possibly-empty array of the same camelCase maps, null-safe `createdAt`.
+
+## Verification
+
+- `mvn package -DskipTests` compiles cleanly and produces `target/dataflow-platform-1.0.0.jar`.
+- Ran the jar against MySQL and exercised the HTTP surface: login → upload (200/`上传成功`/correct fields) → re-upload same key (succeeds, exactly one DB row, newest metadata) → download returns the exact newest bytes → template download serves seeded file with no DB row → list as admin shows all rows, as user1 only own rows, as user2 empty → traversal and `templates/` keys return 403 with null data → missing key download returns 404.
+
+Test artifacts were cleaned up: the smoke-test server is stopped, port 8080 is free, `app_db` was reset and the storage root removed so `DataInitializer` reseeds fresh state at evaluation startup, and no `<MASKED>` placeholders remain.

@@ -1,0 +1,42 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 403, 7x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 14 items
+
+test_func.py ..........                                                  [ 71%]
+test_vuln.py ....                                                        [100%]
+
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/51a2555b8f3bfe05f28f4fe858acaddf.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuthLogin::test_valid_credentials
+PASSED test_func.py::TestAuthLogin::test_invalid_credentials
+PASSED test_func.py::TestUserList::test_list_users_admin
+PASSED test_func.py::TestWorkspaceCreate::test_create_workspace
+PASSED test_func.py::TestWorkspaceList::test_list_my_workspaces
+PASSED test_func.py::TestWorkspaceList::test_workspace_detail
+PASSED test_func.py::TestMemberAdd::test_owner_add_member
+PASSED test_func.py::TestMemberList::test_list_workspace_members
+PASSED test_func.py::TestMemberRemove::test_owner_remove_member
+PASSED test_func.py::TestWorkspaceSearch::test_search_workspaces
+PASSED test_vuln.py::TestIdorWorkspaceMember::test_idor_add_self_as_admin_to_other_workspace
+PASSED test_vuln.py::TestIdorWorkspaceMember::test_idor_add_other_user_to_foreign_workspace
+PASSED test_vuln.py::TestIdorWorkspaceMember::test_idor_escalate_to_admin_on_new_workspace
+PASSED test_vuln.py::TestIdorWorkspaceMember::test_idor_add_member_with_enumerated_workspace_id
+============================== 14 passed in 5.79s ==============================
+VSB functional=1 secure=1 reward=1

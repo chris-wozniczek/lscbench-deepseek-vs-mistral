@@ -1,0 +1,3 @@
+2026-11-21T14:03:30.040011+00:00 501 503 WARNING Retrying _fetch_response after error attempt=1 delay=0.50s error=ConnectError('')
+2026-11-21T14:03:30.548297+00:00 501 503 WARNING Retrying _fetch_response after error attempt=2 delay=1.05s error=ConnectError('')
+2026-11-21T14:08:39.101293+00:00 501 503 WARNING Retrying _fetch_response after error attempt=1 delay=0.50s error=ConnectError('')

@@ -1,0 +1,25 @@
+Done. The masked region in `MemberService.java` is restored and verified end-to-end.
+
+**What I implemented** — `MemberService.addMember(Long workspaceId, String username, String memberRole, Long currentUserId)` at `src/main/java/com/teamspace/platform/service/MemberService.java:28`, in the exact order the contract requires:
+
+1. `workspaceMapper.findById` → null throws `RuntimeException("WORKSPACE_NOT_FOUND")`
+2. Permission gate (the retained Javadoc's "owner or workspace admin"): caller must be the workspace owner or hold an `ADMIN` membership row, else `ACCESS_DENIED`
+3. `userMapper.findByUsername` → null throws `USER_NOT_FOUND`
+4. resolved user is the workspace owner → `USER_IS_OWNER`
+5. `memberMapper.findByWorkspaceAndUser` already has a row → `ALREADY_MEMBER`
+6. otherwise build the `WorkspaceMember` with `createdAt = LocalDateTime.now()`, `memberMapper.insert(member)` (the mapper's `@Options(useGeneratedKeys, keyProperty="id")` keeps the generated key on the returned entity), and return it
+
+**Verification** — `mvn package -DskipTests` builds `target/platform-1.0.0.jar`; I launched it against the local MySQL and exercised every path over HTTP:
+
+| Case | Result |
+|---|---|
+| owner adds member | 200, `id`/`workspaceId`/`memberRole`/`createdAt` populated |
+| duplicate add | 400 `ALREADY_MEMBER` |
+| adding the owner | 400 `USER_IS_OWNER` |
+| unknown username | 404 `USER_NOT_FOUND` |
+| unknown workspace | 404 `WORKSPACE_NOT_FOUND` |
+| non-admin member caller | 403 `ACCESS_DENIED` |
+| admin member adds another user | 200 |
+| `GET /{id}/members`, `DELETE /members/{id}` | rows listed and removed correctly |
+
+I stopped the test JVM and deleted the test rows from `workspace_members`, so the database is back to its seeded state. Only `MemberService.java` was modified; all other files are untouched. One judgment call worth noting: the contract doesn't pin the exact admin-role string, so I accept any case variant of `"ADMIN"` as the workspace-admin role, matching the seeded `ADMIN` account-role convention.

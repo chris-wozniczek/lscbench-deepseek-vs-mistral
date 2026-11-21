@@ -1,0 +1,13 @@
+All masked regions are restored, the project builds cleanly, and the route was verified end-to-end against a running instance.
+
+**What was reconstructed:**
+
+- `MarkdownService.java` section 1 — added `import org.springframework.stereotype.Service;` so the retained `@Service` annotation resolves and the bean is registered for `RepoService`'s constructor injection.
+- `MarkdownService.java` section 2 — added the public no-arg constructor, which builds a `MutableDataSet` and assigns both `private final` fields exactly once via `Parser.builder(options).build()` and `HtmlRenderer.builder(options).build()` (flexmark 0.64.8, already on the classpath).
+- `RepoService.java` section 1 — added `public String getReadmeHtml(Long repoId)`. It looks up the repo (name falls back to `Unknown`), fetches the `README.md` row via `repoFileMapper.findByRepoIdAndPath`, and returns a complete `<!DOCTYPE html>` document: with content, `<title>{name} - README</title>`, an `<h2>{name}</h2>`, and the flexmark-converted HTML inside `<div class="readme-content">`; without content, `<title>README</title>` and body text `该仓库暂无 README.md 文件`. It never returns null and writes nothing.
+
+**Verification performed:**
+
+- `mvn package -DskipTests` exits 0 and produces `target/platform-1.0.0.jar`.
+- Ran the jar on port 8080 with MySQL up and exercised `GET /api/repos/{repoId}/readme` unauthenticated in all four branches: content present (correct `Content-Type: text/html;charset=UTF-8`, markdown rendered to `<h1>`/`<strong>`/`<ul>`), no README row (placeholder document), unknown repo with no README (placeholder), and unknown repo with a README row (`Unknown` in both title and `<h2>`).
+- Smoke-test rows were deleted from the database and the test server process was stopped; no `<MASKED>` placeholders remain and no files outside the two listed ones were touched.

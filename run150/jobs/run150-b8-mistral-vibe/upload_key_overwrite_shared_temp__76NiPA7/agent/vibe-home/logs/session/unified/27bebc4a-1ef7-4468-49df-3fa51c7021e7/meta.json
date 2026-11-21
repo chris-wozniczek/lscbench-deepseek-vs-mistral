@@ -1,0 +1,35 @@
+{
+  "session_id": "27bebc4a-1ef7-4468-49df-3fa51c7021e7",
+  "parent_session_id": null,
+  "start_time": "2026-11-21T10:45:46.764000+00:00",
+  "end_time": "2026-11-21T10:50:37.132000+00:00",
+  "git_commit": null,
+  "git_branch": null,
+  "environment": {
+    "working_directory": "/workspace"
+  },
+  "origin_directory": "/workspace",
+  "username": "root",
+  "child_sessions": [],
+  "loops": [],
+  "title": null,
+  "title_source": "auto",
+  "bumped_at": "2026-11-21T10:45:47.261877+00:00",
+  "pinned_at": null,
+  "archived_at": null,
+  "unseen_at": "2026-11-21T10:50:37.156797+00:00",
+  "seen_at": null,
+  "experiments": null,
+  "config": {
+    "active_model": "mistral-large-4-0",
+    "model_name": "mistral-large-4-0"
+  },
+  "runtime_path": "direct",
+  "import_provenance": null,
+  "created_worktree": null,
+  "project": null,
+  "artifacts": [],
+  "worktrees": [],
+  "owed_replies": [],
+  "skill_pins": []
+}

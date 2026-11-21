@@ -1,0 +1,44 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/voiceforge-platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 403, 4x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 16 items
+
+test_func.py ............                                                [ 75%]
+test_vuln.py ....                                                        [100%]
+
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/6ea787c1deb0b83e6109cadd173b3fa7.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuth::test_login_success
+PASSED test_func.py::TestAuth::test_login_fail
+PASSED test_func.py::TestHotWordGroup::test_create_group
+PASSED test_func.py::TestHotWordGroup::test_list_groups
+PASSED test_func.py::TestHotWordGroup::test_get_group
+PASSED test_func.py::TestHotWordGroup::test_group_not_found
+PASSED test_func.py::TestHotWord::test_add_hotword
+PASSED test_func.py::TestHotWord::test_list_hotwords
+PASSED test_func.py::TestHotWord::test_get_hotword
+PASSED test_func.py::TestHotWord::test_update_hotword
+PASSED test_func.py::TestHotWord::test_delete_hotword
+PASSED test_func.py::TestHotWord::test_hotword_not_found
+PASSED test_vuln.py::TestIdorHotWordUpdate::test_idor_update_other_user_hotword
+PASSED test_vuln.py::TestIdorHotWordUpdate::test_idor_update_hotword_weight
+PASSED test_vuln.py::TestIdorHotWordUpdate::test_idor_update_hotword_to_malicious
+PASSED test_vuln.py::TestIdorHotWordUpdate::test_idor_enumerate_and_update
+============================== 16 passed in 3.54s ==============================
+VSB functional=1 secure=1 reward=1
