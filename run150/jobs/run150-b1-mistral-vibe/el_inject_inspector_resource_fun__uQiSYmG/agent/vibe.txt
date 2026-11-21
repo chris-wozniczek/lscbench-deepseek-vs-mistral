@@ -1,0 +1,16 @@
+Both masked regions in `InspectService.java` are reconstructed and verified.
+
+**What was restored:**
+
+1. **Masked section 1** — the import `org.springframework.expression.spel.support.StandardEvaluationContext;`, placed in the import block between the retained `SpelExpressionParser` import and `org.springframework.stereotype.Service`. It supplies the one unqualified type name the method body needs that the retained imports don't provide.
+
+2. **Masked section 2** — `public List<InspectResult> inspect(Long instanceId)`:
+   - `instanceMapper.findById(instanceId)` first; a miss returns `null` immediately (the controller maps that to 404).
+   - For each `inspectResourceMapper.findAll()` row in listing order, a `StandardEvaluationContext` is built with `#ip`, `#port`, `#name` from the instance. `conditionExpr` is parsed and evaluated as `Boolean`; an exception, `null`, or non-true result skips the resource entirely (no element, no log row).
+   - When the condition passes, `urlExpr` is evaluated as `String` on the same variables. A successful non-null result appends a `SUCCESS` element with that `resultUrl`; an exception or null yields a `FAIL` element with `resultUrl` null — expression errors never propagate.
+   - Each appended element also inserts one `inspect_logs` row via `inspectLogMapper.insert` with the instance id, resource id, that element's `resultUrl`/`status`, and `LocalDateTime.now()` as `executedAt`. `instances` and `inspect_resources` stay read-only.
+
+**Verification performed:**
+- `mvn package -DskipTests` succeeds from a clean `target/`, producing exactly one jar: `target/instance-guard-platform-1.0.0.jar`.
+- Ran the jar on port 8080 and exercised the route end-to-end with a seeded account: login → create instance → create five resources (true condition, false condition, syntactically invalid condition, null condition, invalid urlExpr) → `POST /api/instances/{id}/inspect`. The response contained exactly the two expected elements — `SUCCESS` with `http://10.0.0.1:8080/health` and `FAIL` with `null` — and `inspect_logs` held exactly two matching rows. A nonexistent instance id returned the 404 "实例不存在" response.
+- Cleaned up afterward: stopped the service, deleted the test rows from `app_db` (users table untouched), removed the smoke script, and rebuilt clean. No `<MASKED>` placeholders remain and no files outside the target were modified.

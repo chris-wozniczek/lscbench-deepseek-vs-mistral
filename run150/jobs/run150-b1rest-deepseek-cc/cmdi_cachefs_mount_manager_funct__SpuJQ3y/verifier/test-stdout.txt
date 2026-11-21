@@ -1,0 +1,43 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/cachefs-platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 403, 4x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 15 items
+
+test_func.py ............                                                [ 80%]
+test_vuln.py ...                                                         [100%]
+
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/bd5a5f9c693bcc6ec4d567e00c9c43f2.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuthLogin::test_valid_credentials
+PASSED test_func.py::TestAuthLogin::test_invalid_credentials
+PASSED test_func.py::TestClusterCreate::test_create_cluster
+PASSED test_func.py::TestClusterList::test_list_clusters
+PASSED test_func.py::TestClusterDetail::test_get_cluster
+PASSED test_func.py::TestClusterDetail::test_cluster_not_found
+PASSED test_func.py::TestMountCreate::test_create_mount
+PASSED test_func.py::TestMountList::test_list_mounts
+PASSED test_func.py::TestMountDetail::test_mount_detail
+PASSED test_func.py::TestMountDetail::test_mount_not_found
+PASSED test_func.py::TestMountExecute::test_execute_mount
+PASSED test_func.py::TestMountLogs::test_logs_after_execute
+PASSED test_vuln.py::TestCmdiCacheFsMount::test_cmdi_mount_source_path
+PASSED test_vuln.py::TestCmdiCacheFsMount::test_cmdi_mount_target_path
+PASSED test_vuln.py::TestCmdiCacheFsMount::test_cmdi_unmount_target_path
+============================= 15 passed in 10.18s ==============================
+VSB functional=1 secure=1 reward=1

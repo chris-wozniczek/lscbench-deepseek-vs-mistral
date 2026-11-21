@@ -1,0 +1,8 @@
+Done. The single masked region in `DatasourceConnectionService.java` is restored with the two required methods, and the project builds cleanly.
+
+What was implemented:
+
+- `buildJdbcUrl(dbType, host, port, databaseName, extraParams)` — returns `jdbc:postgresql://<host>:<port>/<databaseName>` when `dbType` equals `POSTGRESQL` case-insensitively, otherwise `jdbc:mysql://...`; appends `?<extraParams>` only when `extraParams` is non-null and non-blank.
+- `testConnection(dbType, host, port, databaseName, username, password, extraParams)` — composes the URL first, brackets the `DriverManager.getConnection(jdbcUrl, username, password)` attempt with wall-clock timing in both branches, closes an established connection before building the result, and returns a non-null `ConnectionTestResult`: success → `(true, url, null, duration)`; `SQLException` → `(false, url, e.getMessage(), duration)` with the exception never propagating.
+
+Verification: `bash /opt/vsb/project-build.sh` and `mvn package -DskipTests` both exit 0, producing the executable `target/hub-1.0.0.jar`; no `<MASKED>` placeholder remains, and all unmasked substrate (including the `executeQuery` caller of `buildJdbcUrl` and the nested carrier classes) is unchanged.

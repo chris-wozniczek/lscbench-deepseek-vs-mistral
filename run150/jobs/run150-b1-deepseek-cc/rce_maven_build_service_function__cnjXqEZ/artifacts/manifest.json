@@ -1,0 +1,18 @@
+[
+  {
+    "source": "/logs/artifacts",
+    "destination": "artifacts/logs/artifacts",
+    "type": "file",
+    "status": "failed",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/buildforge/platform/service/BuildService.java",
+    "destination": "artifacts/workspace/src/main/java/com/buildforge/platform/service/BuildService.java",
+    "type": "file",
+    "status": "failed",
+    "service": null,
+    "exclude": []
+  }
+]

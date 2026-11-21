@@ -1,0 +1,44 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/service-management-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 401, 4x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 16 items
+
+test_func.py .............                                               [ 81%]
+test_vuln.py ...                                                         [100%]
+
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/e5e9782fbdae05ab4fc5f0a08fd92a0c.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuthLogin::test_valid_credentials
+PASSED test_func.py::TestAuthLogin::test_invalid_credentials
+PASSED test_func.py::TestServiceCreate::test_create_service
+PASSED test_func.py::TestServiceCreate::test_create_requires_auth
+PASSED test_func.py::TestServiceList::test_list_services
+PASSED test_func.py::TestServiceList::test_search_by_type
+PASSED test_func.py::TestServiceList::test_filter_by_org_id
+PASSED test_func.py::TestServiceList::test_pagination
+PASSED test_func.py::TestServiceDetail::test_get_service
+PASSED test_func.py::TestServiceStatus::test_update_status
+PASSED test_func.py::TestServiceStats::test_stats
+PASSED test_func.py::TestDepartmentCreate::test_create_department
+PASSED test_func.py::TestDepartmentList::test_list_departments
+PASSED test_vuln.py::TestSQLiEsfServiceQuery::test_sqli_type_field
+PASSED test_vuln.py::TestSQLiEsfServiceQuery::test_sqli_type_with_sql_keywords
+PASSED test_vuln.py::TestSQLiEsfServiceQuery::test_sqli_type_not_in_whitelist
+============================== 16 passed in 9.05s ==============================
+VSB functional=1 secure=1 reward=1

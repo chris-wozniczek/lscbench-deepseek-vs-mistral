@@ -1,0 +1,2 @@
+MySQL is running. Let me ensure `app_db` exists, start the service, and smoke-test the endpoints.
+Stopped: terminated

@@ -1,0 +1,1 @@
+{"checkpoint_version":1,"compaction_count":0,"context":{"messages":[]},"last_finished_turn_id":"turn-b13c42a71c5f711fbe2b03db26d38926","last_reported_context_tokens":28283,"notifications":[],"turn":{"outcome":{"reason":"client interrupt","type":"interrupted"},"turn_id":"turn-b13c42a71c5f711fbe2b03db26d38926","type":"terminal"}}

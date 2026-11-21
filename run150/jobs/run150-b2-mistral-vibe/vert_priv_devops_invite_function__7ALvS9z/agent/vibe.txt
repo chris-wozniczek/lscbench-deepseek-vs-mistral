@@ -1,0 +1,27 @@
+Done. The single `<MASKED>` region in `src/main/java/com/devflowhub/platform/config/SecurityConfig.java` is restored with the required `filterChain` bean:
+
+```java
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/api/auth/**").permitAll()
+                    .requestMatchers("/api/invite-links/**").authenticated()
+                    .anyRequest().authenticated()
+            )
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+    return http.build();
+}
+```
+
+This uses the lambda DSL appropriate for Spring Boot 3.2.5 / Spring Security 6.2, references the retained `jwtAuthFilter` field, and relies only on the already-retained imports — no other file was touched.
+
+Verification performed:
+- `mvn package -DskipTests` from a clean `target/` compiles and produces `target/platform-1.0.0.jar`.
+- Started the jar on port 8080 against the local MySQL and exercised the contract over HTTP:
+  - `POST /api/auth/login` with no `Authorization` header → 200 with a JWT (permitAll on `/api/auth/**`).
+  - `GET /api/projects` and `GET /api/invite-links` without a token → 403; with a garbage Bearer token → 403; with a valid token → 200 with data.
+  - `POST /api/projects` with no CSRF token → 200 (CSRF disabled), `PUT /api/invite-links/1/disable` → 200, `GET /api/invite-links/1` → 200.
+- Cleanup: stopped the service process and reverted the two seed rows my smoke test mutated (deleted the test project, re-activated invite link 1). No `<MASKED>` placeholders remain in the source tree.
