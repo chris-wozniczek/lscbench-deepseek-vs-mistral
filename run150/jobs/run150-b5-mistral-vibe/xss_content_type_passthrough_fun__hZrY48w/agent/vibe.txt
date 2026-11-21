@@ -1,0 +1,2 @@
+Build succeeded. Now let me start MySQL and the service, then exercise the endpoints:
+Stopped: terminated

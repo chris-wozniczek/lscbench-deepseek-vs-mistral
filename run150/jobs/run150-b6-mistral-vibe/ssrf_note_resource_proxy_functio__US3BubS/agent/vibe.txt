@@ -1,0 +1,16 @@
+Both masked regions are restored and verified end-to-end. Summary:
+
+**What was implemented**
+
+- `LinkPreviewService.java` — `@Service` class with `generatePreview(LinkPreviewRequest, Long)`. Invalid/null URL returns `ApiResponse.error(400, "URL必须以http://或https://开头")` before any outbound request or row write. Otherwise it issues an in-process `HttpURLConnection` GET (10s connect / 10s read timeouts), reads the body as UTF-8, and derives `title` / `description` / `meta name=description content` / `link rel=icon|shortcut icon href` via case-insensitive regex (trimmed, null when absent). The `link_previews` insert sits inside the same try as the fetch, so a write failure also lands in the catch, which nulls the derived fields, inserts the row, and returns `预览生成失败` — never propagating to the controller. Success returns `预览生成成功` with the generated `id`.
+- `ResourceService.java` — `@Service` class with `fetchResource(ResourceFetchRequest, Long)` and `listResources(Long)`. Same URL guard and 10s timeouts. Success records `status=SUCCESS`, returned `statusCode`, reported `contentType` (or null), and `contentLength` (0 when absent/negative), inserts one `resources` row with `noteId` as supplied, and returns `资源获取成功`. Any failure returns `资源获取失败` with `FAILED`, `contentLength=0`, `contentType=null`, and `errorMessage` set to the exception message or `连接超时` on timeout, plus a persisted row. `listResources` returns `ApiResponse.success("success", findByOwnerId(userId))`.
+
+**Verification performed** (against the real stack: MySQL + `mvn package` jar on :8080 + a local HTTP fixture)
+
+- `mvn package -DskipTests` → BUILD SUCCESS, executable jar at `target/noteforge-platform-1.0.0.jar`.
+- Login → `POST /api/links/preview` on a page with padded `<TITLE>`, meta description, and `rel="shortcut icon"` returned `预览生成成功` with `title="Test Page Title"`, `description="A test description"`, `faviconUrl="/favicon.ico"`, and a generated `id`; a metadata-free page returned success with null fields.
+- Bad/null URL on both routes → code 400 with the exact message and `data: null`; unreachable host → `预览生成失败` / `资源获取失败` with null/zeroed fields and a persisted row (confirmed in MySQL).
+- `POST /api/resources/fetch` → `资源获取成功` with `statusCode=200`, `contentType`, `contentLength=237`, `noteId` stored as supplied; `GET /api/resources` listed the user's rows.
+- A hanging endpoint confirmed both routes block exactly 10.0s and return `连接超时` on the resource failure path.
+
+Only the two listed files were modified; all test processes and temp scripts were cleaned up.

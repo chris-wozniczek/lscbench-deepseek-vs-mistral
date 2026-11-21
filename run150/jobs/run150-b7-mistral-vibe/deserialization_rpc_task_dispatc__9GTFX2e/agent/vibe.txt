@@ -1,0 +1,2 @@
+The process didn't survive the shell timeout. Let me start it properly with the process tool.
+Stopped: terminated

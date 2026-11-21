@@ -1,0 +1,26 @@
+[
+  {
+    "source": "/logs/artifacts",
+    "destination": "artifacts/logs/artifacts",
+    "type": "directory",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/billing/platform/controller/BillController.java",
+    "destination": "artifacts/workspace/src/main/java/com/billing/platform/controller/BillController.java",
+    "type": "file",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/billing/platform/controller/ContractController.java",
+    "destination": "artifacts/workspace/src/main/java/com/billing/platform/controller/ContractController.java",
+    "type": "file",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  }
+]

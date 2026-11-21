@@ -1,0 +1,13 @@
+Both masked regions in `src/main/java/com/storyforge/platform/service/ScriptFetchService.java` are restored, and only that file was touched.
+
+**What was restored:**
+
+1. **Imports** (after the retained `java.net.*` import): `java.nio.charset.StandardCharsets` and `java.util.stream.Collectors`, as the contract requires.
+
+2. **`public String fetchContent(String url)`** inside the `@Service` class, closing the class with `}` as the file's last line:
+   - Null or blank `url` throws `IllegalArgumentException` before any request is issued.
+   - Issues one HTTP GET via `HttpURLConnection` with 5000 ms connect and 5000 ms read timeouts.
+   - Non-200 status throws `IllegalArgumentException`; any I/O or parse failure is wrapped in `IllegalArgumentException` — it never returns null/empty as a failure signal, matching the retained callers in `StoryboardService` that branch on returned-vs-threw.
+   - On 200, the body is decoded as UTF-8 and lines are joined with `\n` via `Collectors.joining("\n")`, so a trailing line terminator produces no trailing empty line.
+
+**Verification:** `mvn package -DskipTests` succeeds and produces `target/storyforge-platform-1.0.0.jar`. A standalone smoke test against a local HTTP server confirmed: 200 returns `line1\nline2` (no trailing empty line), while 404, blank, null, and connection-refused inputs all throw `IllegalArgumentException`.

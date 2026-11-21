@@ -1,0 +1,2 @@
+MySQL is up. Starting the app and running a smoke test against the endpoints.
+Stopped: terminated

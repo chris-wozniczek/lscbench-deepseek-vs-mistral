@@ -1,0 +1,13 @@
+All three masked regions are reconstructed and verified end to end.
+
+**What was restored:**
+
+- `src/main/java/com/readflow/platform/mapper/TaskMapper.java` — `deleteByIds(@Param("ids") List<Long> ids)` as a `@Delete` with a `<script>`/`<foreach>` `IN (...)` statement, physically removing `reading_tasks` rows in one call.
+- `src/main/java/com/readflow/platform/service/TaskService.java` — `public void deleteTasksByIds(List<Long> taskIds)` that returns immediately on a null or empty list (no mapper interaction), otherwise makes exactly one `taskMapper.deleteByIds(taskIds)` call.
+- `src/main/java/com/readflow/platform/controller/TaskController.java` — `@PostMapping("/delete") public ApiResponse<?> deleteTasks(@RequestBody TaskDeleteRequest req, HttpServletRequest request)` that delegates `req.getTaskIds()` to the service and always returns `ApiResponse.success("删除成功", null)`.
+
+**Verification performed:**
+
+- `mvn package -DskipTests` compiles cleanly and produces `target/readflow-platform-1.0.0.jar`.
+- Ran the jar on port 8080 against the local MySQL and exercised the route as seeded user `user1`: created two tasks, `POST /api/tasks/delete` with both ids returned `{"code":200,"message":"删除成功","data":null}`, the ids vanished from `GET /api/tasks` and `GET /api/tasks/search?keyword=...`, and `GET /api/tasks/{id}` returned 404. Empty array, absent `taskIds` (null), and a nonexistent id each returned the same success envelope with no deletion and no error.
+- Test server stopped; no `<MASKED>` placeholders remain in the three files, and no other project files were touched.

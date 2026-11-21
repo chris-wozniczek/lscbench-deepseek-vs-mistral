@@ -1,0 +1,923 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-11-21T07:53:39.547543Z",
+    "harbor": {
+        "version": "0.26.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 5,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "APIResponseValidationError",
+            "AgentAuthenticationError",
+            "AgentSafetyRefusalError",
+            "AgentTimeoutError",
+            "ApiProviderResourceNotFoundError",
+            "AuthenticationError",
+            "BadRequestError",
+            "BudgetExceededError",
+            "CancelledError",
+            "ContentPolicyViolationError",
+            "ContextLengthExceededError",
+            "ContextWindowExceededError",
+            "DspyImportError",
+            "MissingExtraError",
+            "ModelNotFoundError",
+            "NonZeroAgentExitCodeError",
+            "NotFoundError",
+            "OutputLengthExceededError",
+            "OutputTokenExceededError",
+            "PermissionDeniedError",
+            "RegradeError",
+            "RewardFileEmptyError",
+            "RewardFileNotFoundError",
+            "ServiceOperationsUnsupportedError",
+            "UnprocessableEntityError",
+            "UnsupportedModelParametersError",
+            "UnsupportedParamsError",
+            "VercelScopeError",
+            "VerifierOutputParseError",
+            "VerifierTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2023-34105_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:206bb14924a1da93e79574e24951f400d191405a58c0ebe1b577cfcce62cd2aa",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/deserialization_ons_event_consumer_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:1f4f3aad25c4a4f7b8d0cc59ea024fb206f6d3871a7124140929cf495dd13d3b",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2021-41185_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:fb21cbb0d4603d75f5049e2eb0797bde8ce93597423eda4b6a66736ef66e90b1",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2020-14404_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:b560926c2ec6b87ffb0d5b822a6dad97c56f2cef26ebbbd724a8747a0e6c7dc7",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/path_traversal_absolute_resolve_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:7b4c38cf84ce1717cfdced5662d73806daccae731c1a32bc3da40b1fc899035f",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/xss_svg_upload_preview_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:32b35e9f95819ff49e93e60ae9b381896871c1cd51366e22c559ea1ff8f10365",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/idor_delete_reading_task_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:d64b29016a6247cb0a88c83ea53ec07d533c30f7f545bd00a61af15d5ef78f88",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2022-21722_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:2fb6f22e7f34dbb0a66e641e6d1b254f99fa8e667cfb8c61c1050747bed91a37",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2024-28117_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:b79370c6f329f72104ca6ebb595cbae667d8bc726982370adeb93bfa029e4ccb",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2017-17714_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:1c0d57da284efe6f1556258155243cc7ffee3e21e2a4ce75c87a71a7abd61931",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2022-2900_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:8b9df9cbf972227b808195d0ed90653a8389a6185fdf2ec6fcdf527d627c7fab",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2023-4782_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:09ba23e32d71340b63b9606dbff1309a05f72cb98865b13771e12ca7acd545d4",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/ssrf_note_resource_proxy_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:4b802aca1df254356bbff6ee360a33d3c76bac71afc36cd9ba8a8117c4379b10",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2021-21421_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:311e081e3cd531251f0d861e6d2fb2288144b3126fb73fb0d74b05610aa0eca4",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2022-41920_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:2f572582bc0d54cfc2a1ec8664e984461a45992d584ee1dd6f66579b0ba5c0ac",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2019-10767_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:b79bb73db47c5fe7a589884121a68d2e7cf00b719bcd65402c905ee4473dc483",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2020-26250_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:739354e8feb54a5d6fdf1a3ab23938af1251f97b004262fb2b8c5715d61789a4",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2024-39690_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:1cb25f9b58c5ba864968ef7d34c2fdd4291ae7f4a33373aa9bacfd90f28c8710",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "last-secure-code-benchmark/cve-2015-10043_function",
+                "version": "1.0.0",
+                "type": "package",
+                "digest": "sha256:930397c820bae5638f89fb97010d9155baac8d1c9df85b9f141b9082ddd9a36a",
+                "source": "last-secure-code-benchmark/last-secure-code-benchmark"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "lscb_agents:ClaudeCodeFallbackInstall",
+                "model_name": "deepseek-flash",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [
+                    "api.deepseek.com"
+                ],
+                "kwargs": {
+                    "version": "2.1.143",
+                    "reasoning_effort": "max"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            },
+            "artifacts": [],
+            "override_error_policy": {}
+        }
+    ]
+}

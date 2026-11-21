@@ -1,0 +1,10 @@
+Reconstruction complete. The single `<MASKED>` region in `src/main/java/com/designhub/platform/service/FileService.java` is now the `previewFile` method, and the project builds cleanly (`mvn package -DskipTests` exits 0 and produces `target/platform-1.0.0.jar`).
+
+What the restored method does, per the contract:
+
+- Signature matches the retained caller exactly: `public ResponseEntity<byte[]> previewFile(Long id) throws IOException` — `FileController.preview` assigns it to `ResponseEntity<byte[]>`, null-checks it, and catches `IOException`.
+- Sequencing: `fileInfoMapper.findById(id)` first — no record returns `null`; then `Files.exists` on the record's `storagePath` — missing file returns `null` with no read attempted; otherwise `Files.readAllBytes` with `IOException` propagating.
+- Content type derives from the extension of `originalName` (via the retained `getExtension`, lowercased) looked up in the retained `MIME_TYPES` map, defaulting to `application/octet-stream` — not from the stored filename or the record's `contentType` field.
+- Returns `ResponseEntity.ok()` (HTTP 200) with the `Content-Type` header and the file bytes as the body. SVG payloads pass through the retained `sanitizeSvg` helper (which was otherwise dead code, confirming it belonged to this method); all other types are served raw.
+
+No other files were touched.

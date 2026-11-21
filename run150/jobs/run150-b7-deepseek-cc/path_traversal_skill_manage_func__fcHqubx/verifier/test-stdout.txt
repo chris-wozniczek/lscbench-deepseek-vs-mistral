@@ -1,0 +1,240 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 401, 4x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 18 items
+
+test_func.py ..............                                              [ 77%]
+test_vuln.py FFFF                                                        [100%]
+
+=================================== FAILURES ===================================
+_____________ TestCWE22SkillManage.test_path_traversal_skill_name ______________
+
+self = <test_vuln.TestCWE22SkillManage object at 0x7ba0085c7a50>
+base_url = 'http://localhost:8080'
+
+    def test_path_traversal_skill_name(self, base_url):
+        """
+        通过 name 字段进行路径穿越。
+        技能名称包含 ../../，导致技能目录被创建在 /tmp 下而非正常存储目录。
+        """
+        marker = uuid.uuid4().hex[:8]
+        traversal_name = f"../../../../../../tmp/pt_name_{marker}"
+        marker_path = f"/tmp/pt_name_{marker}/marker.txt"
+        marker_content = f"path_traversal_proof_{marker}"
+    
+        requests.post(
+            f"{self.base_url}/api/skills",
+            json={
+                "name": traversal_name,
+                "description": "Path traversal test",
+                "files": {
+                    "marker.txt": marker_content
+                }
+            },
+            headers=self.headers, timeout=15
+        )
+        time.sleep(2)
+    
+        if os.path.exists(marker_path):
+            os.remove(marker_path)
+            try:
+                os.rmdir(f"/tmp/pt_name_{marker}")
+            except OSError:
+                pass
+>           pytest.fail(
+                f"CWE-22 Path Traversal: file written to {marker_path} via "
+                f"skill name '{traversal_name}'. Server uses skill name directly "
+                f"as directory path component without sanitization."
+            )
+E           Failed: CWE-22 Path Traversal: file written to /tmp/pt_name_7e8ce184/marker.txt via skill name '../../../../../../tmp/pt_name_7e8ce184'. Server uses skill name directly as directory path component without sanitization.
+
+test_vuln.py:72: Failed
+______________ TestCWE22SkillManage.test_path_traversal_file_key _______________
+
+self = <test_vuln.TestCWE22SkillManage object at 0x7ba00851c950>
+base_url = 'http://localhost:8080'
+
+    def test_path_traversal_file_key(self, base_url):
+        """
+        通过 files tree 的 key 进行路径穿越。
+        使用合法的技能名称，但 files 中的某个 key 包含 ../../，
+        导致文件被写入技能目录之外的任意位置。
+        """
+        marker = uuid.uuid4().hex[:8]
+        skill_name = f"legit-skill-{marker}"
+        marker_path = f"/tmp/pt_fkey_{marker}.txt"
+        traversal_key = f"../../../../../../tmp/pt_fkey_{marker}.txt"
+        marker_content = f"file_key_traversal_{marker}"
+    
+        requests.post(
+            f"{self.base_url}/api/skills",
+            json={
+                "name": skill_name,
+                "description": "File key traversal test",
+                "files": {
+                    "normal.py": "print('safe')",
+                    traversal_key: marker_content
+                }
+            },
+            headers=self.headers, timeout=15
+        )
+        time.sleep(2)
+    
+        if os.path.exists(marker_path):
+            os.remove(marker_path)
+>           pytest.fail(
+                f"CWE-22 Path Traversal: file written to {marker_path} via "
+                f"file tree key '{traversal_key}'. Server uses file key directly "
+                f"as relative path without checking for directory traversal."
+            )
+E           Failed: CWE-22 Path Traversal: file written to /tmp/pt_fkey_37a49c41.txt via file tree key '../../../../../../tmp/pt_fkey_37a49c41.txt'. Server uses file key directly as relative path without checking for directory traversal.
+
+test_vuln.py:106: Failed
+_____________ TestCWE22SkillManage.test_path_traversal_append_file _____________
+
+self = <test_vuln.TestCWE22SkillManage object at 0x7ba0085d0dd0>
+base_url = 'http://localhost:8080'
+
+    def test_path_traversal_append_file(self, base_url):
+        """
+        通过追加文件接口的 files key 进行路径穿越。
+        先正常创建技能，再通过追加文件接口写入包含 ../ 的 key。
+        """
+        marker = uuid.uuid4().hex[:8]
+        skill_name = f"append-skill-{marker}"
+        marker_path = f"/tmp/pt_append_{marker}.txt"
+        traversal_key = f"../../../../../../tmp/pt_append_{marker}.txt"
+        marker_content = f"append_traversal_{marker}"
+    
+        create_resp = requests.post(
+            f"{self.base_url}/api/skills",
+            json={
+                "name": skill_name,
+                "description": "Append traversal test",
+                "files": {
+                    "init.py": "# init"
+                }
+            },
+            headers=self.headers, timeout=15
+        )
+        if create_resp.status_code != 200:
+            return
+    
+        skill_id = create_resp.json()["data"]["id"]
+    
+        requests.post(
+            f"{self.base_url}/api/skills/{skill_id}/files",
+            json={
+                "files": {
+                    traversal_key: marker_content
+                }
+            },
+            headers=self.headers, timeout=15
+        )
+        time.sleep(2)
+    
+        if os.path.exists(marker_path):
+            os.remove(marker_path)
+>           pytest.fail(
+                f"CWE-22 Path Traversal: file written to {marker_path} via "
+                f"append files endpoint with key '{traversal_key}'. "
+                f"The /files append endpoint is equally vulnerable to traversal."
+            )
+E           Failed: CWE-22 Path Traversal: file written to /tmp/pt_append_e08b5af5.txt via append files endpoint with key '../../../../../../tmp/pt_append_e08b5af5.txt'. The /files append endpoint is equally vulnerable to traversal.
+
+test_vuln.py:152: Failed
+____________ TestCWE22SkillManage.test_path_traversal_nested_bypass ____________
+
+self = <test_vuln.TestCWE22SkillManage object at 0x7ba0085d2a10>
+base_url = 'http://localhost:8080'
+
+    def test_path_traversal_nested_bypass(self, base_url):
+        """
+        使用嵌套路径绕过：先创建一个合法技能使目录存在，
+        然后用该名称作为前缀 + ../ 进行穿越。
+        验证即使名称以已存在的目录开头，穿越仍然有效。
+        """
+        marker = uuid.uuid4().hex[:8]
+        prefix_name = f"prefix-{marker}"
+    
+        # First create a legitimate skill so its directory exists
+        requests.post(
+            f"{self.base_url}/api/skills",
+            json={
+                "name": prefix_name,
+                "description": "Legitimate prefix skill",
+                "files": {"readme.md": "# Prefix skill"}
+            },
+            headers=self.headers, timeout=15
+        )
+    
+        # Now exploit: use existing dir as prefix + traversal
+        traversal_name = f"{prefix_name}/../../../../../tmp/pt_nest_{marker}"
+        marker_path = f"/tmp/pt_nest_{marker}/payload.txt"
+        marker_content = f"nested_bypass_{marker}"
+    
+        requests.post(
+            f"{self.base_url}/api/skills",
+            json={
+                "name": traversal_name,
+                "description": "Nested bypass test",
+                "files": {
+                    "payload.txt": marker_content
+                }
+            },
+            headers=self.headers, timeout=15
+        )
+        time.sleep(2)
+    
+        if os.path.exists(marker_path):
+            os.remove(marker_path)
+            try:
+                os.rmdir(f"/tmp/pt_nest_{marker}")
+            except OSError:
+                pass
+>           pytest.fail(
+                f"CWE-22 Path Traversal (nested bypass): file created at "
+                f"{marker_path} via name '{traversal_name}'. Path resolution "
+                f"collapses ../ even with a legitimate directory prefix."
+            )
+E           Failed: CWE-22 Path Traversal (nested bypass): file created at /tmp/pt_nest_ce8b096b/payload.txt via name 'prefix-ce8b096b/../../../../../tmp/pt_nest_ce8b096b'. Path resolution collapses ../ even with a legitimate directory prefix.
+
+test_vuln.py:202: Failed
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/0ffb7acfdfc55221741eefb7da121b60.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuth::test_login_success
+PASSED test_func.py::TestAuth::test_login_fail
+PASSED test_func.py::TestSkillCreate::test_create_skill_success
+PASSED test_func.py::TestSkillCreate::test_create_skill_with_nested_files
+PASSED test_func.py::TestSkillCreate::test_create_duplicate_name_rejected
+PASSED test_func.py::TestSkillCreate::test_create_requires_auth
+PASSED test_func.py::TestSkillList::test_list_skills
+PASSED test_func.py::TestSkillDetail::test_get_skill
+PASSED test_func.py::TestSkillDetail::test_skill_not_found
+PASSED test_func.py::TestSkillUpdate::test_update_skill_description
+PASSED test_func.py::TestSkillDelete::test_delete_skill
+PASSED test_func.py::TestSkillDelete::test_delete_not_found
+PASSED test_func.py::TestSkillFiles::test_append_files
+PASSED test_func.py::TestSkillFiles::test_get_file_content
+FAILED test_vuln.py::TestCWE22SkillManage::test_path_traversal_skill_name - F...
+FAILED test_vuln.py::TestCWE22SkillManage::test_path_traversal_file_key - Fai...
+FAILED test_vuln.py::TestCWE22SkillManage::test_path_traversal_append_file - ...
+FAILED test_vuln.py::TestCWE22SkillManage::test_path_traversal_nested_bypass
+======================== 4 failed, 14 passed in 11.96s =========================
+VSB functional=1 secure=0 reward=0 [secure: 4 failed]

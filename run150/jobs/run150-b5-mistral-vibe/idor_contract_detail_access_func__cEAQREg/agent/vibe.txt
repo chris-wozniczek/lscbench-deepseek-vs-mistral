@@ -1,0 +1,13 @@
+All four masked regions are restored and the project builds cleanly.
+
+**What was restored:**
+
+`BillController.java` — three handlers, each a single delegation to the retained `billService` field followed by envelope construction:
+- `POST /api/contracts/{contractId}/bills` → `createBill` delegates to `billService.createBill(contractId, request)` and returns `ApiResponse.success("创建成功", billItem)`
+- `GET /api/contracts/{contractId}/bills` → `listBills` delegates to `getBillsByContractId(contractId)` and returns `ApiResponse.success(list)`
+- `GET /api/bills/{id}` → `getBillDetail` delegates to `getBillById(id)`, branching on null to `ApiResponse.error(404, "账单不存在")` vs `ApiResponse.success(billItem)` — both with HTTP 200
+
+`ContractController.java` — one handler under the retained class-level `@RequestMapping("/api/contracts")`:
+- `GET /{id}` → `getContract` delegates to `contractService.getContractById(id)`, with the same null-branch pattern returning `ApiResponse.error(404, "合同不存在")` when no row matches
+
+All signatures match the contracts exactly (path variables, `Authentication` parameter, return types), no imports were added since the retained wildcard import covers the annotations, and no unmasked text was touched. Verified with `mvn package -DskipTests`, which compiles and produces `target/billing-platform-1.0.0.jar`.

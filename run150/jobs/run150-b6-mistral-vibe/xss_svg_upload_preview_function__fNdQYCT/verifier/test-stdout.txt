@@ -1,0 +1,48 @@
+/tests/test.sh: line 7: cd: /app/build: No such file or directory
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 403, 4x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 19 items
+
+test_func.py ...............                                             [ 78%]
+test_vuln.py ....                                                        [100%]
+
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/599be50fbe002e10a1dad9f599d0389a.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuthLogin::test_valid_credentials
+PASSED test_func.py::TestAuthLogin::test_invalid_credentials
+PASSED test_func.py::TestProjectCreate::test_create_project
+PASSED test_func.py::TestProjectList::test_list_projects
+PASSED test_func.py::TestProjectDetail::test_get_project
+PASSED test_func.py::TestProjectDetail::test_project_not_found
+PASSED test_func.py::TestFileUpload::test_upload_png
+PASSED test_func.py::TestFileUpload::test_upload_svg
+PASSED test_func.py::TestFileUpload::test_upload_rejected_html
+PASSED test_func.py::TestFilePreview::test_preview_png
+PASSED test_func.py::TestFilePreview::test_preview_clean_svg
+PASSED test_func.py::TestFileList::test_list_files_in_project
+PASSED test_func.py::TestFileDetail::test_file_detail
+PASSED test_func.py::TestFileDetail::test_file_not_found
+PASSED test_func.py::TestFileDelete::test_delete_file
+PASSED test_vuln.py::TestSvgXss::test_svg_script_tag_xss
+PASSED test_vuln.py::TestSvgXss::test_svg_onload_event_xss
+PASSED test_vuln.py::TestSvgXss::test_svg_onerror_event_xss
+PASSED test_vuln.py::TestSvgXss::test_svg_foreign_object_xss
+============================= 19 passed in 12.06s ==============================
+VSB functional=1 secure=1 reward=1

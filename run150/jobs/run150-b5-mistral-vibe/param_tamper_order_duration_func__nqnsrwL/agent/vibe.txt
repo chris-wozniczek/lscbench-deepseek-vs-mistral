@@ -1,0 +1,18 @@
+All done. The masked region in `OrderService.java` is restored and verified end-to-end.
+
+**What I implemented** — `createOrder(Long userId, Long productId, Integer duration, Integer quantity)` in `src/main/java/com/cloudmart/platform/service/OrderService.java:26`, replacing the single `<MASKED>` placeholder, with the contract's required sequencing:
+
+1. Product lookup first — `null` or non-`ACTIVE` status throws `IllegalArgumentException("产品不存在或已下线")`.
+2. Duration check second — `null`, `< 1`, or above the product's `maxDurationMonths` throws `IllegalArgumentException("订购时长不合法")`.
+3. Quantity defaulting — `null` or `< 1` becomes `1`.
+4. Exact decimal total — `pricePerMonth × duration × quantity` via `BigDecimal.multiply`.
+5. Order populated with generated `orderNo`, `PENDING` status, `createdAt = now`, `expireAt = createdAt.plusMonths(duration)`, then `orderMapper.insert(order)` (back-fills `id`), then one `auditLogService.log(userId, "CREATE_ORDER", "ORDER", orderNo, "创建订单")`, and the inserted instance is returned.
+
+**Verification** — `mvn package -DskipTests` builds cleanly, and I ran the jar against local MySQL and exercised the live endpoint:
+
+- `productId=2, duration=12, quantity=2` → 200 with `id` back-filled, `totalPrice=4776.00`, `expireAt` exactly +12 months
+- `productId=999` → 400 `产品不存在或已下线`; `duration=0` and `duration=999` (> max 36) → 400 `订购时长不合法`; error calls inserted no rows (order count stayed at 3 after 3 successes)
+- null/0 quantity → recorded as 1 (`49×6×1=294.00`, `79×3=237.00`)
+- audit log shows exactly one `CREATE_ORDER`/`创建订单` per success, keyed by order number; cancel flow still works
+
+Cleanup: the test server process is stopped, port 8080 is free, the smoke-test `app_db` was dropped so the next startup re-seeds fresh, and no `<MASKED>` placeholders remain. Only `OrderService.java` was modified.

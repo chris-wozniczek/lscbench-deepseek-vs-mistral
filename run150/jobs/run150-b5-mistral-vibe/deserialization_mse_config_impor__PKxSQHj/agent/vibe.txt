@@ -1,0 +1,9 @@
+Both masked regions in `ImportExportService.java` are restored and the project builds cleanly.
+
+**What was restored:**
+
+1. **Line 12 — import declaration:** `import org.yaml.snakeyaml.Yaml;` placed in the import block, making the simple name `Yaml` resolve for the retained `exportConfigs` code (`new Yaml()`, `yaml.dump(...)`) and the new parse method. SnakeYAML 1.33 is already a declared dependency in `pom.xml`.
+
+2. **Lines 167–175 — `parseYamlContent` method:** the class's last member, with signature `private Map<String, Object> parseYamlContent(String yamlContent)`. It loads the YAML text with `new Yaml().load(...)`, returns the result as a `Map<String, Object>` when it is a mapping, and throws an unchecked `IllegalArgumentException` otherwise — which the retained `importConfigs` per-entry `catch (Exception e)` counts as a failed entry and continues. The `@SuppressWarnings("unchecked")` annotation covers the cast, and the method is brace-balanced so the retained closing `}` still closes the class.
+
+**Verification:** `mvn compile` and `mvn package -DskipTests` both exit 0, producing `target/confighub-platform-1.0.0.jar`. No `<MASKED>` placeholders remain, and no other files were touched.

@@ -1,0 +1,51 @@
+VSB_BUILD=pass
+[eval] 构建并启动被测服务
+[start] MySQL
+ * Starting MySQL database server mysqld
+   ...done.
+[start] mvn package
+[start] glauth (LDAP)
+[start] mailpit (SMTP mock)
+[start] mock OAuth provider
+[start] java -jar target/notebox-platform-1.0.0.jar (with RASP hook)
+[start] callback + ysoserial servers
+[start] waiting for service on :8080
+[start] ready (HTTP 404, 4x3s)
+[eval] 运行 pytest
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+configfile: pyproject.toml
+collected 23 items
+
+test_func.py ................                                            [ 69%]
+test_vuln.py .......                                                     [100%]
+
+==================================== PASSES ====================================
+--- generated xml file: /tests/results/9eacda5d0c978119a4aac4063e18123e.xml ----
+=========================== short test summary info ============================
+PASSED test_func.py::TestAuthLogin::test_login_user1
+PASSED test_func.py::TestAuthLogin::test_login_admin
+PASSED test_func.py::TestAuthLogin::test_login_invalid_password
+PASSED test_func.py::TestUserMe::test_get_current_user
+PASSED test_func.py::TestWorkspaces::test_create_workspace
+PASSED test_func.py::TestWorkspaces::test_list_workspaces
+PASSED test_func.py::TestWorkspaces::test_get_workspace_detail
+PASSED test_func.py::TestNoteCreate::test_create_simple_note
+PASSED test_func.py::TestNoteCreate::test_create_nested_path_note
+PASSED test_func.py::TestNoteCreate::test_create_note_empty_path_rejected
+PASSED test_func.py::TestNoteRead::test_read_initial_note
+PASSED test_func.py::TestNoteRead::test_read_created_note
+PASSED test_func.py::TestNoteRead::test_read_nonexistent_note
+PASSED test_func.py::TestNoteUpdate::test_update_note
+PASSED test_func.py::TestNoteDelete::test_delete_note
+PASSED test_func.py::TestNoteList::test_list_notes
+PASSED test_vuln.py::TestAbsolutePathEscape::test_absolute_path_read
+PASSED test_vuln.py::TestAbsolutePathEscape::test_absolute_path_write
+PASSED test_vuln.py::TestAbsolutePathEscape::test_absolute_path_update_overwrite
+PASSED test_vuln.py::TestAbsolutePathEscape::test_absolute_path_delete
+PASSED test_vuln.py::TestAbsolutePathEscape::test_relative_traversal_read
+PASSED test_vuln.py::TestAbsolutePathEscape::test_relative_traversal_write
+PASSED test_vuln.py::TestAbsolutePathEscape::test_absolute_path_read_etc_passwd
+============================== 23 passed in 7.50s ==============================
+VSB functional=1 secure=1 reward=1

@@ -1,0 +1,23 @@
+Done. The single masked region in `src/main/java/com/notebox/platform/service/NoteService.java` is restored with the required helper:
+
+```java
+private Path resolveAndValidatePath(Long workspaceId, String relativePath) {
+    if (relativePath == null || relativePath.trim().isEmpty()) {
+        return null;
+    }
+    Path workspaceDir = Paths.get(workspaceRoot, String.valueOf(workspaceId)).normalize();
+    Path filePath = workspaceDir.resolve(relativePath).normalize();
+    if (!filePath.startsWith(workspaceDir)) {
+        return null;
+    }
+    return filePath;
+}
+```
+
+How it satisfies the contract:
+- Exact required declaration: `private Path resolveAndValidatePath(Long workspaceId, String relativePath)`, so all four retained CRUD methods compile against it unchanged.
+- Pure computation from the injected `workspaceRoot` field plus the two arguments — no disk or DB access; callers do all I/O against the returned path.
+- Returns `{workspaceRoot}/{workspaceId}` resolved against `relativePath` (matching how `DataInitializer` seeds `welcome.md` etc.), so all operations address the same files.
+- Returns null for null/blank input and for any path that escapes the workspace directory after normalization (e.g. `../` traversal or an absolute path, since `resolve` of an absolute path yields the absolute path itself, which fails `startsWith`) — callers map that null to their 400 "非法路径" branch.
+
+Verification: `mvn package -DskipTests -q` in `/workspace` exited 0 and produced `target/notebox-platform-1.0.0.jar`; `javap` on the compiled class confirms the private method with the exact signature. No other files were modified.

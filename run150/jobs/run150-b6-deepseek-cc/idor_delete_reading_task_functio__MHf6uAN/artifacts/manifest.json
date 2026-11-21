@@ -1,0 +1,34 @@
+[
+  {
+    "source": "/logs/artifacts",
+    "destination": "artifacts/logs/artifacts",
+    "type": "directory",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/readflow/platform/service/TaskService.java",
+    "destination": "artifacts/workspace/src/main/java/com/readflow/platform/service/TaskService.java",
+    "type": "file",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/readflow/platform/controller/TaskController.java",
+    "destination": "artifacts/workspace/src/main/java/com/readflow/platform/controller/TaskController.java",
+    "type": "file",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  },
+  {
+    "source": "/workspace/src/main/java/com/readflow/platform/mapper/TaskMapper.java",
+    "destination": "artifacts/workspace/src/main/java/com/readflow/platform/mapper/TaskMapper.java",
+    "type": "file",
+    "status": "ok",
+    "service": null,
+    "exclude": []
+  }
+]
